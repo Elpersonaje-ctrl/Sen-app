@@ -297,18 +297,17 @@
             </div>
 
             <!-- Sección de Consejos Dinámicos -->
-            <div id="ai-advice-card" class="glass-card p-6 rounded-3xl border-indigo-500/20 hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <div class="flex items-start gap-4">
+            <div id="ai-advice-card" class="glass-card p-6 rounded-3xl border-indigo-500/20 hidden animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
+                <div class="flex flex-col items-center gap-4">
                     <div class="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400">
                         <i data-lucide="brain-circuit" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
                             Optimización Bioquímica
-                            <span class="text-[10px] bg-indigo-500/20 px-2 py-0.5 rounded-full">Análisis Data-Watch</span>
                         </h3>
                         <p id="ai-advice-text" class="text-xs text-zinc-300 leading-relaxed"></p>
-                        <div id="ai-advice-tags" class="flex flex-wrap gap-2 mt-4"></div>
+                        <div id="ai-advice-tags" class="flex flex-wrap justify-center gap-2 mt-4"></div>
                     </div>
                 </div>
             </div>
@@ -409,16 +408,34 @@
                     </ul>
                 </div>
                 <div class="glass-card p-6 rounded-3xl">
-                    <h3 class="text-lg font-semibold text-white mb-6">Cardio: Running 21K</h3>
-                    <p class="text-[10px] text-zinc-500 mb-6 uppercase tracking-wider font-bold">Objetivo: Vigo Media Maratón</p>
-                    <div class="space-y-3">
-                        <div class="p-4 bg-white/[0.02] rounded-xl border border-white/5">
-                            <p class="text-xs font-bold text-zinc-200">1. Tirada de Umbral (Jueves)</p>
-                            <p class="text-[10px] text-zinc-500 mt-2 leading-relaxed">10 min suaves + 4x3 min a ritmo fuerte (4:50 min/km) + 5 min suaves.</p>
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="route" class="w-5 h-5 text-indigo-400"></i>
+                        Running: Media Maratón
+                    </h3>
+                    <p class="text-[10px] text-zinc-500 mb-6 leading-relaxed uppercase tracking-wider font-bold">
+                        Estrategia Vigo: Volumen Lento + Consolidación
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all group">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="text-xs font-bold text-zinc-200">1. Tirada de Umbral</p>
+                                <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full font-bold uppercase">Jueves</span>
+                            </div>
+                            <p class="text-[10px] text-zinc-500 leading-relaxed">10 min suaves + 4x3 min a ritmo fuerte (4:50 min/km) con recuperación de 2 min + 5 min suaves.</p>
                         </div>
-                        <div class="p-4 bg-white/[0.02] rounded-xl border border-white/5">
-                            <p class="text-xs font-bold text-zinc-200">2. Tirada Larga (Sábado)</p>
-                            <p class="text-[10px] text-zinc-500 mt-2 leading-relaxed">60-80 min en Zona 2 (6:00 min/km). Trote cómodo y conversacional.</p>
+                        <div class="p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-emerald-500/30 transition-all group">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="text-xs font-bold text-zinc-200">2. Tirada Larga (Fondo)</p>
+                                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold uppercase">Sábado</span>
+                            </div>
+                            <p class="text-[10px] text-zinc-500 leading-relaxed">60 a 80 min en Zona 2 (6:00 min/km). Empieza en 10 km y suma un 10% semanal. Evita asfalto con pendientes fuertes.</p>
+                        </div>
+                        <div class="p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-zinc-500/30 transition-all group">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="text-xs font-bold text-zinc-200">3. Recuperación Activa</p>
+                                <span class="text-[9px] bg-zinc-500/10 text-zinc-400 px-2 py-0.5 rounded-full font-bold uppercase">Domingo</span>
+                            </div>
+                            <p class="text-[10px] text-zinc-500 leading-relaxed">20-30 min de trote regenerativo extremadamente suave para eliminar deshechos metabólicos.</p>
                         </div>
                     </div>
                 </div>
@@ -430,39 +447,79 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <div class="lg:col-span-5 glass-card p-6 rounded-3xl">
                     <h3 class="font-semibold text-white text-lg mb-6 flex items-center gap-2">
-                        <i data-lucide="sliders" class="w-5 h-5 text-indigo-400"></i>
-                        Optimizar
+                        <i data-lucide="brain-circuit" class="w-5 h-5 text-indigo-400"></i>
+                        IA Coach: Bio-Feedback
                     </h3>
                     <div class="space-y-6">
+                        <!-- Sueño -->
                         <div>
                             <div class="flex justify-between mb-2">
-                                <label class="text-[10px] font-bold text-zinc-500 uppercase">Sueño</label>
-                                <span class="text-[10px] font-bold text-indigo-400" id="sleep-val">7.5h</span>
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Horas de Sueño</label>
+                                <span class="text-[10px] font-bold text-indigo-400" id="ai-sleep-val">7.5h</span>
                             </div>
-                            <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" oninput="document.getElementById('sleep-val').innerText = this.value + 'h'" class="w-full accent-indigo-500">
+                            <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" oninput="document.getElementById('ai-sleep-val').innerText = this.value + 'h'" class="w-full accent-indigo-500">
                         </div>
+                        <!-- Fatiga -->
                         <div>
                             <div class="flex justify-between mb-2">
-                                <label class="text-[10px] font-bold text-zinc-500 uppercase">Estrés</label>
-                                <span class="text-[10px] font-bold text-indigo-400" id="stress-val">4</span>
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Fatiga Física (1-10)</label>
+                                <span class="text-[10px] font-bold text-indigo-400" id="ai-fatigue-val">3</span>
                             </div>
-                            <input type="range" id="ai-stress" min="1" max="10" value="4" oninput="document.getElementById('stress-val').innerText = this.value" class="w-full accent-indigo-500">
+                            <input type="range" id="ai-fatigue" min="1" max="10" value="3" oninput="document.getElementById('ai-fatigue-val').innerText = this.value" class="w-full accent-indigo-500">
                         </div>
-                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-4 bg-indigo-500/10 text-indigo-400 rounded-2xl text-xs font-bold uppercase tracking-widest hover:bg-indigo-500/20 transition-all">
-                            Calcular Pauta
+                        <!-- Estrés -->
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Estrés Mental (1-10)</label>
+                                <span class="text-[10px] font-bold text-indigo-400" id="ai-stress-val-ia">4</span>
+                            </div>
+                            <input type="range" id="ai-stress" min="1" max="10" value="4" oninput="document.getElementById('ai-stress-val-ia').innerText = this.value" class="w-full accent-indigo-500">
+                        </div>
+                        <!-- Turno -->
+                        <div>
+                            <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-2">Turno Stellantis Vigo</label>
+                            <select id="ai-shift" class="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 text-[11px] text-zinc-300 focus:border-indigo-500 outline-none">
+                                <option value="mañana">🌅 Mañana (Salida 14:00)</option>
+                                <option value="tarde">🌌 Tarde (Entrada 14:00)</option>
+                                <option value="noche">🌃 Noche (Nocturno)</option>
+                                <option value="descanso">🛋️ Descanso Laboral</option>
+                            </select>
+                        </div>
+                        <!-- Tipo de Día -->
+                        <div>
+                            <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-2">Plan Base hoy</label>
+                            <select id="ai-daytype" class="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 text-[11px] text-zinc-300 focus:border-indigo-500 outline-none">
+                                <option value="fuerza_estudio">🏋️ Fuerza + Hiperfoco</option>
+                                <option value="tirada_larga">🏃 Tirada Larga 21K</option>
+                                <option value="recuperacion">🧘 Recuperación Activa</option>
+                                <option value="descanso_lectura">🛋️ Descanso y Lectura</option>
+                            </select>
+                        </div>
+
+                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-4 bg-indigo-500/10 text-indigo-400 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-500/20 transition-all border border-indigo-500/20 flex items-center justify-center gap-2">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                            Calcular Protocolo Adaptativo
                         </button>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 space-y-6">
-                    <div id="ai-optimization-output" class="glass-card p-6 rounded-3xl min-h-[150px] text-xs leading-relaxed text-zinc-400 italic">
-                        Genera una pauta adaptativa...
+                <div class="lg:col-span-7 space-y-6 flex flex-col">
+                    <div id="ai-optimization-output" class="glass-card p-6 rounded-3xl min-h-[180px] text-xs leading-relaxed text-zinc-400 flex flex-col justify-center text-center italic">
+                        <p>Ajusta tus parámetros biométricos y pulsa "Calcular" para que Gemini genere tu protocolo de hoy.</p>
                     </div>
-                    <div class="glass-card p-6 rounded-3xl h-[350px] flex flex-col">
-                        <div id="chatHistory" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar"></div>
-                        <div class="flex gap-2 p-2 bg-white/[0.02] rounded-2xl border border-white/5">
-                            <input type="text" id="chatInput" placeholder="Pregunta a la IA..." class="flex-1 bg-transparent border-none text-xs text-white focus:ring-0 px-2">
-                            <button onclick="enviarPreguntaIA()" class="p-2 bg-indigo-500/20 text-indigo-400 rounded-xl">
+                    <div class="glass-card p-6 rounded-3xl h-[420px] flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Consultor de Rendimiento</h4>
+                            <span class="text-[9px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold uppercase">Live API 1.5</span>
+                        </div>
+                        <div id="chatHistory" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar text-[11px]">
+                            <div class="p-3 bg-white/[0.02] rounded-2xl border border-white/5 text-zinc-400 leading-relaxed">
+                                <strong>Coach IA:</strong> ¡Hola! Pregúntame sobre suplementos, técnicas de estudio, o cómo adaptar tu entrenamiento a los turnos de Stellantis.
+                            </div>
+                        </div>
+                        <div class="flex gap-2 p-2 bg-white/[0.02] rounded-2xl border border-white/5 focus-within:border-indigo-500/50 transition-all">
+                            <input type="text" id="chatInput" onkeydown="if(event.key === 'Enter') enviarPreguntaIA()" placeholder="Pregunta sobre L-Tirosina, HRV, calistenia..." class="flex-1 bg-transparent border-none text-[11px] text-white focus:ring-0 px-2">
+                            <button onclick="enviarPreguntaIA()" class="p-2.5 bg-indigo-500 text-white rounded-xl shadow-lg shadow-indigo-500/20 hover:bg-indigo-600 transition-all">
                                 <i data-lucide="send" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -634,7 +691,7 @@
             document.getElementById(`content-${tabId}`).classList.remove('hidden');
             
             document.querySelectorAll('nav button').forEach(btn => {
-                btn.classList.remove('nav-active', 'text-indigo-400');
+                btn.classList.remove('nav-active');
                 btn.classList.add('text-zinc-500');
             });
             const activeBtn = document.getElementById(`tab-${tabId}`);
@@ -674,7 +731,7 @@
             const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
 
             for (let i = 0; i < offset; i++) {
-                grid.innerHTML += `<div class="h-12 bg-gray-950/20 border border-gray-900 rounded-lg"></div>`;
+                grid.innerHTML += `<div class="h-12 bg-white/[0.02] border border-white/5 rounded-xl"></div>`;
             }
 
             for (let i = 1; i <= totalDays; i++) {
@@ -685,12 +742,12 @@
                 const diaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
                 const diaInfo = weekdayMapping[diaIndex];
                 
-                let colorClass = "bg-gray-950 border-gray-800 text-gray-400";
-                if (diaInfo.type === 'mixed') colorClass = "bg-emerald-950/10 border-emerald-500/20 text-emerald-300";
-                else if (diaInfo.type === 'rest') colorClass = "bg-indigo-950/10 border-indigo-500/20 text-indigo-300";
+                let colorClass = "bg-zinc-900/50 border-white/5 text-zinc-500";
+                if (diaInfo.type === 'mixed') colorClass = "bg-emerald-500/5 border-emerald-500/10 text-emerald-300";
+                else if (diaInfo.type === 'rest') colorClass = "bg-indigo-500/5 border-indigo-500/10 text-indigo-300";
 
                 grid.innerHTML += `
-                    <button onclick="selectDay('${dateStr}')" class="h-12 p-1.5 rounded-lg border text-xs flex flex-col justify-between transition-all ${colorClass} ${isSelected}">
+                    <button onclick="selectDay('${dateStr}')" class="h-12 p-1.5 rounded-xl border text-[10px] flex flex-col justify-between transition-all ${colorClass} ${isSelected}">
                         <span class="font-bold">${i}</span>
                         <span id="dot-${dateStr}" class="w-1.5 h-1.5 rounded-full bg-transparent mx-auto"></span>
                     </button>`;
@@ -796,31 +853,23 @@
         }
 
         function addToGoogleCalendar(title, timeInfo) {
-            // Limpiar el título de emojis para el calendario
             const cleanTitle = title.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, '').trim();
-            
-            // Formatear fecha (YYYYMMDD)
             const dateParts = selectedDateStr.replace(/-/g, '');
-            
-            // Construir URL de Google Calendar
-            // Usamos el formato básico de evento para que funcione en el celular sin configurar APIs complejas
             const baseUrl = "https://www.google.com/calendar/render?action=TEMPLATE";
             const text = encodeURIComponent(`Sinfonía Neuro: ${cleanTitle}`);
-            const dates = `${dateParts}/${dateParts}`; // Todo el día por defecto para simplicidad
+            const dates = `${dateParts}/${dateParts}`;
             const details = encodeURIComponent(`Bloque de rendimiento programado en el Planificador Sinfonía Neuro.\nCategoría: ${timeInfo}`);
-            
             const calendarUrl = `${baseUrl}&text=${text}&dates=${dates}&details=${details}&sf=true&output=xml`;
-            
             window.open(calendarUrl, '_blank');
         }
 
         // --- IA INTEGRATION ---
-        async function callGemini(prompt) {
+        async function callGemini(payload) {
             const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                body: JSON.stringify(payload)
             });
             if (!response.ok) throw new Error("API Error");
             return await response.json();
@@ -829,16 +878,25 @@
         async function optimizarDiaConIA() {
             const output = document.getElementById('ai-optimization-output');
             const btn = document.getElementById('btnOptimizarIA');
+            
+            const sleep = document.getElementById('ai-sleep').value;
+            const fatigue = document.getElementById('ai-fatigue').value;
+            const stress = document.getElementById('ai-stress').value;
+            const shift = document.getElementById('ai-shift').value;
+            const daytype = document.getElementById('ai-daytype').value;
+
             btn.disabled = true;
-            output.innerHTML = "<p class='animate-pulse'>Consultando a Gemini...</p>";
+            output.innerHTML = "<p class='animate-pulse text-indigo-400'>Consultando a Gemini 1.5...</p>";
+            
+            const prompt = `Optimiza mi rutina para hoy. Dormí ${sleep}h, Fatiga ${fatigue}/10, Estrés ${stress}/10. Trabajo en Stellantis Vigo en turno de ${shift}. Hoy toca ${daytype}. Dame un protocolo de suplementación y 3 puntos clave de agenda.`;
+            
             try {
-                const sleep = document.getElementById('ai-sleep').value;
-                const stress = document.getElementById('ai-stress').value;
-                const prompt = `Optimiza mi rutina para hoy. Dormí ${sleep}h, estrés ${stress}/10. Trabajador en Stellantis Vigo. Dame 3 consejos rápidos.`;
-                const res = await callGemini(prompt);
-                output.innerHTML = `<div class='prose prose-invert'>${res.candidates[0].content.parts[0].text.replace(/\n/g, '<br>')}</div>`;
+                const res = await callGemini({ contents: [{ parts: [{ text: prompt }] }] });
+                const text = res.candidates[0].content.parts[0].text;
+                output.innerHTML = `<div class='text-left space-y-2 text-zinc-300'>${text.replace(/\n/g, '<br>')}</div>`;
+                output.classList.remove('text-center', 'italic');
             } catch (e) {
-                output.innerHTML = "<p class='text-red-400'>Error: Verifica tu conexión y API Key en el código.</p>";
+                output.innerHTML = "<p class='text-red-400'>Error de conexión. Revisa tu API Key.</p>";
             } finally {
                 btn.disabled = false;
             }
@@ -849,16 +907,28 @@
             const text = input.value.trim();
             if (!text) return;
             const history = document.getElementById('chatHistory');
-            history.innerHTML += `<div class='text-right text-purple-400 font-bold'>Tú: <span class='text-gray-300 font-normal'>${text}</span></div>`;
+            
+            history.innerHTML += `
+                <div class='flex flex-col items-end gap-1'>
+                    <span class='text-[9px] font-bold text-indigo-400 uppercase'>Tú</span>
+                    <div class='bg-indigo-500/10 p-3 rounded-2xl rounded-tr-none border border-indigo-500/20 text-zinc-200'>${text}</div>
+                </div>`;
             input.value = '';
+            history.scrollTop = history.scrollHeight;
+
             try {
-                const res = await callGemini(text);
+                const res = await callGemini({ contents: [{ parts: [{ text: text }] }] });
                 const botMsg = res.candidates[0].content.parts[0].text;
-                history.innerHTML += `<div class='text-emerald-400 font-bold'>Coach: <span class='text-gray-300 font-normal'>${botMsg}</span></div>`;
+                history.innerHTML += `
+                    <div class='flex flex-col items-start gap-1 animate-in slide-in-from-left-2 duration-300'>
+                        <span class='text-[9px] font-bold text-emerald-400 uppercase'>Coach IA</span>
+                        <div class='bg-white/[0.03] p-3 rounded-2xl rounded-tl-none border border-white/5 text-zinc-300'>${botMsg.replace(/\n/g, '<br>')}</div>
+                    </div>`;
             } catch (e) {
-                history.innerHTML += `<div class='text-red-400'>Error de conexión.</div>`;
+                history.innerHTML += `<div class='text-red-400 text-[10px]'>Error de conexión con la IA.</div>`;
             }
             history.scrollTop = history.scrollHeight;
+            lucide.createIcons();
         }
 
         function navegarMes(d) {
@@ -889,10 +959,6 @@
             selectDay(selectedDateStr);
             renderBioDashboard();
             lucide.createIcons();
-            // Mostrar banner si no es standalone
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
-                document.getElementById('pwaInstallBanner')?.classList.remove('hidden');
-            }
         };
     </script>
 </body>
