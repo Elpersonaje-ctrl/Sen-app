@@ -915,15 +915,20 @@
             
             try {
                 const res = await callGemini({ contents: [{ parts: [{ text: prompt }] }] });
-                const text = res.candidates[0].content.parts[0].text;
-                output.innerHTML = `<div class='text-left space-y-2 text-zinc-300 animate-in fade-in duration-500'>${text.replace(/\n/g, '<br>')}</div>`;
-                output.classList.remove('text-center', 'italic');
+                
+                if (res && res.candidates && res.candidates.length > 0) {
+                    const text = res.candidates[0].content.parts[0].text;
+                    output.innerHTML = `<div class='text-left space-y-2 text-zinc-300 animate-in fade-in duration-500'>${text.replace(/\n/g, '<br>')}</div>`;
+                    output.classList.remove('text-center', 'italic');
+                } else {
+                    throw new Error("La IA no devolvió resultados. Esto puede deberse a filtros de seguridad o a que tu API Key no tiene permisos suficientes.");
+                }
             } catch (e) {
                 output.innerHTML = `
                     <div class='text-red-400 p-4 border border-red-500/20 rounded-2xl bg-red-500/5'>
-                        <p class='font-bold uppercase text-[9px] mb-1'>Error de Conexión</p>
+                        <p class='font-bold uppercase text-[9px] mb-1'>Error de Respuesta</p>
                         <p class='text-[10px] opacity-80'>${e.message}</p>
-                        <p class='mt-2 text-[8px] italic opacity-60 text-white'>Verifica que tu llave en Google Cloud tenga la 'Generative Language API' activa.</p>
+                        <p class='mt-2 text-[8px] italic opacity-60 text-white'>Asegúrate de que el proyecto en Google AI Studio tenga 'Generative Language API' habilitado.</p>
                     </div>`;
             } finally {
                 btn.disabled = false;
@@ -946,12 +951,17 @@
 
             try {
                 const res = await callGemini({ contents: [{ parts: [{ text: text }] }] });
-                const botMsg = res.candidates[0].content.parts[0].text;
-                history.innerHTML += `
-                    <div class='flex flex-col items-start gap-1 animate-in slide-in-from-left-2 duration-300'>
-                        <span class='text-[9px] font-bold text-emerald-400 uppercase'>Coach IA</span>
-                        <div class='bg-white/[0.03] p-3 rounded-2xl rounded-tl-none border border-white/5 text-zinc-300'>${botMsg.replace(/\n/g, '<br>')}</div>
-                    </div>`;
+                
+                if (res && res.candidates && res.candidates.length > 0) {
+                    const botMsg = res.candidates[0].content.parts[0].text;
+                    history.innerHTML += `
+                        <div class='flex flex-col items-start gap-1 animate-in slide-in-from-left-2 duration-300'>
+                            <span class='text-[9px] font-bold text-emerald-400 uppercase'>Coach IA</span>
+                            <div class='bg-white/[0.03] p-3 rounded-2xl rounded-tl-none border border-white/5 text-zinc-300'>${botMsg.replace(/\n/g, '<br>')}</div>
+                        </div>`;
+                } else {
+                    throw new Error("Respuesta de IA vacía o bloqueada.");
+                }
             } catch (e) {
                 history.innerHTML += `
                     <div class='text-red-400 text-[10px] p-2 bg-red-500/5 border border-red-500/10 rounded-xl'>
