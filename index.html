@@ -296,6 +296,23 @@
                 </div>
             </div>
 
+            <!-- Sección de Consejos Dinámicos -->
+            <div id="ai-advice-card" class="glass-card p-6 rounded-3xl border-indigo-500/20 hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
+                            Optimización Bioquímica
+                            <span class="text-[10px] bg-indigo-500/20 px-2 py-0.5 rounded-full">Análisis Data-Watch</span>
+                        </h3>
+                        <p id="ai-advice-text" class="text-xs text-zinc-300 leading-relaxed"></p>
+                        <div id="ai-advice-tags" class="flex flex-wrap gap-2 mt-4"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Botón de Reporte Semanal -->
             <div class="mt-8 text-center">
                 <button onclick="generarReporteSemanal()" class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest hover:text-indigo-400 transition-colors flex items-center gap-2 mx-auto">
@@ -531,6 +548,56 @@
             document.getElementById('val-sleep').innerText = (data.sleep || '--') + ' pts';
             document.getElementById('val-energy').innerText = (data.energy || '--') + ' /100';
             document.getElementById('val-fat').innerText = (data.fat || '--') + ' %';
+
+            if(data.hrv || data.sleep || data.energy) {
+                analyzeMetrics(data);
+            } else {
+                document.getElementById('ai-advice-card').classList.add('hidden');
+            }
+        }
+
+        function analyzeMetrics(data) {
+            const card = document.getElementById('ai-advice-card');
+            const textEl = document.getElementById('ai-advice-text');
+            const tagsEl = document.getElementById('ai-advice-tags');
+            
+            card.classList.remove('hidden');
+            card.classList.add('block');
+            
+            let advice = "";
+            let tags = [];
+
+            // Lógica de análisis basada en los datos del Watch
+            const hrv = parseInt(data.hrv);
+            const sleep = parseInt(data.sleep);
+            const energy = parseInt(data.energy);
+
+            if (hrv < 40) {
+                advice += "Tu HRV es bajo, indicando estrés en el sistema nervioso. Hoy prioriza la recuperación activa y evita el fallo en calistenia. ";
+                tags.push({text: "Bajo HRV", color: "bg-red-500/10 text-red-400"});
+            } else if (hrv > 70) {
+                advice += "Excelente HRV. Tu sistema nervioso está listo para un bloque de hiperfoco intenso y entrenamiento de umbral. ";
+                tags.push({text: "SNV Óptimo", color: "bg-emerald-500/10 text-emerald-400"});
+            }
+
+            if (sleep < 70) {
+                advice += "Calidad de sueño insuficiente. Aumenta la dosis de Alfa GPC para compensar la fatiga cognitiva y usa Fosfatidilserina para controlar el cortisol. ";
+                tags.push({text: "Sueño Pobre", color: "bg-orange-500/10 text-orange-400"});
+            }
+
+            if (energy < 60) {
+                advice += "Energy Score reducido. Es vital evitar sobreestimulantes dopaminérgicos hoy para no quemar receptores.";
+                tags.push({text: "Fatiga Alta", color: "bg-purple-500/10 text-purple-400"});
+            }
+
+            if (advice === "") {
+                advice = "Métricas estables. Mantén el protocolo de suplementación base y sigue tu cronograma de estudio.";
+                tags.push({text: "Estable", color: "bg-indigo-500/10 text-indigo-400"});
+            }
+
+            textEl.innerText = advice;
+            tagsEl.innerHTML = tags.map(t => `<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${t.color}">${t.text}</span>`).join('');
+            lucide.createIcons();
         }
 
         function generarReporteSemanal() {
