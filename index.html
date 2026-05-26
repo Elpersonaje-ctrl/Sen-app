@@ -12,15 +12,23 @@
     <meta name="theme-color" content="#0b0f19">
     <link rel="apple-touch-icon" href="https://placehold.co/192x192/0b0f19/f1f5f9?text=🧠">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-deep: #050505;
+            --card-bg: #0f0f12;
+            --accent-soft: rgba(99, 102, 241, 0.1);
+            --border-soft: rgba(255, 255, 255, 0.05);
+        }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b0f19;
-            color: #f1f5f9;
+            background-color: var(--bg-deep);
+            color: #e5e7eb;
             -webkit-user-select: none;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
@@ -32,98 +40,104 @@
             user-select: text;
         }
         .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+            width: 4px;
+            height: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #111827;
+            background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 3px;
+            background: #27272a;
+            border-radius: 10px;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #4b5563;
+        .tab-content.hidden {
+            display: none;
+        }
+        .nav-active {
+            color: #818cf8;
+            background: rgba(129, 140, 248, 0.1);
+        }
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-soft);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased custom-scrollbar">
+<body class="min-h-screen flex flex-col antialiased custom-scrollbar pb-24">
 
     <!-- BANNER DE INSTALACIÓN S25 ULTRA -->
-    <div id="pwaInstallBanner" class="hidden bg-gradient-to-r from-purple-950/90 to-indigo-950/90 border-b border-purple-500/20 px-4 py-3 text-xs text-gray-200">
+    <div id="pwaInstallBanner" class="hidden bg-zinc-900 border-b border-white/5 px-4 py-4 text-xs text-zinc-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
-            <div class="flex items-center gap-2.5">
-                <span class="text-lg">📲</span>
+            <div class="flex items-center gap-3">
+                <i data-lucide="smartphone" class="w-5 h-5 text-indigo-400"></i>
                 <div>
-                    <p class="font-bold text-white">Instala esta App en tu Galaxy S25 Ultra</p>
-                    <p class="text-gray-400">Para abrirla en pantalla completa sin barra de navegación: Toca los 3 puntos del navegador <span class="font-bold text-indigo-400">⋮</span> (Chrome) o el menú <span class="font-bold text-indigo-400">☰</span> (Samsung Internet) y selecciona <span class="font-bold text-emerald-400">"Añadir a pantalla de inicio"</span> o <span class="font-bold text-emerald-400">"Instalar aplicación"</span>.</p>
+                    <p class="font-bold text-white">Instala la App en tu S25 Ultra</p>
+                    <p class="text-[10px] text-zinc-500 mt-0.5">Añade a la pantalla de inicio para una experiencia inmersiva sin barras.</p>
                 </div>
             </div>
-            <button onclick="dismissInstallBanner()" class="text-gray-400 hover:text-white px-2 py-1 bg-gray-900/60 border border-gray-800 rounded-lg font-semibold shrink-0 transition-colors">Entendido</button>
+            <button onclick="dismissInstallBanner()" class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 px-3 py-1 bg-white/5 rounded-lg">Cerrar</button>
         </div>
     </div>
 
     <!-- HEADER -->
-    <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50 px-4 py-4 md:px-8">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
-                <div class="flex items-center gap-2">
-                    <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Protocolo Híbrido v2.5</span>
-                    <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20">Stellantis Vigo</span>
-                    <span class="px-2.5 py-1 text-xs font-semibold bg-purple-500/10 text-purple-400 rounded-full border border-purple-500/20 flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span> Gemini Activo
+    <header class="border-b border-white/5 bg-black/20 backdrop-blur-xl sticky top-0 z-50 px-4 py-3 md:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex flex-col">
+                <h1 class="text-lg font-semibold tracking-tight text-white">Sinfonía Neuro</h1>
+                <div class="flex items-center gap-2 mt-0.5">
+                    <span class="flex items-center gap-1 text-[10px] font-medium text-emerald-400/80">
+                        <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span> v2.5
                     </span>
+                    <span class="text-[10px] font-medium text-indigo-400/80">Stellantis</span>
                 </div>
-                <h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-indigo-400 to-purple-500 mt-1">Sinfonía Neuroendocrina</h1>
-                <p class="text-sm text-gray-400 mt-1">Planificador de alto rendimiento: Fábrica, Hiperfoco Cognitivo, Suplementación y Maratón (21K).</p>
             </div>
             
-            <!-- Toggle de Turno de Trabajo y Descargas Rápidas -->
-            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-stretch sm:items-center">
-                <div class="bg-gray-950 p-1.5 rounded-xl border border-gray-800 flex items-center gap-1 shadow-inner">
-                    <span class="text-xs font-semibold px-2 text-gray-400 hidden lg:inline">Turno:</span>
-                    <button id="btnTurnoManana" onclick="toggleTurno('manana')" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20">
-                        🌅 Mañana
+            <div class="flex items-center gap-3">
+                <div class="flex bg-zinc-900/50 p-1 rounded-lg border border-white/5">
+                    <button id="btnTurnoManana" onclick="toggleTurno('manana')" class="p-1.5 rounded-md transition-all">
+                        <i data-lucide="sun" class="w-4 h-4"></i>
                     </button>
-                    <button id="btnTurnoTarde" onclick="toggleTurno('tarde')" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white">
-                        🌌 Tarde/Noche
+                    <button id="btnTurnoTarde" onclick="toggleTurno('tarde')" class="p-1.5 rounded-md transition-all text-zinc-500">
+                        <i data-lucide="moon" class="w-4 h-4"></i>
                     </button>
                 </div>
-                
-                <!-- Descargas Globales -->
-                <div class="flex gap-2">
-                    <button onclick="exportarProgresoJSON()" title="Exportar Copia de Seguridad" class="flex-1 sm:flex-initial px-3 py-2 bg-gray-900 hover:bg-gray-850 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 transition-colors flex items-center justify-center gap-1.5">
-                        📥 Resp.
+                <div class="flex gap-1">
+                    <button onclick="exportarProgresoJSON()" class="p-2 text-zinc-400 hover:text-white transition-colors">
+                        <i data-lucide="download" class="w-4 h-4"></i>
                     </button>
-                    <button onclick="triggerImportarJSON()" title="Importar Copia de Seguridad" class="flex-1 sm:flex-initial px-3 py-2 bg-gray-900 hover:bg-gray-850 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 transition-colors flex items-center justify-center gap-1.5">
-                        📤 Cargar
+                    <button onclick="triggerImportarJSON()" class="p-2 text-zinc-400 hover:text-white transition-colors">
+                        <i data-lucide="upload" class="w-4 h-4"></i>
                     </button>
-                    <input type="file" id="fileImport" accept=".json" onchange="importarProgresoJSON(event)" class="hidden" />
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- NAVEGACIÓN -->
-    <div class="border-b border-gray-800/80 bg-gray-950/40 sticky top-[89px] z-40 px-4 md:px-8 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto flex gap-2 overflow-x-auto py-3 custom-scrollbar">
-            <button onclick="switchTab('planificador')" id="tab-planificador" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                📅 Planificador & Checklist
+    <!-- NAVEGACIÓN INFERIOR -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-2xl border-t border-white/5 z-50 px-2 py-3">
+        <div class="max-w-md mx-auto flex justify-around items-center">
+            <button onclick="switchTab('planificador')" id="tab-planificador" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all nav-active">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Plan</span>
             </button>
-            <button onclick="switchTab('fundamentos')" id="tab-fundamentos" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
-                🧬 Fundamentos
+            <button onclick="switchTab('fundamentos')" id="tab-fundamentos" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all text-zinc-500">
+                <i data-lucide="dna" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Bio</span>
             </button>
-            <button onclick="switchTab('suplementacion')" id="tab-suplementacion" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
-                💊 Suplementos
+            <button onclick="switchTab('suplementacion')" id="tab-suplementacion" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all text-zinc-500">
+                <i data-lucide="pill" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Suple</span>
             </button>
-            <button onclick="switchTab('entrenamiento')" id="tab-entrenamiento" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
-                🏃 Entrenamientos (21K)
+            <button onclick="switchTab('entrenamiento')" id="tab-entrenamiento" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all text-zinc-500">
+                <i data-lucide="dumbell" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Tren</span>
             </button>
-            <button onclick="switchTab('copiloto')" id="tab-copiloto" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-purple-400 hover:text-purple-300 border border-purple-500/10 bg-purple-500/5 flex items-center gap-1.5">
-                🧠 Copiloto IA
+            <button onclick="switchTab('copiloto')" id="tab-copiloto" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all text-zinc-500">
+                <i data-lucide="sparkles" class="w-5 h-5 text-purple-400"></i>
+                <span class="text-[10px] font-medium">IA</span>
             </button>
         </div>
-    </div>
+    </nav>
 
     <!-- MAIN CONTENT -->
     <main class="flex-1 px-4 py-6 md:px-8 max-w-7xl w-full mx-auto">
@@ -133,76 +147,74 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
                 <!-- Columna Calendario -->
-                <div class="lg:col-span-8 bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                <div class="lg:col-span-8 glass-card p-6 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-center mb-6">
+                        <div class="flex justify-between items-center mb-8">
                             <div>
-                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                                    <span>Calendario de Hábitos</span>
-                                    <span id="activeYearLabel" class="text-xs text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20">2026</span>
+                                <h3 class="text-lg font-semibold text-white flex items-center gap-2">
+                                    <span>Hábitos</span>
+                                    <span id="activeYearLabel" class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full">2026</span>
                                 </h3>
-                                <p class="text-xs text-gray-400 mt-0.5">Control circadiano, bloques de hiperfoco y entrenamientos estructurados.</p>
                             </div>
                             
-                            <div class="flex items-center gap-2 bg-gray-950 p-1 rounded-xl border border-gray-800">
-                                <button onclick="navegarMes(-1)" class="p-2 hover:bg-gray-900 text-gray-400 hover:text-white rounded-lg transition-colors text-xs font-extrabold">◀</button>
-                                <span id="activeMonthLabel" class="text-xs font-bold text-gray-200 px-3 min-w-[100px] text-center uppercase tracking-wider">Mayo</span>
-                                <button onclick="navegarMes(1)" class="p-2 hover:bg-gray-900 text-gray-400 hover:text-white rounded-lg transition-colors text-xs font-extrabold">▶</button>
+                            <div class="flex items-center gap-1 bg-white/5 p-1 rounded-xl">
+                                <button onclick="navegarMes(-1)" class="p-2 hover:bg-white/5 text-zinc-400 rounded-lg transition-colors">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                <span id="activeMonthLabel" class="text-xs font-bold text-zinc-200 px-3 min-w-[80px] text-center uppercase tracking-widest">Mayo</span>
+                                <button onclick="navegarMes(1)" class="p-2 hover:bg-white/5 text-zinc-400 rounded-lg transition-colors">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-7 gap-2 mb-4 text-center">
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Lun</div>
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Mar</div>
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Mié</div>
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Jue</div>
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Vie</div>
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Sáb</div>
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Dom</div>
+                        <div class="grid grid-cols-7 gap-1 mb-4 text-center">
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Lu</div>
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Ma</div>
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Mi</div>
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Ju</div>
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Vi</div>
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Sa</div>
+                            <div class="text-[10px] font-bold text-zinc-600 uppercase">Do</div>
                         </div>
 
                         <div class="grid grid-cols-7 gap-2" id="realCalendarGrid"></div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-6 border-t border-gray-800/60 pt-4">
-                        <div class="flex flex-wrap gap-4 text-[11px] text-gray-400">
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/20 border border-emerald-500/40"></span> Hiperfoco + Entreno
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500/20 border border-indigo-500/40"></span> Solo Hiperfoco / Descanso
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Completado
-                            </div>
+                    <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-white/5 text-[10px] font-medium text-zinc-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500/20"></span> Mixto
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-indigo-500/20"></span> Descanso
                         </div>
                     </div>
                 </div>
 
                 <!-- Columna Checklist Diaria -->
-                <div class="lg:col-span-4 bg-gray-900/80 p-6 rounded-2xl border border-gray-800 relative flex flex-col justify-between min-h-[500px]">
+                <div class="lg:col-span-4 glass-card p-6 rounded-3xl flex flex-col justify-between min-h-[500px]">
                     <div>
-                        <div class="flex justify-between items-start border-b border-gray-800 pb-3 mb-4">
+                        <div class="flex justify-between items-start mb-6">
                             <div>
-                                <h3 class="font-bold text-white text-md flex items-center gap-1.5">
-                                    📋 Tareas del Día <span id="selectedDayLabel" class="text-indigo-400">27</span>
+                                <h3 class="font-semibold text-white text-lg flex items-center gap-2">
+                                    Día <span id="selectedDayLabel" class="text-indigo-400">27</span>
                                 </h3>
-                                <p id="selectedDayDesc" class="text-xs text-gray-400 mt-0.5">Estudio de alta densidad & running</p>
+                                <p id="selectedDayDesc" class="text-xs text-zinc-500 mt-1"></p>
                             </div>
-                            <button onclick="descargarReporteDiaTXT()" title="Descargar Plan de Hoy" class="p-2 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 text-indigo-400 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors">
-                                💾 Descargar
+                            <button onclick="descargarReporteDiaTXT()" class="p-2 bg-white/5 text-zinc-400 rounded-xl hover:text-white transition-colors">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
                             </button>
                         </div>
 
-                        <div id="checklistContainer" class="space-y-3 max-h-[420px] overflow-y-auto pr-1 custom-scrollbar"></div>
+                        <div id="checklistContainer" class="space-y-3"></div>
                     </div>
 
-                    <div class="pt-4 border-t border-gray-800 flex gap-2">
-                        <button onclick="resetDayProgress()" class="flex-1 py-2 bg-gray-950 hover:bg-gray-900 border border-gray-800 rounded-xl text-xs font-bold text-gray-400 transition-colors">
-                            Reiniciar Día
+                    <div class="pt-6 mt-6 border-t border-white/5 flex gap-2">
+                        <button onclick="resetDayProgress()" class="flex-1 py-3 text-[10px] font-bold text-zinc-500 uppercase tracking-wider hover:text-zinc-300 transition-colors">
+                            Reset
                         </button>
-                        <button onclick="marcarTodoCompletado()" class="flex-1 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-xl text-xs font-bold text-emerald-400 transition-colors">
-                            Marcar Todo
+                        <button onclick="marcarTodoCompletado()" class="flex-1 py-3 bg-indigo-500/10 text-indigo-400 rounded-xl text-[10px] font-bold uppercase tracking-wider hover:bg-indigo-500/20 transition-all">
+                            Completar
                         </button>
                     </div>
                 </div>
@@ -213,39 +225,35 @@
         <!-- ================= TAB: FUNDAMENTOS ================= -->
         <section id="content-fundamentos" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-xl font-bold text-white mb-3">La Balanza Dopamina / Prolactina / DHT</h2>
-                        <p class="text-sm text-gray-300 leading-relaxed mb-4">
-                            Tus hormonas y neurotransmisores operan en un ecosistema de retroalimentación constante. La dopamina (anticipación y enfoque) y los andrógenos como la DHT (fuerza y vitalidad) actúan como antagonistas directos de la prolactina.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                            <div class="bg-gray-950/60 p-4 rounded-xl border border-emerald-500/10">
-                                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">1. Dopamina</span>
-                                <p class="text-lg font-bold text-white mt-1">El Buscador</p>
-                            </div>
-                            <div class="bg-gray-950/60 p-4 rounded-xl border border-purple-500/10">
-                                <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">2. Prolactina</span>
-                                <p class="text-lg font-bold text-white mt-1">El Freno</p>
-                            </div>
-                            <div class="bg-gray-950/60 p-4 rounded-xl border border-indigo-500/10">
-                                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">3. DHT</span>
-                                <p class="text-lg font-bold text-white mt-1">El Catalizador</p>
-                            </div>
+                <div class="lg:col-span-2 glass-card p-8 rounded-3xl">
+                    <h2 class="text-xl font-semibold text-white mb-4">Balanza Bioquímica</h2>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-8">
+                        Optimización de la relación entre Dopamina, Prolactina y DHT para el alto rendimiento.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Dopamina</span>
+                            <p class="text-sm font-medium text-zinc-300 mt-2">Enfoque y Acción</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Prolactina</span>
+                            <p class="text-sm font-medium text-zinc-300 mt-2">Saciedad y Freno</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">DHT</span>
+                            <p class="text-sm font-medium text-zinc-300 mt-2">Fuerza y Vitalidad</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-red-950/30 to-gray-950 p-6 rounded-2xl border border-red-900/20 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="p-1.5 bg-red-500/10 text-red-400 rounded-lg">⚠️</span>
-                            <h3 class="font-bold text-white text-lg">El Peligro de Stellantis</h3>
-                        </div>
-                        <p class="text-sm text-red-200/80 leading-relaxed mb-4">
-                            Los turnos rotativos alteran tu reloj biológico. Dormir menos de 7 horas despierta una respuesta de alarma celular que dispara el cortisol y la prolactina.
-                        </p>
+                <div class="glass-card p-8 rounded-3xl border-red-500/10">
+                    <div class="flex items-center gap-3 mb-4 text-red-400">
+                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                        <h3 class="font-semibold text-white">Riesgo Circadiano</h3>
                     </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">
+                        Los turnos en Stellantis alteran tu reloj biológico. El cortisol elevado bloquea la testosterona.
+                    </p>
                 </div>
             </div>
         </section>
@@ -253,18 +261,26 @@
         <!-- ================= TAB: SUPLEMENTACION ================= -->
         <section id="content-suplementacion" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Suplementos -->
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="font-bold text-white text-lg">Creatina Monohidrato</h3>
-                    <p class="text-sm text-gray-400 mt-1">Dosis: 5g diarios.</p>
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-4 text-emerald-400">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                        <h3 class="font-semibold text-white">Creatina</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400">Dosis: 5g diarios para reserva de fosfocreatina.</p>
                 </div>
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="font-bold text-white text-lg">L-Tirosina</h3>
-                    <p class="text-sm text-gray-400 mt-1">Dosis: 1000-1500mg (ayunas).</p>
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-4 text-indigo-400">
+                        <i data-lucide="target" class="w-5 h-5"></i>
+                        <h3 class="font-semibold text-white">L-Tirosina</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400">Dosis: 1000mg en ayunas antes del hiperfoco.</p>
                 </div>
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="font-bold text-white text-lg">Alfa GPC</h3>
-                    <p class="text-sm text-gray-400 mt-1">Dosis: 600mg.</p>
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-4 text-purple-400">
+                        <i data-lucide="brain" class="w-5 h-5"></i>
+                        <h3 class="font-semibold text-white">Alfa GPC</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400">Dosis: 600mg para optimizar la acetilcolina.</p>
                 </div>
             </div>
         </section>
@@ -272,21 +288,35 @@
         <!-- ================= TAB: ENTRENAMIENTO ================= -->
         <section id="content-entrenamiento" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="text-lg font-bold text-white mb-4">Calistenia</h3>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li>Dominadas: 4 series</li>
-                        <li>Fondos: 4 series</li>
-                        <li>Flexiones: 4 series</li>
+                <div class="glass-card p-6 rounded-3xl">
+                    <h3 class="text-lg font-semibold text-white mb-6">Calistenia</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl">
+                            <span class="text-zinc-400">Dominadas</span>
+                            <span class="font-bold text-indigo-400">4 Series</span>
+                        </li>
+                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl">
+                            <span class="text-zinc-400">Fondos</span>
+                            <span class="font-bold text-indigo-400">4 Series</span>
+                        </li>
+                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl">
+                            <span class="text-zinc-400">Flexiones</span>
+                            <span class="font-bold text-indigo-400">4 Series</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="text-lg font-bold text-white mb-4">Running 21K</h3>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li>Jueves: Umbral (30 min)</li>
-                        <li>Sábado: Tirada Larga (60-80 min)</li>
-                        <li>Domingo: Trote Recup (20 min)</li>
-                    </ul>
+                <div class="glass-card p-6 rounded-3xl">
+                    <h3 class="text-lg font-semibold text-white mb-6">Running 21K</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-white/[0.02] rounded-xl">
+                            <p class="text-xs font-bold text-zinc-200">Umbral</p>
+                            <p class="text-[10px] text-zinc-500 mt-1">Jueves: 30 min (4:50 min/km)</p>
+                        </div>
+                        <div class="p-3 bg-white/[0.02] rounded-xl">
+                            <p class="text-xs font-bold text-zinc-200">Tirada Larga</p>
+                            <p class="text-[10px] text-zinc-500 mt-1">Sábado: 60-80 min (Zona 2)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -294,34 +324,43 @@
         <!-- ================= TAB: COPILOTO IA ================= -->
         <section id="content-copiloto" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Panel de Control -->
-                <div class="lg:col-span-5 bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <h3 class="font-bold text-white text-lg">⚡ Optimizar Día</h3>
+                <div class="lg:col-span-5 glass-card p-6 rounded-3xl">
+                    <h3 class="font-semibold text-white text-lg mb-6 flex items-center gap-2">
+                        <i data-lucide="sliders" class="w-5 h-5 text-indigo-400"></i>
+                        Optimizar
+                    </h3>
+                    <div class="space-y-6">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-400 mb-1.5">Sueño (h):</label>
-                            <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" class="w-full accent-purple-500">
+                            <div class="flex justify-between mb-2">
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase">Sueño</label>
+                                <span class="text-[10px] font-bold text-indigo-400" id="sleep-val">7.5h</span>
+                            </div>
+                            <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" oninput="document.getElementById('sleep-val').innerText = this.value + 'h'" class="w-full accent-indigo-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-400 mb-1.5">Estrés (1-10):</label>
-                            <input type="range" id="ai-stress" min="1" max="10" value="4" class="w-full accent-purple-500">
+                            <div class="flex justify-between mb-2">
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase">Estrés</label>
+                                <span class="text-[10px] font-bold text-indigo-400" id="stress-val">4</span>
+                            </div>
+                            <input type="range" id="ai-stress" min="1" max="10" value="4" oninput="document.getElementById('stress-val').innerText = this.value" class="w-full accent-indigo-500">
                         </div>
-                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl text-xs">
-                            ✨ Calcular Pauta con Gemini
+                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-4 bg-indigo-500/10 text-indigo-400 rounded-2xl text-xs font-bold uppercase tracking-widest hover:bg-indigo-500/20 transition-all">
+                            Calcular Pauta
                         </button>
                     </div>
                 </div>
 
-                <!-- Chat & Output -->
                 <div class="lg:col-span-7 space-y-6">
-                    <div id="ai-optimization-output" class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 min-h-[200px] text-xs text-gray-300">
-                        <p class="italic">Genera una pauta adaptativa...</p>
+                    <div id="ai-optimization-output" class="glass-card p-6 rounded-3xl min-h-[150px] text-xs leading-relaxed text-zinc-400 italic">
+                        Genera una pauta adaptativa...
                     </div>
-                    <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 h-[300px] flex flex-col justify-between">
-                        <div id="chatHistory" class="overflow-y-auto text-xs space-y-2 mb-4"></div>
-                        <div class="flex gap-2">
-                            <input type="text" id="chatInput" placeholder="Pregunta a la IA..." class="flex-1 bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300">
-                            <button onclick="enviarPreguntaIA()" class="bg-purple-600 px-4 rounded-lg text-xs font-bold">Enviar</button>
+                    <div class="glass-card p-6 rounded-3xl h-[350px] flex flex-col">
+                        <div id="chatHistory" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar"></div>
+                        <div class="flex gap-2 p-2 bg-white/[0.02] rounded-2xl border border-white/5">
+                            <input type="text" id="chatInput" placeholder="Pregunta a la IA..." class="flex-1 bg-transparent border-none text-xs text-white focus:ring-0 px-2">
+                            <button onclick="enviarPreguntaIA()" class="p-2 bg-indigo-500/20 text-indigo-400 rounded-xl">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -329,10 +368,8 @@
         </section>
     </main>
 
-    <footer class="border-t border-gray-800 py-6 px-4 md:px-8 bg-gray-950 mt-12 text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <p>© 2026 Sinfonía Neuroendocrina v2.5</p>
-        </div>
+    <footer class="py-12 px-4 md:px-8 text-center text-[10px] text-zinc-600 uppercase tracking-[0.2em] font-bold">
+        <p>© 2026 Sinfonía Neuroendocrina — Rendimiento Híbrido</p>
     </footer>
 
     <script>
@@ -365,11 +402,16 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(`content-${tabId}`).classList.remove('hidden');
             
-            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
-                btn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white";
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('nav-active', 'text-indigo-400');
+                btn.classList.add('text-zinc-500');
             });
-            document.getElementById(`tab-${tabId}`).className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.add('nav-active');
+            activeBtn.classList.remove('text-zinc-500');
+            
             activeTab = tabId;
+            lucide.createIcons();
         }
 
         function toggleTurno(turno) {
@@ -377,13 +419,16 @@
             const btnM = document.getElementById('btnTurnoManana');
             const btnT = document.getElementById('btnTurnoTarde');
             if (turno === 'manana') {
-                btnM.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20";
-                btnT.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+                btnM.classList.add('bg-indigo-500/20', 'text-indigo-400');
+                btnT.classList.remove('bg-indigo-500/20', 'text-indigo-400');
+                btnT.classList.add('text-zinc-500');
             } else {
-                btnT.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-indigo-500 text-gray-950 shadow-lg shadow-indigo-500/20";
-                btnM.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+                btnT.classList.add('bg-indigo-500/20', 'text-indigo-400');
+                btnM.classList.remove('bg-indigo-500/20', 'text-indigo-400');
+                btnM.classList.add('text-zinc-500');
             }
             renderChecklist();
+            lucide.createIcons();
         }
 
         // --- CALENDARIO & CHECKLIST ---
@@ -458,15 +503,25 @@
             tasks.forEach(task => {
                 const key = `prog-${selectedDateStr}-${task.id}`;
                 const checked = userProgress[key] ? 'checked' : '';
+                const isDone = userProgress[key];
+                
                 container.innerHTML += `
-                    <div class="flex items-center gap-3 p-3 bg-gray-950/60 border border-gray-800 rounded-xl">
-                        <input type="checkbox" ${checked} onclick="toggleTask('${task.id}')" class="w-4 h-4 mt-1 accent-indigo-500 cursor-pointer">
+                    <div class="flex items-center gap-4 p-4 glass-card rounded-2xl transition-all ${isDone ? 'opacity-40 grayscale-[0.5]' : ''}">
+                        <div class="relative flex items-center justify-center">
+                            <input type="checkbox" ${checked} onclick="toggleTask('${task.id}')" 
+                                class="w-6 h-6 rounded-full border-2 border-white/10 bg-transparent checked:bg-indigo-500 checked:border-indigo-500 appearance-none cursor-pointer transition-all">
+                            ${isDone ? '<i data-lucide="check" class="absolute w-4 h-4 text-white pointer-events-none"></i>' : ''}
+                        </div>
                         <div class="flex-1 text-xs">
-                            <p class="${userProgress[key] ? 'line-through text-gray-500' : 'text-gray-200'}">${task.label}</p>
-                            <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">${task.time}</span>
+                            <p class="font-medium ${isDone ? 'line-through text-zinc-500' : 'text-zinc-200'}">${task.label}</p>
+                            <div class="flex items-center gap-1.5 mt-1 text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                ${task.time}
+                            </div>
                         </div>
                     </div>`;
             });
+            lucide.createIcons();
         }
 
         function toggleTask(id) {
@@ -576,6 +631,7 @@
         window.onload = () => {
             renderCalendar();
             selectDay(selectedDateStr);
+            lucide.createIcons();
             // Mostrar banner si no es standalone
             if (!window.matchMedia('(display-mode: standalone)').matches) {
                 document.getElementById('pwaInstallBanner').classList.remove('hidden');
