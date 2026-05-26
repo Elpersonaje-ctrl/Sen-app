@@ -129,7 +129,7 @@
                 <span class="text-[10px] font-medium">Suple</span>
             </button>
             <button onclick="switchTab('entrenamiento')" id="tab-entrenamiento" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all text-zinc-500">
-                <i data-lucide="dumbell" class="w-5 h-5"></i>
+                <i data-lucide="dumbbell" class="w-5 h-5"></i>
                 <span class="text-[10px] font-medium">Tren</span>
             </button>
             <button onclick="switchTab('copiloto')" id="tab-copiloto" class="flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all text-zinc-500">
@@ -226,22 +226,25 @@
         <section id="content-fundamentos" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 glass-card p-8 rounded-3xl">
-                    <h2 class="text-xl font-semibold text-white mb-4">Balanza Bioquímica</h2>
+                    <h2 class="text-xl font-semibold text-white mb-4">La Balanza Dopamina / Prolactina / DHT</h2>
                     <p class="text-sm text-zinc-400 leading-relaxed mb-8">
-                        Optimización de la relación entre Dopamina, Prolactina y DHT para el alto rendimiento.
+                        Tus hormonas y neurotransmisores operan en un ecosistema de retroalimentación constante. La dopamina (anticipación y enfoque) y los andrógenos como la DHT (fuerza y vitalidad) actúan como antagonistas directos de la prolactina. Cuando la prolactina se desequilibra por falta de sueño o estrés, tu motivación y rendimiento se resienten drásticamente.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Dopamina</span>
-                            <p class="text-sm font-medium text-zinc-300 mt-2">Enfoque y Acción</p>
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">1. Dopamina</span>
+                            <p class="text-sm font-medium text-zinc-300 mt-2">El Buscador</p>
+                            <p class="text-[10px] text-zinc-500 mt-1 leading-relaxed">Genera la motivación y energía para conseguir objetivos.</p>
                         </div>
                         <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Prolactina</span>
-                            <p class="text-sm font-medium text-zinc-300 mt-2">Saciedad y Freno</p>
+                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">2. Prolactina</span>
+                            <p class="text-sm font-medium text-zinc-300 mt-2">El Freno</p>
+                            <p class="text-[10px] text-zinc-500 mt-1 leading-relaxed">Regula saciedad y descanso. Se dispara por estrés e insomnio.</p>
                         </div>
                         <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">DHT</span>
-                            <p class="text-sm font-medium text-zinc-300 mt-2">Fuerza y Vitalidad</p>
+                            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">3. DHT</span>
+                            <p class="text-sm font-medium text-zinc-300 mt-2">El Catalizador</p>
+                            <p class="text-[10px] text-zinc-500 mt-1 leading-relaxed">Andrógeno potente que estimula la dopamina cerebral.</p>
                         </div>
                     </div>
                 </div>
@@ -249,11 +252,14 @@
                 <div class="glass-card p-8 rounded-3xl border-red-500/10">
                     <div class="flex items-center gap-3 mb-4 text-red-400">
                         <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-                        <h3 class="font-semibold text-white">Riesgo Circadiano</h3>
+                        <h3 class="font-semibold text-white">El Peligro de Stellantis</h3>
                     </div>
                     <p class="text-sm text-zinc-400 leading-relaxed">
-                        Los turnos en Stellantis alteran tu reloj biológico. El cortisol elevado bloquea la testosterona.
+                        Los turnos rotativos alteran tu reloj biológico. Dormir menos de 7 horas despierta una respuesta de alarma celular: tu cortisol se dispara, robando la materia prima de la testosterona, y causa un pico de prolactina que destruye tu enfoque cognitivo.
                     </p>
+                    <div class="mt-6 p-3 bg-red-500/5 rounded-xl border border-red-500/10 text-[10px] text-red-300/80 italic">
+                        Estrategia: Sincronizar exposición a luz brillante y oscuridad absoluta.
+                    </div>
                 </div>
             </div>
         </section>
@@ -264,23 +270,23 @@
                 <div class="glass-card p-6 rounded-3xl">
                     <div class="flex items-center gap-3 mb-4 text-emerald-400">
                         <i data-lucide="zap" class="w-5 h-5"></i>
-                        <h3 class="font-semibold text-white">Creatina</h3>
+                        <h3 class="font-semibold text-white">Creatina Monohidrato</h3>
                     </div>
-                    <p class="text-xs text-zinc-400">Dosis: 5g diarios para reserva de fosfocreatina.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Dosis: <strong>5g diarios</strong>. Aumenta los depósitos de fosfocreatina en músculos y cerebro. Fundamental para la fatiga mental por falta de sueño.</p>
                 </div>
                 <div class="glass-card p-6 rounded-3xl">
                     <div class="flex items-center gap-3 mb-4 text-indigo-400">
                         <i data-lucide="target" class="w-5 h-5"></i>
                         <h3 class="font-semibold text-white">L-Tirosina</h3>
                     </div>
-                    <p class="text-xs text-zinc-400">Dosis: 1000mg en ayunas antes del hiperfoco.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Dosis: <strong>1000-1500mg</strong>. Precursor de la dopamina. Evita el agotamiento mental bajo condiciones de alto estrés y rumiación.</p>
                 </div>
                 <div class="glass-card p-6 rounded-3xl">
                     <div class="flex items-center gap-3 mb-4 text-purple-400">
                         <i data-lucide="brain" class="w-5 h-5"></i>
                         <h3 class="font-semibold text-white">Alfa GPC</h3>
                     </div>
-                    <p class="text-xs text-zinc-400">Dosis: 600mg para optimizar la acetilcolina.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Dosis: <strong>600mg</strong>. La mejor fuente de colina para el cerebro. Aumenta la acetilcolina (memoria de trabajo y aprendizaje).</p>
                 </div>
             </div>
         </section>
@@ -289,32 +295,34 @@
         <section id="content-entrenamiento" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="glass-card p-6 rounded-3xl">
-                    <h3 class="text-lg font-semibold text-white mb-6">Calistenia</h3>
+                    <h3 class="text-lg font-semibold text-white mb-6">Fuerza: Calistenia</h3>
+                    <p class="text-[10px] text-zinc-500 mb-6 uppercase tracking-wider font-bold">Nivel: Avanzado (RIR 2)</p>
                     <ul class="space-y-4">
-                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl">
-                            <span class="text-zinc-400">Dominadas</span>
-                            <span class="font-bold text-indigo-400">4 Series</span>
+                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl border border-white/5">
+                            <span class="text-zinc-400">Dominadas Estrictas</span>
+                            <span class="font-bold text-indigo-400">4 x RIR 2</span>
                         </li>
-                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl">
-                            <span class="text-zinc-400">Fondos</span>
-                            <span class="font-bold text-indigo-400">4 Series</span>
+                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl border border-white/5">
+                            <span class="text-zinc-400">Fondos en Paralelas</span>
+                            <span class="font-bold text-indigo-400">4 x RIR 2</span>
                         </li>
-                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl">
-                            <span class="text-zinc-400">Flexiones</span>
-                            <span class="font-bold text-indigo-400">4 Series</span>
+                        <li class="flex items-center justify-between text-xs p-3 bg-white/[0.02] rounded-xl border border-white/5">
+                            <span class="text-zinc-400">Flexiones de Pecho</span>
+                            <span class="font-bold text-indigo-400">4 x RIR 2</span>
                         </li>
                     </ul>
                 </div>
                 <div class="glass-card p-6 rounded-3xl">
-                    <h3 class="text-lg font-semibold text-white mb-6">Running 21K</h3>
+                    <h3 class="text-lg font-semibold text-white mb-6">Cardio: Running 21K</h3>
+                    <p class="text-[10px] text-zinc-500 mb-6 uppercase tracking-wider font-bold">Objetivo: Vigo Media Maratón</p>
                     <div class="space-y-3">
-                        <div class="p-3 bg-white/[0.02] rounded-xl">
-                            <p class="text-xs font-bold text-zinc-200">Umbral</p>
-                            <p class="text-[10px] text-zinc-500 mt-1">Jueves: 30 min (4:50 min/km)</p>
+                        <div class="p-4 bg-white/[0.02] rounded-xl border border-white/5">
+                            <p class="text-xs font-bold text-zinc-200">1. Tirada de Umbral (Jueves)</p>
+                            <p class="text-[10px] text-zinc-500 mt-2 leading-relaxed">10 min suaves + 4x3 min a ritmo fuerte (4:50 min/km) + 5 min suaves.</p>
                         </div>
-                        <div class="p-3 bg-white/[0.02] rounded-xl">
-                            <p class="text-xs font-bold text-zinc-200">Tirada Larga</p>
-                            <p class="text-[10px] text-zinc-500 mt-1">Sábado: 60-80 min (Zona 2)</p>
+                        <div class="p-4 bg-white/[0.02] rounded-xl border border-white/5">
+                            <p class="text-xs font-bold text-zinc-200">2. Tirada Larga (Sábado)</p>
+                            <p class="text-[10px] text-zinc-500 mt-2 leading-relaxed">60-80 min en Zona 2 (6:00 min/km). Trote cómodo y conversacional.</p>
                         </div>
                     </div>
                 </div>
