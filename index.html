@@ -865,14 +865,23 @@
 
         // --- IA INTEGRATION ---
         async function callGemini(payload) {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (!response.ok) throw new Error("API Error");
-            return await response.json();
+            const url = `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    console.error("Gemini API Error:", data);
+                    throw new Error(data.error?.message || "API Error");
+                }
+                return data;
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                throw error;
+            }
         }
 
         async function optimizarDiaConIA() {
@@ -896,7 +905,7 @@
                 output.innerHTML = `<div class='text-left space-y-2 text-zinc-300'>${text.replace(/\n/g, '<br>')}</div>`;
                 output.classList.remove('text-center', 'italic');
             } catch (e) {
-                output.innerHTML = "<p class='text-red-400'>Error de conexión. Revisa tu API Key.</p>";
+                output.innerHTML = `<p class='text-red-400'>Error: ${e.message}</p>`;
             } finally {
                 btn.disabled = false;
             }
@@ -925,7 +934,7 @@
                         <div class='bg-white/[0.03] p-3 rounded-2xl rounded-tl-none border border-white/5 text-zinc-300'>${botMsg.replace(/\n/g, '<br>')}</div>
                     </div>`;
             } catch (e) {
-                history.innerHTML += `<div class='text-red-400 text-[10px]'>Error de conexión con la IA.</div>`;
+                history.innerHTML += `<div class='text-red-400 text-[10px]'>Error: ${e.message}</div>`;
             }
             history.scrollTop = history.scrollHeight;
             lucide.createIcons();
