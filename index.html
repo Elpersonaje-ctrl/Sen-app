@@ -65,20 +65,6 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased custom-scrollbar pb-24">
 
-    <!-- BANNER DE INSTALACIÓN S25 ULTRA -->
-    <div id="pwaInstallBanner" class="hidden bg-zinc-900 border-b border-white/5 px-4 py-4 text-xs text-zinc-300">
-        <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <i data-lucide="smartphone" class="w-5 h-5 text-indigo-400"></i>
-                <div>
-                    <p class="font-bold text-white">Instala la App en tu S25 Ultra</p>
-                    <p class="text-[10px] text-zinc-500 mt-0.5">Añade a la pantalla de inicio para una experiencia inmersiva sin barras.</p>
-                </div>
-            </div>
-            <button onclick="dismissInstallBanner()" class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 px-3 py-1 bg-white/5 rounded-lg">Cerrar</button>
-        </div>
-    </div>
-
     <!-- HEADER -->
     <header class="border-b border-white/5 bg-black/20 backdrop-blur-xl sticky top-0 z-50 px-4 py-3 md:px-8">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -224,6 +210,38 @@
 
         <!-- ================= TAB: FUNDAMENTOS ================= -->
         <section id="content-fundamentos" class="tab-content hidden space-y-6">
+            <!-- Galaxy Watch 8 Metrics Integration -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="glass-card p-4 rounded-2xl border-emerald-500/10">
+                    <div class="flex items-center gap-2 mb-2 text-emerald-400">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">HRV (VFC)</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-relaxed">Indicador clave de recuperación del SNV. Un HRV bajo tras turno de noche exige autorregulación.</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl border-indigo-500/10">
+                    <div class="flex items-center gap-2 mb-2 text-indigo-400">
+                        <i data-lucide="moon" class="w-4 h-4"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Puntuación Sueño</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-relaxed">Busca >80. Prioriza fases Profunda y REM para consolidar el aprendizaje del hiperfoco.</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl border-purple-500/10">
+                    <div class="flex items-center gap-2 mb-2 text-purple-400">
+                        <i data-lucide="battery-charging" class="w-4 h-4"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Energy Score</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-relaxed">Métrica Galaxy AI. Si es <60, reduce el volumen de carrera y prioriza Fosfatidilserina.</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl border-orange-500/10">
+                    <div class="flex items-center gap-2 mb-2 text-orange-400">
+                        <i data-lucide="gauge" class="w-4 h-4"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Composición (BIA)</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-relaxed">Vigila el % de grasa y masa muscular. La DHT alta favorece la recomposición corporal.</p>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 glass-card p-8 rounded-3xl">
                     <h2 class="text-xl font-semibold text-white mb-4">La Balanza Dopamina / Prolactina / DHT</h2>
