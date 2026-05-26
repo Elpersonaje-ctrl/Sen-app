@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planificador</title>
+    <title>Planificador - Sinfonía Neuroendocrina</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,21 +36,38 @@
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
                 <div class="flex items-center gap-2">
-                    <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Protocolo Híbrido</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Protocolo Híbrido v2.5</span>
                     <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20">Stellantis Vigo</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-purple-500/10 text-purple-400 rounded-full border border-purple-500/20 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span> Gemini Activo
+                    </span>
                 </div>
                 <h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-indigo-400 to-purple-500 mt-1">Sinfonía Neuroendocrina</h1>
-                <p class="text-sm text-gray-400 mt-1">Optimización biológica para el trabajo en cadena, estudio intensivo y resistencia (21K).</p>
+                <p class="text-sm text-gray-400 mt-1">Planificador de alto rendimiento: Fábrica, Hiperfoco Cognitivo, Suplementación y Maratón (21K).</p>
             </div>
-            <!-- Toggle de Turno de Trabajo -->
-            <div class="bg-gray-950 p-1.5 rounded-xl border border-gray-800 flex items-center gap-1 w-full md:w-auto shadow-inner">
-                <span class="text-xs font-semibold px-3 text-gray-400 hidden sm:inline">Turno de Stellantis:</span>
-                <button id="btnTurnoManana" onclick="toggleTurno('manana')" class="flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20">
-                    🌅 Mañana
-                </button>
-                <button id="btnTurnoTarde" onclick="toggleTurno('tarde')" class="flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white">
-                    🌌 Tarde / Noche
-                </button>
+            
+            <!-- Toggle de Turno de Trabajo y Descargas Rápidas -->
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-stretch sm:items-center">
+                <div class="bg-gray-950 p-1.5 rounded-xl border border-gray-800 flex items-center gap-1 shadow-inner">
+                    <span class="text-xs font-semibold px-2 text-gray-400 hidden lg:inline">Turno:</span>
+                    <button id="btnTurnoManana" onclick="toggleTurno('manana')" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20">
+                        🌅 Mañana
+                    </button>
+                    <button id="btnTurnoTarde" onclick="toggleTurno('tarde')" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white">
+                        🌌 Tarde/Noche
+                    </button>
+                </div>
+                
+                <!-- Descargas Globales -->
+                <div class="flex gap-2">
+                    <button onclick="exportarProgresoJSON()" title="Exportar Copia de Seguridad" class="flex-1 sm:flex-initial px-3 py-2 bg-gray-900 hover:bg-gray-850 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 transition-colors flex items-center justify-center gap-1.5">
+                        📥 Resp.
+                    </button>
+                    <button onclick="triggerImportarJSON()" title="Importar Copia de Seguridad" class="flex-1 sm:flex-initial px-3 py-2 bg-gray-900 hover:bg-gray-850 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 transition-colors flex items-center justify-center gap-1.5">
+                        📤 Cargar
+                    </button>
+                    <input type="file" id="fileImport" accept=".json" onchange="importarProgresoJSON(event)" class="hidden" />
+                </div>
             </div>
         </div>
     </header>
@@ -60,7 +75,10 @@
     <!-- NAVEGACIÓN -->
     <div class="border-b border-gray-800/80 bg-gray-950/40 sticky top-[89px] z-40 px-4 md:px-8 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto flex gap-2 overflow-x-auto py-3 custom-scrollbar">
-            <button onclick="switchTab('fundamentos')" id="tab-fundamentos" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <button onclick="switchTab('planificador')" id="tab-planificador" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                📅 Planificador & Checklist
+            </button>
+            <button onclick="switchTab('fundamentos')" id="tab-fundamentos" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
                 🧬 Fundamentos
             </button>
             <button onclick="switchTab('suplementacion')" id="tab-suplementacion" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
@@ -69,8 +87,8 @@
             <button onclick="switchTab('entrenamiento')" id="tab-entrenamiento" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
                 🏃 Entrenamientos (21K)
             </button>
-            <button onclick="switchTab('planificador')" id="tab-planificador" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
-                📅 Planificador & Checklist
+            <button onclick="switchTab('copiloto')" id="tab-copiloto" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-purple-400 hover:text-purple-300 border border-purple-500/10 bg-purple-500/5 flex items-center gap-1.5">
+                🧠 Copiloto IA
             </button>
         </div>
     </div>
@@ -78,8 +96,103 @@
     <!-- MAIN CONTENT -->
     <main class="flex-1 px-4 py-6 md:px-8 max-w-7xl w-full mx-auto">
         
+        <!-- ================= TAB: PLANIFICADOR & CALENDARIO REVOLUCIONADO ================= -->
+        <section id="content-planificador" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Columna Calendario Real de Mayo 2026 -->
+                <div class="lg:col-span-8 bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <!-- Controles de Mes Interactivo -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <span>Calendario de Hábitos</span>
+                                    <span id="activeYearLabel" class="text-xs text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20">2026</span>
+                                </h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Control circadiano, bloques de hiperfoco y entrenamientos estructurados.</p>
+                            </div>
+                            
+                            <!-- Navegación de meses -->
+                            <div class="flex items-center gap-2 bg-gray-950 p-1 rounded-xl border border-gray-800">
+                                <button onclick="navegarMes(-1)" class="p-2 hover:bg-gray-900 text-gray-400 hover:text-white rounded-lg transition-colors text-xs font-extrabold">◀</button>
+                                <span id="activeMonthLabel" class="text-xs font-bold text-gray-200 px-3 min-w-[100px] text-center uppercase tracking-wider">Mayo</span>
+                                <button onclick="navegarMes(1)" class="p-2 hover:bg-gray-900 text-gray-400 hover:text-white rounded-lg transition-colors text-xs font-extrabold">▶</button>
+                            </div>
+                        </div>
+
+                        <!-- Cuadrícula Semanal Dinámica -->
+                        <div class="grid grid-cols-7 gap-2 mb-4 text-center">
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Lun</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Mar</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Mié</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Jue</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Vie</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Sáb</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Dom</div>
+                        </div>
+
+                        <div class="grid grid-cols-7 gap-2" id="realCalendarGrid">
+                            <!-- Inyectado dinámicamente por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Leyenda y Acciones Rápidas de Descarga -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-6 border-t border-gray-800/60 pt-4">
+                        <div class="flex flex-wrap gap-4 text-[11px] text-gray-400">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/20 border border-emerald-500/40"></span> Hiperfoco + Entreno
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500/20 border border-indigo-500/40"></span> Solo Hiperfoco / Descanso
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded bg-gray-900 border border-gray-800"></span> Sin Progreso
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Completado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Checklist Diaria Dinámica e Hiperfoco -->
+                <div class="lg:col-span-4 bg-gray-900/80 p-6 rounded-2xl border border-gray-800 relative flex flex-col justify-between min-h-[500px]">
+                    <div>
+                        <div class="flex justify-between items-start border-b border-gray-800 pb-3 mb-4">
+                            <div>
+                                <h3 class="font-bold text-white text-md flex items-center gap-1.5">
+                                    📋 Tareas del Día <span id="selectedDayLabel" class="text-indigo-400">27</span>
+                                </h3>
+                                <p id="selectedDayDesc" class="text-xs text-gray-400 mt-0.5">Estudio de alta densidad & running</p>
+                            </div>
+                            <!-- Botón para descargar el reporte del día actual -->
+                            <button onclick="descargarReporteDiaTXT()" title="Descargar Plan de Hoy" class="p-2 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 text-indigo-400 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors">
+                                💾 Descargar
+                            </button>
+                        </div>
+
+                        <!-- Bloques Horarios Dinámicos con Sesiones de Hiperfoco -->
+                        <div id="checklistContainer" class="space-y-3 max-h-[420px] overflow-y-auto pr-1 custom-scrollbar">
+                            <!-- Generado dinámicamente según la fecha y el turno -->
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-800 flex gap-2">
+                        <button onclick="resetDayProgress()" class="flex-1 py-2 bg-gray-950 hover:bg-gray-900 border border-gray-800 rounded-xl text-xs font-bold text-gray-400 transition-colors">
+                            Reiniciar Día
+                        </button>
+                        <button onclick="marcarTodoCompletado()" class="flex-1 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-xl text-xs font-bold text-emerald-400 transition-colors">
+                            Marcar Todo
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- ================= TAB: FUNDAMENTOS ================= -->
-        <section id="content-fundamentos" class="tab-content space-y-6">
+        <section id="content-fundamentos" class="tab-content hidden space-y-6">
             <!-- Introducción a la Balanza -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
@@ -329,68 +442,133 @@
             </div>
         </section>
 
-        <!-- ================= TAB: PLANIFICADOR & CALENDARIO ================= -->
-        <section id="content-planificador" class="tab-content hidden space-y-6">
-            
-            <!-- Selector de Semana / Días del Planificador -->
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                
-                <!-- Columna Calendario de Hábitos -->
-                <div class="lg:col-span-3 bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <div class="flex justify-between items-center mb-6">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Calendario Mensual de Hábitos</h3>
-                            <p class="text-xs text-gray-400 mt-0.5">Selecciona un día para ver su checklist detallada según el turno de Stellantis.</p>
-                        </div>
-                        <div class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
-                            Mayo 2026
-                        </div>
-                    </div>
+        <!-- ================= TAB: COPILOTO IA ================= -->
+        <section id="content-copiloto" class="tab-content hidden space-y-6">
+            <div class="bg-gradient-to-r from-purple-950/40 to-indigo-950/40 p-6 rounded-2xl border border-purple-500/20">
+                <h2 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">🧠 Copiloto Bioquímico & AI Coach</h2>
+                <p class="text-sm text-gray-400 mt-1">Sincroniza tus métricas biométricas con el poder de Gemini 3.1 para adaptar tu rutina diaria y resolver dudas de alto rendimiento.</p>
+            </div>
 
-                    <!-- Cuadrícula de 28 Días del Mes (4 Semanas de Optimización) -->
-                    <div class="grid grid-cols-7 gap-2 mb-4" id="calendarGrid">
-                        <!-- Generado por JS -->
-                    </div>
-
-                    <!-- Leyenda del Calendario -->
-                    <div class="flex flex-wrap gap-4 text-xs text-gray-400 mt-4 border-t border-gray-800/60 pt-4">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-3 h-3 rounded bg-emerald-500/20 border border-emerald-500/40"></span> Entreno + Suplementos
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-3 h-3 rounded bg-indigo-500/20 border border-indigo-500/40"></span> Solo Estudio
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-3 h-3 rounded bg-gray-800 border border-gray-700"></span> Descanso Total
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Columna Checklist Diaria Dinámica -->
-                <div class="bg-gray-900/80 p-6 rounded-2xl border border-gray-800 relative flex flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Optimizador Dinámico (Izquierda) -->
+                <div class="lg:col-span-5 bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-white text-lg flex items-center gap-2 mb-4">
+                            ⚡ Adaptar Día por Bio-Feedback
+                        </h3>
+                        <p class="text-xs text-gray-400 mb-6">Inserta las métricas de tu reloj y tu estado hoy para recalcular con IA tus prioridades de entrenamiento, estudio y pauta de suplementación.</p>
+
+                        <div class="space-y-4">
+                            <!-- Horas de sueño -->
                             <div>
-                                <h3 class="font-bold text-white text-lg flex items-center gap-2">
-                                    📋 Tareas del Día <span id="selectedDayLabel" class="text-indigo-400">1</span>
-                                </h3>
-                                <p id="selectedDayDesc" class="text-xs text-gray-400 mt-0.5">Día de Fuerza & Trote</p>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Horas de Sueño Anoche (Galaxy Watch):</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" oninput="document.getElementById('ai-sleep-val').innerText = this.value + 'h'" class="flex-1 accent-purple-500">
+                                    <span id="ai-sleep-val" class="text-xs font-bold text-purple-400 w-12 text-right">7.5h</span>
+                                </div>
+                            </div>
+
+                            <!-- Fatiga Física -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Fatiga Muscular / Dolor (1-10):</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="range" id="ai-fatigue" min="1" max="10" value="3" oninput="document.getElementById('ai-fatigue-val').innerText = this.value" class="flex-1 accent-purple-500">
+                                    <span id="ai-fatigue-val" class="text-xs font-bold text-purple-400 w-12 text-right">3</span>
+                                </div>
+                            </div>
+
+                            <!-- Estrés Mental -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Nivel de Estrés / Carga Mental (1-10):</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="range" id="ai-stress" min="1" max="10" value="4" oninput="document.getElementById('ai-stress-val').innerText = this.value" class="flex-1 accent-purple-500">
+                                    <span id="ai-stress-val" class="text-xs font-bold text-purple-400 w-12 text-right">4</span>
+                                </div>
+                            </div>
+
+                            <!-- Turno de Stellantis hoy -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Turno Stellantis Vigo hoy:</label>
+                                <select id="ai-shift" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-300 focus:ring-1 focus:ring-purple-500 outline-none">
+                                    <option value="mañana (madrugón, salida a las 14:00)">🌅 Mañana</option>
+                                    <option value="tarde (entrada a las 14:00, salida de noche)">🌌 Tarde</option>
+                                    <option value="noche (turno nocturno completo)">🌃 Noche</option>
+                                    <option value="descanso (fin de semana o festivo)">🛋️ Descanso Laboral</option>
+                                </select>
+                            </div>
+
+                            <!-- Qué toca hoy en calendario -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Tipo de Día (Calendario Base):</label>
+                                <select id="ai-daytype" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-300 focus:ring-1 focus:ring-purple-500 outline-none">
+                                    <option value="Fuerza (Calistenia) + Bloques de Hiperfoco en Estudio">🏋️ Martes/Jueves: Fuerza + Estudio</option>
+                                    <option value="Tirada Larga 21K + Hiperfoco en Proyecto">🏃 Sábado: Tirada Larga + Estudio</option>
+                                    <option value="Trote Suave + Calistenia Ligera + Lectura">🧘 Domingo: Recuperación Activa</option>
+                                    <option value="Descanso de Entreno y Hiperfoco Ligero">🛋️ Lunes/Miércoles/Viernes: Descanso y Lectura</option>
+                                </select>
                             </div>
                         </div>
-
-                        <!-- Bloques Horarios Dinámicos según el Turno seleccionado -->
-                        <div id="checklistContainer" class="space-y-4 my-4 max-h-[350px] overflow-y-auto pr-1 custom-scrollbar">
-                            <!-- Generado dinámicamente -->
-                        </div>
                     </div>
 
-                    <div class="pt-4 border-t border-gray-800">
-                        <button onclick="resetDayProgress()" class="w-full py-2 bg-gray-950 hover:bg-gray-900 border border-gray-800 rounded-xl text-xs font-bold text-gray-400 transition-colors">
-                            Reiniciar progreso de hoy
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-purple-500/10 flex items-center justify-center gap-2">
+                            ✨ Calcular Pauta Optimizada hoy con Gemini
                         </button>
                     </div>
                 </div>
 
+                <!-- Respuesta de IA y Chat (Derecha) -->
+                <div class="lg:col-span-7 flex flex-col gap-6">
+                    
+                    <!-- Panel de salida del optimizador -->
+                    <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex-1 flex flex-col justify-between min-h-[350px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-white text-sm flex items-center gap-1.5">
+                                    🎯 Plan Diario Adaptado por Gemini
+                                </h4>
+                                <span class="text-[10px] text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 font-bold uppercase tracking-wider">Resultado dinámico</span>
+                            </div>
+                            <div id="ai-optimization-output" class="text-xs text-gray-300 space-y-3 leading-relaxed max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                <p class="text-gray-400 italic">Haz clic en el botón de la izquierda para generar una pauta adaptativa a tu estado biológico de hoy.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800 text-[10px] text-gray-500 italic flex justify-between items-center">
+                            <span>Sincronizado vía API Gemini 3.1</span>
+                            <button onclick="copiarOutputIA()" id="btnCopiarIA" class="text-purple-400 hover:underline hover:text-purple-300 hidden">Copiar al portapapeles</button>
+                        </div>
+                    </div>
+
+                    <!-- Consultor Chat Inteligente -->
+                    <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between h-[380px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-white text-sm flex items-center gap-1.5">
+                                    💬 Consultor de Rendimiento & Biología
+                                </h4>
+                                <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-bold uppercase tracking-wider flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Google Grounding habilitado
+                                </span>
+                            </div>
+                            
+                            <!-- Historial de Chat -->
+                            <div id="chatHistory" class="text-xs space-y-3 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar mb-4">
+                                <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 text-gray-300">
+                                    <strong>Coach IA:</strong> ¡Hola! Pregúntame lo que quieras. Puedo buscar en internet los últimos estudios de suplementos, aconsejarte sobre el asfalto de Vigo, calistenia, o cómo planificar tus bloques de estudio e hiperfoco para Stellantis.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Barra de entrada de texto -->
+                        <div class="flex gap-2 border-t border-gray-800 pt-3">
+                            <input type="text" id="chatInput" placeholder="Pregunta sobre L-Tirosina, dominadas, sesiones de hiperfoco..." onkeydown="if(event.key === 'Enter') enviarPreguntaIA()" class="flex-1 bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300 focus:ring-1 focus:ring-purple-500 outline-none">
+                            <button onclick="enviarPreguntaIA()" id="btnEnviarChat" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 rounded-lg text-xs transition-colors flex items-center justify-center">
+                                Enviar
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
@@ -400,10 +578,11 @@
     <footer class="border-t border-gray-800 py-6 px-4 md:px-8 bg-gray-950 mt-12">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
             <div>
-                <p>© 2026 Sinfonía Neuroendocrina. Versión de Rendimiento 2.0.</p>
-                <p class="mt-0.5">Creado específicamente para optimización física y mental híbrida.</p>
+                <p>© 2026 Sinfonía Neuroendocrina. Versión de Rendimiento 2.5 con Conectividad Gemini API.</p>
+                <p class="mt-0.5">Calendario Perpetuo con Módulos Integrados de Hiperfoco Cognitivo.</p>
             </div>
             <div class="flex gap-4">
+                <a href="#" onclick="switchTab('planificador'); return false;" class="hover:underline">Planificador</a>
                 <a href="#" onclick="switchTab('fundamentos'); return false;" class="hover:underline">Conceptos</a>
                 <a href="#" onclick="switchTab('suplementacion'); return false;" class="hover:underline">Suplementos</a>
                 <a href="#" onclick="switchTab('entrenamiento'); return false;" class="hover:underline">Media Maratón</a>
@@ -413,26 +592,34 @@
 
     <!-- LOGIC SCRIPT -->
     <script>
-        // Variables globales de estado
-        let activeTab = 'fundamentos';
+        // --- CONSTANTES Y VARIABLES DE ESTADO ---
+        let activeTab = 'planificador';
         let currentTurno = 'manana'; // 'manana' o 'tarde'
-        let selectedDay = 1;
+        
+        // Estado del Calendario Real (Mayo 2026 predeterminado)
+        let currentYear = 2026;
+        let currentMonth = 4; // Index de Meses en JS (4 = Mayo)
+        let selectedDateStr = "2026-05-27"; // Fecha predeterminada de inicio
 
-        // Estructura de un mes (28 días para patrón cíclico limpio de 4 semanas)
-        // Días de entrenamiento: Martes (2), Jueves (4), Sábado (6), Domingo (7)
-        // Días de descanso: Lunes (1), Miércoles (3), Viernes (5)
-        const daysData = {
-            1: { name: "Lunes", desc: "Descanso y Estudio Liviano", type: "rest" },
-            2: { name: "Martes", desc: "Calistenia (Fuerza Torso) + Estudio", type: "mixed" },
-            3: { name: "Miércoles", desc: "Descanso Total / Enfoque Proyecto", type: "rest" },
-            4: { name: "Jueves", desc: "Calistenia + Trote Intervalos + Estudio", type: "mixed" },
-            5: { name: "Viernes", desc: "Descanso / Preparación de Tirada", type: "rest" },
-            6: { name: "Sábado", desc: "Tirada Larga (Objetivo 21K) + Estudio", type: "mixed" },
-            7: { name: "Domingo", desc: "Calistenia Suave + Trote Recuperativo", type: "mixed" }
+        // Estructura cíclica de entrenamiento base
+        // Lunes: 1, Martes: 2, Miércoles: 3, Jueves: 4, Viernes: 5, Sábado: 6, Domingo: 7
+        const weekdayMapping = {
+            1: { name: "Lunes", desc: "Descanso y Hiperfoco Corto", type: "rest" },
+            2: { name: "Martes", desc: "Hiperfoco Máximo + Calistenia Torso", type: "mixed" },
+            3: { name: "Miércoles", desc: "Descanso Total / Hiperfoco de Proyecto", type: "rest" },
+            4: { name: "Jueves", desc: "Hiperfoco Máximo + Calistenia & Umbral", type: "mixed" },
+            5: { name: "Viernes", desc: "Descanso / Preparación de Tirada Larga", type: "rest" },
+            6: { name: "Sábado", desc: "Hiperfoco Sólido + Tirada Larga 21K", type: "mixed" },
+            7: { name: "Domingo", desc: "Recuperación Activa & Planificación", type: "mixed" }
         };
 
-        // Guardar estado del checklist en LocalStorage para no perder progreso
-        let userProgress = JSON.parse(localStorage.getItem('neuro_progress')) || {};
+        const mesesNombres = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        // Progreso del Usuario mapeado por fecha real: `prog-YYYY-MM-DD-taskId`
+        let userProgress = JSON.parse(localStorage.getItem('neuro_progress_datebased')) || {};
 
         // Cambiar entre pestañas
         function switchTab(tabId) {
@@ -444,166 +631,222 @@
             });
             const activeBtn = document.getElementById(`tab-${tabId}`);
             if (activeBtn) {
-                activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+                if(tabId === 'copiloto') {
+                    activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-purple-500/20 text-purple-300 border border-purple-500/30";
+                } else if(tabId === 'planificador') {
+                    activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+                } else {
+                    activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+                }
             }
             activeTab = tabId;
         }
 
-        // Cambiar turno de trabajo
+        // Cambiar turno de trabajo de Stellantis
         function toggleTurno(turno) {
             currentTurno = turno;
             const btnManana = document.getElementById('btnTurnoManana');
             const btnTarde = document.getElementById('btnTurnoTarde');
 
             if (turno === 'manana') {
-                btnManana.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20";
-                btnTarde.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+                btnManana.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20";
+                btnTarde.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
             } else {
-                btnTarde.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 bg-indigo-500 text-gray-950 shadow-lg shadow-indigo-500/20";
-                btnManana.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+                btnTarde.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-indigo-500 text-gray-950 shadow-lg shadow-indigo-500/20";
+                btnManana.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
             }
             // Recargar vista actual de checklist
             renderChecklist();
         }
 
-        // Inicializar el calendario de 28 días
+        // --- SISTEMA DE CALENDARIO REAL PERPETUO ---
+        function navegarMes(direccion) {
+            currentMonth += direccion;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        }
+
         function renderCalendar() {
-            const grid = document.getElementById('calendarGrid');
+            document.getElementById('activeMonthLabel').innerText = mesesNombres[currentMonth];
+            document.getElementById('activeYearLabel').innerText = currentYear;
+
+            const grid = document.getElementById('realCalendarGrid');
             grid.innerHTML = '';
 
-            // Encabezados de días de la semana
-            const weekDays = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
-            weekDays.forEach(wd => {
-                const header = document.createElement('div');
-                header.className = "text-center text-xs font-bold text-gray-500 py-1";
-                header.innerText = wd;
-                grid.appendChild(header);
-            });
+            // Obtener primer día de la semana para este mes (0=Dom, 1=Lun...)
+            const primerDiaIndex = new Date(currentYear, currentMonth, 1).getDay();
+            // Convertir a base Lunes = 0, Domingo = 6
+            const offsetPrimerDia = primerDiaIndex === 0 ? 6 : primerDiaIndex - 1;
 
-            // Generar 28 días (4 semanas completas)
-            for (let i = 1; i <= 28; i++) {
+            // Días totales del mes actual
+            const diasTotales = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // Días del mes anterior (para rellenar celdas inactivas)
+            const diasMesAnterior = new Date(currentYear, currentMonth, 0).getDate();
+
+            // Rellenar con los días finales del mes anterior (inactivos)
+            for (let i = offsetPrimerDia - 1; i >= 0; i--) {
+                const dayNum = diasMesAnterior - i;
+                const tempBtn = document.createElement('div');
+                tempBtn.className = "h-12 flex flex-col items-center justify-center p-1 rounded-lg border border-gray-900 bg-gray-950/20 text-gray-700 text-xs cursor-not-allowed";
+                tempBtn.innerText = dayNum;
+                grid.appendChild(tempBtn);
+            }
+
+            // Rellenar días del mes actual
+            for (let i = 1; i <= diasTotales; i++) {
                 const dayNum = i;
-                const weekdayIndex = ((i - 1) % 7) + 1;
-                const dayInfo = daysData[weekdayIndex];
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+                
+                const tempDate = new Date(currentYear, currentMonth, dayNum);
+                const diaSemanaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
+                const diaInfo = weekdayMapping[diaSemanaIndex];
 
                 const dayBtn = document.createElement('button');
-                dayBtn.id = `cal-day-${dayNum}`;
-                dayBtn.onclick = () => selectDay(dayNum);
+                dayBtn.onclick = () => selectDay(dateStr);
 
-                // Determinar clases de color base según el tipo de día
-                let colorClasses = "bg-gray-950 border-gray-800 hover:border-gray-700";
-                if (dayInfo.type === 'mixed') {
-                    colorClasses = "bg-emerald-950/20 border-emerald-500/20 text-emerald-300 hover:border-emerald-500/40";
-                } else if (dayInfo.type === 'study_only') {
-                    colorClasses = "bg-indigo-950/20 border-indigo-500/20 text-indigo-300 hover:border-indigo-500/40";
+                // Estilos según el tipo de entrenamiento/hiperfoco
+                let colorClasses = "bg-gray-950 border-gray-800 hover:border-gray-750 text-gray-400";
+                if (diaInfo.type === 'mixed') {
+                    colorClasses = "bg-emerald-950/10 border-emerald-500/20 text-emerald-300 hover:border-emerald-500/40";
+                } else if (diaInfo.type === 'rest') {
+                    colorClasses = "bg-indigo-950/10 border-indigo-500/20 text-indigo-300 hover:border-indigo-500/40";
                 }
 
-                dayBtn.className = `h-12 flex flex-col items-center justify-between p-1.5 rounded-lg border text-xs transition-all ${colorClasses}`;
-                
-                // Mostrar número de día y un punto de completado si aplica
-                const isSelected = selectedDay === dayNum ? 'ring-2 ring-indigo-500' : '';
-                dayBtn.className += ` ${isSelected}`;
+                // Resaltar día seleccionado
+                const isSelected = selectedDateStr === dateStr ? 'ring-2 ring-indigo-500' : '';
+                dayBtn.className = `h-12 flex flex-col items-center justify-between p-1.5 rounded-lg border text-xs transition-all ${colorClasses} ${isSelected}`;
 
                 dayBtn.innerHTML = `
                     <span class="font-bold block text-left w-full">${dayNum}</span>
-                    <span id="dot-${dayNum}" class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                    <span id="dot-${dateStr}" class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                 `;
 
                 grid.appendChild(dayBtn);
-                updateDayCompletedDot(dayNum);
+                updateDayCompletedDot(dateStr);
+            }
+
+            // Completar celdas con el mes siguiente si es necesario
+            const totalCeldasOcupadas = offsetPrimerDia + diasTotales;
+            const celdasRestantes = (7 - (totalCeldasOcupadas % 7)) % 7;
+            for (let i = 1; i <= celdasRestantes; i++) {
+                const tempBtn = document.createElement('div');
+                tempBtn.className = "h-12 flex flex-col items-center justify-center p-1 rounded-lg border border-gray-900 bg-gray-950/20 text-gray-700 text-xs cursor-not-allowed";
+                tempBtn.innerText = i;
+                grid.appendChild(tempBtn);
             }
         }
 
-        function selectDay(dayNum) {
-            // Deseleccionar anterior
-            const prevSelected = document.getElementById(`cal-day-${selectedDay}`);
-            if (prevSelected) prevSelected.classList.remove('ring-2', 'ring-indigo-500');
+        function selectDay(dateStr) {
+            selectedDateStr = dateStr;
+            renderCalendar();
 
-            selectedDay = dayNum;
-            
-            // Seleccionar nuevo
-            const newSelected = document.getElementById(`cal-day-${dayNum}`);
-            if (newSelected) newSelected.classList.add('ring-2', 'ring-indigo-500');
+            // Extraer día de la semana de la fecha real
+            const [yr, mn, dy] = dateStr.split('-').map(Number);
+            const tempDate = new Date(yr, mn - 1, dy);
+            const diaSemanaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
+            const diaInfo = weekdayMapping[diaSemanaIndex];
 
-            const weekdayIndex = ((dayNum - 1) % 7) + 1;
-            const dayInfo = daysData[weekdayIndex];
-
-            document.getElementById('selectedDayLabel').innerText = `${dayNum} (${dayInfo.name})`;
-            document.getElementById('selectedDayDesc').innerText = dayInfo.desc;
+            document.getElementById('selectedDayLabel').innerText = `${dy} (${diaInfo.name})`;
+            document.getElementById('selectedDayDesc').innerText = diaInfo.desc;
 
             renderChecklist();
         }
 
-        // Generar las tareas específicas de un día considerando la pauta y el turno de trabajo
-        function getTasksForDay(dayNum) {
-            const weekdayIndex = ((dayNum - 1) % 7) + 1;
-            const dayInfo = daysData[weekdayIndex];
+        // --- GENERADOR DE TAREAS E HIPERFOCO ---
+        function getTasksForDate(dateStr) {
+            const [yr, mn, dy] = dateStr.split('-').map(Number);
+            const tempDate = new Date(yr, mn - 1, dy);
+            const diaSemanaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
+            
             const tasks = [];
 
             // Suplementos fijos diarios
-            tasks.push({ id: 'creatina', label: "5g de Creatina post-entrenamiento (o con agua)", time: "Todo el día" });
-            tasks.push({ id: 'fosfatidilserina', label: "300mg de Fosfatidilserina con comida principal", time: "Mediodía" });
+            tasks.push({ id: 'creatina', label: "💧 Tomar 5g de Creatina Monohidrato", time: "Diario - Mañana" });
+            tasks.push({ id: 'fosfatidilserina', label: "🛡️ Tomar 300mg de Fosfatidilserina (con tu comida principal)", time: "Diario - Tarde" });
 
-            // Pauta de entrenamientos y nootrópicos específicos de días activos
-            if (weekdayIndex === 2) { // Martes: Fuerza
-                tasks.push({ id: 'tirosina', label: "1000mg L-Tirosina en ayunas antes de estudiar", time: "Antes de Estudio" });
-                tasks.push({ id: 'alfagpc', label: "600mg Alfa GPC antes de estudiar", time: "Antes de Estudio" });
-                tasks.push({ id: 'huperzina', label: "200mcg Huperzina A antes de estudiar (Ciclo Activo)", time: "Antes de Estudio" });
-                tasks.push({ id: 'estudio', label: "Estudio intensivo y código del proyecto (2 horas)", time: "Bloque Cognitivo" });
-                tasks.push({ id: 'calistenia', label: "Entrenamiento Calistenia: Dominadas/Fondos/Flexiones (RIR 2)", time: "Entrenamiento" });
+            // Pauta por día de la semana
+            if (diaSemanaIndex === 2) { // Martes: Hiperfoco Máximo + Calistenia
+                tasks.push({ id: 'tirosina', label: "⚡ Tomar 1000mg de L-Tirosina (en ayunas, 40 min antes del estudio)", time: "Suplemento Enfoque" });
+                tasks.push({ id: 'alfagpc', label: "🎯 Tomar 600mg de Alfa GPC (junto con la L-Tirosina)", time: "Suplemento Enfoque" });
+                tasks.push({ id: 'huperzina', label: "🔬 Tomar 200mcg de Huperzina A (bloquea la degradación de acetilcolina)", time: "Suplemento Enfoque" });
+                
+                // Sesiones de Hiperfoco & Estudio
+                tasks.push({ id: 'hiperfoco_1', label: "🧘 BLOQUE DE HIPERFOCO (90 min): Desarrollo del proyecto & Código estricto (Notificaciones apagadas, cero distracciones)", time: "Sesión Cognitiva" });
+                tasks.push({ id: 'estudio_recalls', label: "📚 SESIÓN DE ESTUDIO ACTIVO (60 min): Lectura técnica profunda y active recall de conceptos complejos", time: "Sesión Cognitiva" });
+                tasks.push({ id: 'descanso_pomodoro', label: "⏱️ Descanso de Integración (15 min): Sin pantallas, camina o estira para consolidar la memoria", time: "Descanso Activo" });
+                
+                tasks.push({ id: 'calistenia', label: "🏋️ Entrenamiento de Calistenia: Dominadas estrictas, fondos y flexiones (RIR 2)", time: "Entrenamiento" });
             } 
-            else if (weekdayIndex === 4) { // Jueves: Calistenia + Intervalos
-                tasks.push({ id: 'tirosina', label: "1000mg L-Tirosina en ayunas antes de estudiar", time: "Antes de Estudio" });
-                tasks.push({ id: 'alfagpc', label: "600mg Alfa GPC antes de estudiar", time: "Antes de Estudio" });
-                tasks.push({ id: 'huperzina', label: "200mcg Huperzina A antes de estudiar (Ciclo Activo)", time: "Antes de Estudio" });
-                tasks.push({ id: 'estudio', label: "Estudio intensivo y desarrollo de proyecto (2 horas)", time: "Bloque Cognitivo" });
-                tasks.push({ id: 'calistenia_rapida', label: "Calistenia rápida (30 min): Superseries de volumen", time: "Entrenamiento" });
-                tasks.push({ id: 'intervalos', label: "Carrera: Intervalos de Umbral (10 min suave + 4x3 min rápido + 5 min suave)", time: "Entrenamiento" });
+            else if (diaSemanaIndex === 4) { // Jueves: Hiperfoco Máximo + Calistenia & Umbral
+                tasks.push({ id: 'tirosina', label: "⚡ Tomar 1000mg de L-Tirosina (en ayunas antes de tu bloque mental)", time: "Suplemento Enfoque" });
+                tasks.push({ id: 'alfagpc', label: "🎯 Tomar 600mg de Alfa GPC antes del hiperfoco", time: "Suplemento Enfoque" });
+                tasks.push({ id: 'huperzina', label: "🔬 Tomar 200mcg de Huperzina A (Ciclo Activo)", time: "Suplemento Enfoque" });
+                
+                // Sesiones de Hiperfoco & Estudio
+                tasks.push({ id: 'hiperfoco_1', label: "🧘 BLOQUE DE HIPERFOCO (90 min): Programación intensiva o resolución de problemas complejos del proyecto", time: "Sesión Cognitiva" });
+                tasks.push({ id: 'estudio_recalls', label: "📚 SESIÓN DE ESTUDIO ACTIVO (60 min): Repaso de arquitectura de software y código", time: "Sesión Cognitiva" });
+                tasks.push({ id: 'descanso_pomodoro', label: "⏱️ Descanso de Integración (15 min): Caminata corta, cero estímulo digital", time: "Descanso Activo" });
+                
+                tasks.push({ id: 'calistenia_rapida', label: "🏋️ Calistenia Express (30 min): Superseries de volumen para mantener fuerza", time: "Entrenamiento" });
+                tasks.push({ id: 'intervalos', label: "🏃 Carrera: Intervalos de Umbral (10 min suave + 4x3 min rápido + 5 min suave)", time: "Entrenamiento" });
             }
-            else if (weekdayIndex === 6) { // Sábado: Tirada Larga
-                tasks.push({ id: 'tirosina', label: "1000mg L-Tirosina en ayunas antes de estudiar", time: "Antes de Estudio" });
-                tasks.push({ id: 'alfagpc', label: "600mg Alfa GPC antes de estudiar", time: "Antes de Estudio" });
-                tasks.push({ id: 'huperzina', label: "200mcg Huperzina A antes de estudiar (Ciclo Activo)", time: "Antes de Estudio" });
-                tasks.push({ id: 'estudio', label: "Estudio y revisión de proyecto (1.5 horas)", time: "Bloque Cognitivo" });
-                tasks.push({ id: 'tiradalarga', label: "Carrera Larga: 10K+ a ritmo de 6:00/km (Ruta plana en Samil)", time: "Entrenamiento" });
+            else if (diaSemanaIndex === 6) { // Sábado: Hiperfoco Sólido + Tirada Larga 21K
+                tasks.push({ id: 'tirosina', label: "⚡ Tomar 1000mg de L-Tirosina para rendimiento cognitivo/físico", time: "Suplemento Enfoque" });
+                tasks.push({ id: 'alfagpc', label: "🎯 Tomar 600mg de Alfa GPC antes del estudio", time: "Suplemento Enfoque" });
+                tasks.push({ id: 'huperzina', label: "🔬 Tomar 200mcg de Huperzina A (Último ciclo semanal)", time: "Suplemento Enfoque" });
+                
+                // Sesiones de Hiperfoco & Estudio
+                tasks.push({ id: 'hiperfoco_1', label: "🧘 BLOQUE DE HIPERFOCO (90 min): Sprint de código y pulido de errores en el proyecto digital", time: "Sesión Cognitiva" });
+                tasks.push({ id: 'estudio_recalls', label: "📚 SESIÓN DE ESTUDIO (60 min): Autoevaluación del progreso semanal y revisión de apuntes", time: "Sesión Cognitiva" });
+                
+                tasks.push({ id: 'tiradalarga', label: "🏃 Carrera Larga: 10K+ en Zona 2 (6:00 min/km o paso conversacional, ruta plana Vigo)", time: "Entrenamiento" });
             }
-            else if (weekdayIndex === 7) { // Domingo: Activo Suave (Huperzina descansa)
-                tasks.push({ id: 'calistenia_suave', label: "Calistenia Técnica: Movilidad y estiramientos", time: "Entrenamiento" });
-                tasks.push({ id: 'trote_recup', label: "Trote de Recuperación Activa: 20 min sumamente suave", time: "Entrenamiento" });
-                tasks.push({ id: 'plan_semana', label: "Planificar calendario y comidas para turnos rotativos", time: "Higiene Mental" });
+            else if (diaSemanaIndex === 7) { // Domingo: Recuperación Activa & Planificación (Huperzina descansa)
+                tasks.push({ id: 'calistenia_suave', label: "🧘 Movilidad y Estiramientos: Liberación articular y descompresión de columna", time: "Entrenamiento" });
+                tasks.push({ id: 'trote_recup', label: "🏃 Trote Suave de Recuperación: 20 min en Zona 2 regenerativa", time: "Entrenamiento" });
+                tasks.push({ id: 'plan_semana', label: "📅 Planificación Semanal: Sincronizar comidas y horas de sueño para el próximo turno de Stellantis", time: "Higiene Mental" });
             }
             else {
-                // Días de descanso: Lunes, Miércoles, Viernes
-                tasks.push({ id: 'estudio_ligero', label: "Estudio suave o lectura técnica de desarrollo (45 min)", time: "Bloque Cognitivo" });
-                tasks.push({ id: 'descanso_activo', label: "Estiramientos suaves / Caminar 30 mins", time: "Recuperación" });
+                // Días de Descanso Total (Lunes, Miércoles, Viernes)
+                tasks.push({ id: 'hiperfoco_lectura', label: "🧘 HIPERFOCO LIGERO (45 min): Lectura técnica de documentación oficial o diseño estructural del proyecto", time: "Sesión Cognitiva" });
+                tasks.push({ id: 'descanso_activo', label: "🚶 Descanso Activo: Caminata rápida de 30 min por Vigo o estiramientos suaves", time: "Recuperación" });
+                tasks.push({ id: 'recarga_dopamina', label: "🛡️ Descanso de estimulantes dopaminérgicos: Deja respirar tus receptores neuronales", time: "Higiene Mental" });
             }
 
-            // Alerta de sueño basada en el turno
+            // Regulación del Sueño Circadiano según el Turno actual
             if (currentTurno === 'manana') {
-                tasks.push({ id: 'sueno_manana', label: "Higiene de Sueño: Acostarse antes de las 22:30. Luz apagada y sin pantallas.", time: "Noche" });
+                tasks.push({ id: 'sueno_manana', label: "🛌 Higiene de Sueño: Dormir antes de las 22:30. Habitación a oscuras sin pantallas desde 45 min antes", time: "Sueño Circadiano" });
             } else {
-                tasks.push({ id: 'sueno_tarde', label: "Higiene de Sueño: Oscuridad absoluta para combatir desfase nocturno.", time: "Noche" });
+                tasks.push({ id: 'sueno_tarde', label: "🛌 Higiene de Sueño: Uso de blackout total para proteger el sueño diurno del desfase", time: "Sueño Circadiano" });
             }
 
             return tasks;
         }
 
-        // Renderizar el checklist del día seleccionado adaptado a los turnos de Stellantis
+        // Renderizar la checklist diaria interactiva
         function renderChecklist() {
             const container = document.getElementById('checklistContainer');
             container.innerHTML = '';
 
-            const tasks = getTasksForDay(selectedDay);
+            const tasks = getTasksForDate(selectedDateStr);
 
-            // Ordenar las tareas cronológicamente dependiendo del Turno de Stellantis
+            // Ordenamiento lógico adaptado al Turno de Stellantis seleccionado
             const sortedTasks = sortTasksByShift(tasks);
 
             sortedTasks.forEach(task => {
-                const isChecked = userProgress[`day-${selectedDay}-${task.id}`] ? 'checked' : '';
+                const key = `prog-${selectedDateStr}-${task.id}`;
+                const isChecked = userProgress[key] ? 'checked' : '';
                 const textStyle = isChecked ? 'line-through text-gray-500' : 'text-gray-200';
                 
                 const taskDiv = document.createElement('div');
-                taskDiv.className = `flex items-start gap-3 p-3 bg-gray-950/60 hover:bg-gray-950 rounded-xl border border-gray-800 transition-colors`;
+                taskDiv.className = `flex items-start gap-3 p-3 bg-gray-950/65 hover:bg-gray-950 rounded-xl border border-gray-800 transition-all duration-200`;
                 
                 taskDiv.innerHTML = `
                     <input type="checkbox" id="task-${task.id}" ${isChecked} 
@@ -620,64 +863,382 @@
             });
         }
 
-        // Ordenar las tareas dependiendo de la estrategia diaria del turno rotativo de Stellantis
+        // Ordenamiento según la dinámica de turnos rotativos
         function sortTasksByShift(tasks) {
-            // El orden cronológico cambia según Stellantis sea mañana o tarde
-            const orderManana = ["Antes de Estudio", "Bloque Cognitivo", "Mediodía", "Entrenamiento", "Todo el día", "Noche", "Higiene Mental", "Recuperación"];
-            const orderTarde = ["Antes de Estudio", "Bloque Cognitivo", "Entrenamiento", "Todo el día", "Mediodía", "Noche", "Higiene Mental", "Recuperación"];
+            const ordenCronologicoManana = [
+                "Suplemento Enfoque", "Sesión Cognitiva", "Diario - Mañana", 
+                "Diario - Tarde", "Recuperación", "Descanso Activo", 
+                "Entrenamiento", "Higiene Mental", "Sueño Circadiano"
+            ];
+            
+            const ordenCronologicoTarde = [
+                "Suplemento Enfoque", "Sesión Cognitiva", "Entrenamiento", 
+                "Diario - Mañana", "Diario - Tarde", "Recuperación", 
+                "Descanso Activo", "Higiene Mental", "Sueño Circadiano"
+            ];
 
-            const activeOrder = currentTurno === 'manana' ? orderManana : orderTarde;
+            const ordenActivo = currentTurno === 'manana' ? ordenCronologicoManana : ordenCronologicoTarde;
 
             return [...tasks].sort((a, b) => {
-                return activeOrder.indexOf(a.time) - activeOrder.indexOf(b.time);
+                return ordenActivo.indexOf(a.time) - ordenActivo.indexOf(b.time);
             });
         }
 
-        // Marcar/Desmarcar tarea
+        // Activar/Desactivar progreso de una tarea específica
         function toggleTask(taskId) {
-            const key = `day-${selectedDay}-${taskId}`;
+            const key = `prog-${selectedDateStr}-${taskId}`;
             if (userProgress[key]) {
                 delete userProgress[key];
             } else {
                 userProgress[key] = true;
             }
-            localStorage.setItem('neuro_progress', JSON.stringify(userProgress));
+            localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
             
             renderChecklist();
-            updateDayCompletedDot(selectedDay);
+            updateDayCompletedDot(selectedDateStr);
         }
 
-        // Actualizar el indicador visual de completado en la cuadrícula del calendario
-        function updateDayCompletedDot(dayNum) {
-            const dot = document.getElementById(`dot-${dayNum}`);
+        // Actualizar visualmente la celda del día en el calendario según porcentaje de avance
+        function updateDayCompletedDot(dateStr) {
+            const dot = document.getElementById(`dot-${dateStr}`);
             if (!dot) return;
 
-            const dayTasks = getTasksForDay(dayNum);
-            const completedCount = dayTasks.filter(task => userProgress[`day-${dayNum}-${task.id}`]).length;
+            const dayTasks = getTasksForDate(dateStr);
+            const completados = dayTasks.filter(task => userProgress[`prog-${dateStr}-${task.id}`]).length;
 
-            if (completedCount === dayTasks.length && dayTasks.length > 0) {
-                dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 shadow shadow-emerald-400/50";
-            } else if (completedCount > 0) {
-                dot.className = "w-1.5 h-1.5 rounded-full bg-indigo-400";
+            if (completados === dayTasks.length && dayTasks.length > 0) {
+                dot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-md shadow-emerald-400/50";
+            } else if (completados > 0) {
+                dot.className = "w-2 h-2 rounded-full bg-indigo-400";
             } else {
-                dot.className = "w-1.5 h-1.5 rounded-full bg-transparent";
+                dot.className = "w-2 h-2 rounded-full bg-transparent";
             }
         }
 
+        // Resetear progreso diario
         function resetDayProgress() {
-            const dayTasks = getTasksForDay(selectedDay);
+            const dayTasks = getTasksForDate(selectedDateStr);
             dayTasks.forEach(task => {
-                delete userProgress[`day-${selectedDay}-${task.id}`];
+                delete userProgress[`prog-${selectedDateStr}-${task.id}`];
             });
-            localStorage.setItem('neuro_progress', JSON.stringify(userProgress));
+            localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
             renderChecklist();
-            updateDayCompletedDot(selectedDay);
+            updateDayCompletedDot(selectedDateStr);
         }
 
-        // Ejecutar funciones iniciales al cargar el documento
+        // Marcar todas las tareas del día actual como completadas
+        function marcarTodoCompletado() {
+            const dayTasks = getTasksForDate(selectedDateStr);
+            dayTasks.forEach(task => {
+                userProgress[`prog-${selectedDateStr}-${task.id}`] = true;
+            });
+            localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
+            renderChecklist();
+            updateDayCompletedDot(selectedDateStr);
+        }
+
+        // --- SISTEMA DE DESCARGA DE INFORMACIÓN ---
+        
+        // 1. Descargar Plan Diario en un archivo TXT limpio y bien formateado
+        function descargarReporteDiaTXT() {
+            const dayTasks = getTasksForDate(selectedDateStr);
+            const [yr, mn, dy] = selectedDateStr.split('-');
+            const dateObj = new Date(yr, mn - 1, dy);
+            const diaSemanaIndex = dateObj.getDay() === 0 ? 7 : dateObj.getDay();
+            const diaInfo = weekdayMapping[diaSemanaIndex];
+
+            let textContent = `==================================================\n`;
+            textContent += `SINFONÍA NEUROENDOCRINA - PLANIFICADOR DIARIO\n`;
+            textContent += `Fecha: ${selectedDateStr} (${diaInfo.name})\n`;
+            textContent += `Turno Stellantis Vigo: ${currentTurno.toUpperCase()}\n`;
+            textContent += `Enfoque del Día: ${diaInfo.desc}\n`;
+            textContent += `==================================================\n\n`;
+
+            textContent += `ESTADO DE TAREAS Y PROTOCOLO:\n`;
+            textContent += `--------------------------------------------------\n`;
+
+            dayTasks.forEach(task => {
+                const isCompleted = userProgress[`prog-${selectedDateStr}-${task.id}`] ? "[X] COMPLETADO" : "[ ] PENDIENTE";
+                textContent += `${isCompleted} - ${task.label} (${task.time})\n`;
+            });
+
+            textContent += `\n--------------------------------------------------\n`;
+            textContent += `RECOMENDACIÓN ADAPTATIVA DEL DÍA:\n`;
+            if (diaInfo.type === 'mixed') {
+                textContent += `- Este es un día activo. Asegúrate de tomar tu L-Tirosina y Alfa GPC 40 minutos antes del bloque de Hiperfoco.\n`;
+                textContent += `- Realiza tu sesión de Calistenia/Running por la tarde después del hiperfoco cognitivo para mejorar la consolidación de la memoria.\n`;
+            } else {
+                textContent += `- Día de descompresión. El foco es la recuperación androgénica y el control del cortisol por Fosfatidilserina.\n`;
+                textContent += `- Evita sobreestimulantes para limpiar los receptores dopaminérgicos cerebrales.\n`;
+            }
+            textContent += `\nGenerado el: ${new Date().toLocaleString()}\n`;
+            textContent += `==================================================\n`;
+
+            const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `planificador_dia_${selectedDateStr}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 2. Exportar todos los datos de progreso de LocalStorage como JSON
+        function exportarProgresoJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userProgress, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `planificador_neuroendocrino_backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            document.body.removeChild(downloadAnchor);
+        }
+
+        // 3. Importar copia de seguridad JSON
+        function triggerImportarJSON() {
+            document.getElementById('fileImport').click();
+        }
+
+        function importarProgresoJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsedData = JSON.parse(e.target.result);
+                    // Validar vagamente que tenga formato de progreso
+                    if (typeof parsedData === 'object' && parsedData !== null) {
+                        userProgress = parsedData;
+                        localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
+                        renderCalendar();
+                        renderChecklist();
+                    } else {
+                        throw new Error("Formato inválido.");
+                    }
+                } catch (err) {
+                    // No usamos alert() siguiendo las directivas estrictas. Inyectamos error temporal en consola o UI.
+                    console.error("Error importando archivo de respaldo: ", err);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+
+        // --- INTEGRACIÓN COCOACH GEMINI API ---
+        const apiKey = ""; 
+
+        async function callGeminiAPI(payload) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+            let retries = 3;
+            let delay = 1000;
+
+            while (retries > 0) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    retries--;
+                    if (retries === 0) {
+                        throw error;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; 
+                }
+            }
+        }
+
+        function formatMarkdownToHTML(text) {
+            return text
+                .replace(/### (.*?)\n/g, '<h5 class="font-bold text-white text-xs mt-3 mb-1">$1</h5>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-purple-400 font-semibold">$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em class="text-gray-300 italic">$1</em>')
+                .replace(/- (.*?)\n/g, '<li class="ml-4 list-disc text-gray-300 my-1">$1</li>')
+                .replace(/\n\n/g, '<br/>')
+                .replace(/\n/g, '<br/>');
+        }
+
+        async function optimizarDiaConIA() {
+            const btn = document.getElementById('btnOptimizarIA');
+            const output = document.getElementById('ai-optimization-output');
+            
+            const sleep = document.getElementById('ai-sleep').value;
+            const fatigue = document.getElementById('ai-fatigue').value;
+            const stress = document.getElementById('ai-stress').value;
+            const shift = document.getElementById('ai-shift').value;
+            const daytype = document.getElementById('ai-daytype').value;
+
+            btn.disabled = true;
+            btn.innerHTML = `<span class="animate-pulse flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-white animate-ping"></span> Sincronizando biomarcadores...</span>`;
+            output.innerHTML = `<div class="flex flex-col items-center justify-center p-8 space-y-3">
+                <span class="w-8 h-8 rounded-full border-2 border-purple-500 border-t-transparent animate-spin"></span>
+                <p class="text-xs text-gray-400">Analizando fatiga en Stellantis, optimizando bloques de hiperfoco y entrenamientos...</p>
+            </div>`;
+
+            const systemPrompt = "Actúa como un experto de élite en medicina neuroendocrina, preparación de maratones y optimización cognitiva. El usuario es un operario de Stellantis Vigo que trabaja en turnos rotativos, realiza rigurosas sesiones de hiperfoco en sus proyectos de estudio y entrena de manera híbrida. Brinda pautas estrictas y adaptativas para hoy.";
+            const userQuery = `Optimiza mi rutina diaria para hoy:
+- Dormí: ${sleep} horas (Galaxy Watch).
+- Fatiga física: ${fatigue}/10.
+- Estrés o carga mental: ${stress}/10.
+- Turno hoy en Stellantis: ${shift}.
+- Mi planificación base hoy: ${daytype}.
+
+Por favor indícame:
+1. ¿Debo entrenar hoy al máximo volumen o autorregular la carga e intensidad física?
+2. ¿Cómo configuro y dosifico mis suplementos hoy (L-Tirosina, Alfa GPC, Huperzina A, Fosfatidilserina) de acuerdo a mi descanso y estrés?
+3. Bríndame una agenda de 4 puntos clave, integrando específicamente mis sesiones de Hiperfoco y Estudio.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                const result = await callGeminiAPI(payload);
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (text) {
+                    output.innerHTML = `
+                        <div class="space-y-3 text-xs">
+                            <div class="bg-purple-950/20 p-3 rounded-lg border border-purple-500/10 mb-2">
+                                <span class="text-xs font-bold text-purple-400">AJUSTE ADAPTATIVO GENERADO:</span>
+                                <p class="text-[11px] text-gray-400 mt-0.5">Sincronizado para un sueño real de ${sleep}h y estrés de ${stress}/10.</p>
+                            </div>
+                            <div class="prose text-gray-300">
+                                ${formatMarkdownToHTML(text)}
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('btnCopiarIA').classList.remove('hidden');
+                } else {
+                    output.innerHTML = `<p class="text-red-400 text-xs">No se recibió respuesta del modelo. Inténtalo de nuevo.</p>`;
+                }
+            } catch (error) {
+                console.error("Error llamando a Gemini API:", error);
+                output.innerHTML = `<p class="text-red-400 text-xs">Error de conexión con la inteligencia de Google. Revisa tu conexión.</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `✨ Calcular Pauta Optimizada hoy con Gemini`;
+            }
+        }
+
+        async function enviarPreguntaIA() {
+            const input = document.getElementById('chatInput');
+            const userText = input.value.trim();
+            if (!userText) return;
+
+            const chatHistory = document.getElementById('chatHistory');
+            const btn = document.getElementById('btnEnviarChat');
+
+            const userDiv = document.createElement('div');
+            userDiv.className = "bg-purple-950/20 p-3 rounded-xl border border-purple-500/10 text-gray-200 text-right";
+            userDiv.innerHTML = `<strong>Tú:</strong> ${userText}`;
+            chatHistory.appendChild(userDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            input.value = '';
+            btn.disabled = true;
+
+            const botLoadingDiv = document.createElement('div');
+            botLoadingDiv.className = "bg-gray-950 p-3 rounded-xl border border-gray-800 text-gray-400 italic";
+            botLoadingDiv.id = "bot-loading-indicator";
+            botLoadingDiv.innerText = "Consultando base médica y buscando en internet...";
+            chatHistory.appendChild(botLoadingDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            const systemPrompt = "Actúas como un consultor bioquímico especializado en rendimiento atlético híbrido, nootrópicos y técnicas de hiperfoco. Proporciona respuestas concisas, precisas y enfocadas en la seguridad de la salud hormonal.";
+
+            const payload = {
+                contents: [{ parts: [{ text: userText }] }],
+                tools: [{ "google_search": {} }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                const result = await callGeminiAPI(payload);
+                document.getElementById('bot-loading-indicator')?.remove();
+
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                let sourcesHTML = "";
+
+                const groundingMetadata = result.candidates?.[0]?.groundingMetadata;
+                if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                    const sources = groundingMetadata.groundingAttributions
+                        .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                        .filter(s => s.uri && s.title);
+
+                    if (sources.length > 0) {
+                        sourcesHTML = `<div class="mt-2 pt-2 border-t border-gray-800 text-[10px] text-emerald-400">
+                            <strong>Fuentes consultadas:</strong><br/>
+                            ${sources.slice(0, 3).map(s => `<a href="${s.uri}" target="_blank" class="underline mr-2">🔗 ${s.title}</a>`).join(' ')}
+                        </div>`;
+                    }
+                }
+
+                if (text) {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = "bg-gray-950 p-3 rounded-xl border border-gray-800 text-gray-300";
+                    botDiv.innerHTML = `<strong>Coach IA:</strong><br/>${formatMarkdownToHTML(text)} ${sourcesHTML}`;
+                    chatHistory.appendChild(botDiv);
+                } else {
+                    const errDiv = document.createElement('div');
+                    errDiv.className = "bg-red-950/20 p-3 rounded-xl border border-red-900/10 text-red-400";
+                    errDiv.innerText = "Error: No se recibió respuesta del Copiloto.";
+                    chatHistory.appendChild(errDiv);
+                }
+            } catch (error) {
+                console.error("Error en chat Gemini:", error);
+                document.getElementById('bot-loading-indicator')?.remove();
+                const errDiv = document.createElement('div');
+                errDiv.className = "bg-red-950/20 p-3 rounded-xl border border-red-900/10 text-red-400 text-xs";
+                errDiv.innerText = "Error de conexión con la IA de Google.";
+                chatHistory.appendChild(errDiv);
+            } finally {
+                btn.disabled = false;
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+        }
+
+        function copiarOutputIA() {
+            const container = document.getElementById('ai-optimization-output');
+            const textToCopy = container.innerText;
+            
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const btn = document.getElementById('btnCopiarIA');
+            const oldText = btn.innerText;
+            btn.innerText = "¡Copiado con éxito!";
+            btn.style.color = "#10b981"; 
+            setTimeout(() => {
+                btn.innerText = oldText;
+                btn.style.color = "";
+            }, 2000);
+        }
+
+        // --- INICIALIZADOR AL CARGAR ---
         window.onload = () => {
             renderCalendar();
-            selectDay(1);
+            selectDay(selectedDateStr);
         };
     </script>
 </body>
