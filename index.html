@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinfonía Neuroendocrina - Planificador de Alto Rendimiento</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased custom-scrollbar">
+
+    <!-- HEADER -->
+    <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50 px-4 py-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Protocolo Híbrido</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20">Stellantis Vigo</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-indigo-400 to-purple-500 mt-1">Sinfonía Neuroendocrina</h1>
+                <p class="text-sm text-gray-400 mt-1">Optimización biológica para el trabajo en cadena, estudio intensivo y resistencia (21K).</p>
+            </div>
+            <!-- Toggle de Turno de Trabajo -->
+            <div class="bg-gray-950 p-1.5 rounded-xl border border-gray-800 flex items-center gap-1 w-full md:w-auto shadow-inner">
+                <span class="text-xs font-semibold px-3 text-gray-400 hidden sm:inline">Turno de Stellantis:</span>
+                <button id="btnTurnoManana" onclick="toggleTurno('manana')" class="flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20">
+                    🌅 Mañana
+                </button>
+                <button id="btnTurnoTarde" onclick="toggleTurno('tarde')" class="flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white">
+                    🌌 Tarde / Noche
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <div class="border-b border-gray-800/80 bg-gray-950/40 sticky top-[89px] z-40 px-4 md:px-8 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto flex gap-2 overflow-x-auto py-3 custom-scrollbar">
+            <button onclick="switchTab('fundamentos')" id="tab-fundamentos" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                🧬 Fundamentos
+            </button>
+            <button onclick="switchTab('suplementacion')" id="tab-suplementacion" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
+                💊 Suplementos
+            </button>
+            <button onclick="switchTab('entrenamiento')" id="tab-entrenamiento" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
+                🏃 Entrenamientos (21K)
+            </button>
+            <button onclick="switchTab('planificador')" id="tab-planificador" class="px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white">
+                📅 Planificador & Checklist
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 px-4 py-6 md:px-8 max-w-7xl w-full mx-auto">
+        
+        <!-- ================= TAB: FUNDAMENTOS ================= -->
+        <section id="content-fundamentos" class="tab-content space-y-6">
+            <!-- Introducción a la Balanza -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-3">La Balanza Dopamina / Prolactina / DHT</h2>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                            Tus hormonas y neurotransmisores operan en un ecosistema de retroalimentación constante. La dopamina (anticipación y enfoque) y los andrógenos como la DHT (fuerza y vitalidad) actúan como antagonistas directos de la prolactina. Cuando la prolactina se desequilibra (sea muy alta por falta de sueño o extremadamente baja por fatiga neuroquímica), tu motivación, libido y rendimiento se resienten drásticamente.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-gray-950/60 p-4 rounded-xl border border-emerald-500/10">
+                                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">1. Dopamina</span>
+                                <p class="text-lg font-bold text-white mt-1">El Buscador</p>
+                                <p class="text-xs text-gray-400 mt-1">No genera placer al lograr, sino la motivación y energía para conseguirlo.</p>
+                            </div>
+                            <div class="bg-gray-950/60 p-4 rounded-xl border border-purple-500/10">
+                                <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">2. Prolactina</span>
+                                <p class="text-lg font-bold text-white mt-1">El Freno</p>
+                                <p class="text-xs text-gray-400 mt-1">Regula la saciedad y el descanso. Se dispara de forma destructiva por el estrés y la falta de sueño.</p>
+                            </div>
+                            <div class="bg-gray-950/60 p-4 rounded-xl border border-indigo-500/10">
+                                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">3. DHT</span>
+                                <p class="text-lg font-bold text-white mt-1">El Catalizador</p>
+                                <p class="text-xs text-gray-400 mt-1">Andrógeno potente que estimula la dopamina cerebral e inhibe la ginecomastia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Cortisol e Insomnio -->
+                <div class="bg-gradient-to-br from-red-950/30 to-gray-950 p-6 rounded-2xl border border-red-900/20 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="p-1.5 bg-red-500/10 text-red-400 rounded-lg">⚠️</span>
+                            <h3 class="font-bold text-white text-lg">El Peligro de Stellantis</h3>
+                        </div>
+                        <p class="text-sm text-red-200/80 leading-relaxed mb-4">
+                            Los turnos rotativos alteran tu reloj biológico. Dormir menos de 7 horas o cambiar bruscamente tus ciclos despierta una respuesta de alarma celular: tu cortisol se dispara, robando la materia prima de la testosterona, y causa un pico de prolactina que destruye tu libido y tu enfoque cognitivo al día siguiente.
+                        </p>
+                    </div>
+                    <div class="bg-red-950/20 p-3 rounded-lg border border-red-900/30 text-xs text-red-300">
+                        <strong>Estrategia obligatoria:</strong> Sincronizar la exposición a luz brillante y dormir en oscuridad absoluta para forzar el ritmo circadiano.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Síntomas y Rangos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="font-bold text-white text-lg mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-400"></span> Prolactina Baja (Hipoprolactinemia)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 mt-0.5">•</span>
+                            <span><strong>Disfunción sexual:</strong> Eyaculación precoz y problemas de erección.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 mt-0.5">•</span>
+                            <span><strong>Impacto Psicológico:</strong> Anhedonia (incapacidad de disfrutar), ansiedad severa por hiperalerta de dopamina.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 mt-0.5">•</span>
+                            <span><strong>Causas principales:</strong> Exceso artificial de dopamina por estimulantes o agonistas dopaminérgicos directos.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="font-bold text-white text-lg mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-400"></span> Prolactina Alta (Por estrés/insomnio)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-purple-400 mt-0.5">•</span>
+                            <span><strong>Déficit Androgénico:</strong> Supresión de la señal de testosterona (GnRH) y reducción de la fuerza.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-purple-400 mt-0.5">•</span>
+                            <span><strong>Ginecomastia física:</strong> Crecimiento del tejido mamario si la DHT y testosterona están bajas.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-purple-400 mt-0.5">•</span>
+                            <span><strong>Metabolismo lento:</strong> Resistencia a la insulina y mayor propensión a ganar grasa abdominal.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: SUPLEMENTACION ================= -->
+        <section id="content-suplementacion" class="tab-content hidden space-y-6">
+            <div class="bg-gray-900/40 p-6 rounded-2xl border border-gray-800">
+                <h2 class="text-xl font-bold text-white mb-2">Protocolo de Carga Mental & Física</h2>
+                <p class="text-sm text-gray-400">La dosificación exacta del "Stack de Alto Rendimiento" para optimizar la dopamina y la acetilcolina.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Creatina -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Diario</span>
+                            <span class="text-xl">🏃‍♂️🧠</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">1. Creatina Monohidrato</h3>
+                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>5g (1 cazo)</strong></p>
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            Aumenta los depósitos de fosfocreatina en músculos y cerebro. Fundamental para la fatiga mental por falta de sueño.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-emerald-400">
+                        <strong>Cuándo tomar:</strong> Diario, preferiblemente tras entrenar o por la mañana a la misma hora. No genera tolerancia.
+                    </div>
+                </div>
+
+                <!-- 2. L-Tirosina -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded border border-indigo-500/20">Días de Estudio</span>
+                            <span class="text-xl">⚡</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">2. L-Tirosina</h3>
+                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>1000 - 1500mg</strong></p>
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            Precursor de la dopamina. Evita que te quedes sin reservas mentales bajo condiciones de alto estrés y rumiación.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-indigo-400">
+                        <strong>Cuándo tomar:</strong> En ayunas, 30-45 minutos antes de estudiar. No tomar con alimentos proteicos (compiten por absorción).
+                    </div>
+                </div>
+
+                <!-- 3. Alfa GPC -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded border border-indigo-500/20">Días de Estudio</span>
+                            <span class="text-xl">🎯</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">3. Alfa GPC</h3>
+                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>600mg</strong></p>
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            La mejor fuente de colina para el cerebro. Aumenta la acetilcolina (memoria de trabajo, enfoque espacial y aprendizaje).
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-indigo-400">
+                        <strong>Cuándo tomar:</strong> Junto con la L-Tirosina, 30-45 minutos antes del bloque intensivo de estudio/proyecto.
+                    </div>
+                </div>
+
+                <!-- 4. Fosfatidilserina -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Diario</span>
+                            <span class="text-xl">🛡️</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">4. Fosfatidilserina</h3>
+                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>300mg</strong></p>
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            Escudo contra el cortisol elevado por entrenamientos exigentes y turnos rotativos. Calma la mente sin apagarla.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-emerald-400">
+                        <strong>Cuándo tomar:</strong> Diario, con tu comida principal más fuerte (necesita grasas de acompañamiento para asimilarse).
+                    </div>
+                </div>
+
+                <!-- 5. Huperzina A -->
+                <div class="bg-red-950/20 p-6 rounded-2xl border border-red-900/30 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 text-xs font-semibold bg-red-500/10 text-red-400 rounded border border-red-500/20">Control Crítico</span>
+                            <span class="text-xl">🔬</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">5. Huperzina A</h3>
+                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>100 - 200mcg</strong></p>
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            Inhibidor que evita la destrucción de la acetilcolina generada por el Alfa GPC. Genera un foco cognitivo de precisión láser.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-red-900/30 text-xs text-red-400">
+                        <strong>Pauta de ciclado:</strong> Tomar máximo 3 veces por semana con días de descanso. No superar nunca los 400mcg.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: ENTRENAMIENTO ================= -->
+        <section id="content-entrenamiento" class="tab-content hidden space-y-6">
+            <div class="bg-gray-900/40 p-6 rounded-2xl border border-gray-800">
+                <h2 class="text-xl font-bold text-white mb-2">Planificación de Entrenamiento Híbrido (Volumen Máximo Tolerable)</h2>
+                <p class="text-sm text-gray-400">Fuerza con calistenia y progresión para Media Maratón (21K) en Vigo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Rutina Calistenia -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">Fuerza</span>
+                        Básicos de Calistenia
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Aprovechando tu excelente nivel de básicos (15 dominadas, 35 flexiones, 17 fondos). No vayas al fallo absoluto en cada serie (deja 2 reps en reserva).</p>
+                    <div class="space-y-4">
+                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
+                            <div class="flex justify-between text-xs text-gray-400"><span>Dominadas Estrictas</span><span>4 series x RIR 2</span></div>
+                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 80%"></div></div>
+                        </div>
+                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
+                            <div class="flex justify-between text-xs text-gray-400"><span>Fondos en Paralelas</span><span>4 series x RIR 2</span></div>
+                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 70%"></div></div>
+                        </div>
+                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
+                            <div class="flex justify-between text-xs text-gray-400"><span>Flexiones de Pecho</span><span>4 series x RIR 2</span></div>
+                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 85%"></div></div>
+                        </div>
+                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
+                            <div class="flex justify-between text-xs text-gray-400"><span>Abdomen (Elevaciones/Planchas)</span><span>3 series x 45-60 seg</span></div>
+                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 60%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rutina Running 21K -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded">Cardio</span>
+                        Ruta hacia la Media Maratón
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Aprovecha tu ritmo medio natural de 5:30 min/km. El secreto para no lesionarte en Vigo (cuestas duras) es acumular volumen lento en llano.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-950 rounded-xl border border-gray-800">
+                            <p class="text-sm font-semibold text-white">1. Tirada de Umbral (Jueves - 30 min)</p>
+                            <p class="text-xs text-gray-400 mt-1">10 min suaves + 4x3 min a ritmo fuerte (4:50 min/km) con recuperación + 5 min suaves.</p>
+                        </div>
+                        <div class="p-4 bg-gray-950 rounded-xl border border-gray-800">
+                            <p class="text-sm font-semibold text-white">2. Tirada Larga (Sábado - 60 a 80 min)</p>
+                            <p class="text-xs text-gray-400 mt-1">Trote cómodo en Zona 2 (6:00 min/km). Empieza en 10 km y suma un 10% semanal. Evita asfalto con pendientes fuertes de bajada.</p>
+                        </div>
+                        <div class="p-4 bg-gray-950 rounded-xl border border-gray-800">
+                            <p class="text-sm font-semibold text-white">3. Trote de Recuperación (Domingo - 20-30 min)</p>
+                            <p class="text-xs text-gray-400 mt-1">Ritmo extremadamente suave y relajante para forzar circulación linfática y eliminar deshechos del día anterior.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: PLANIFICADOR & CALENDARIO ================= -->
+        <section id="content-planificador" class="tab-content hidden space-y-6">
+            
+            <!-- Selector de Semana / Días del Planificador -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- Columna Calendario de Hábitos -->
+                <div class="lg:col-span-3 bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Calendario Mensual de Hábitos</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">Selecciona un día para ver su checklist detallada según el turno de Stellantis.</p>
+                        </div>
+                        <div class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
+                            Mayo 2026
+                        </div>
+                    </div>
+
+                    <!-- Cuadrícula de 28 Días del Mes (4 Semanas de Optimización) -->
+                    <div class="grid grid-cols-7 gap-2 mb-4" id="calendarGrid">
+                        <!-- Generado por JS -->
+                    </div>
+
+                    <!-- Leyenda del Calendario -->
+                    <div class="flex flex-wrap gap-4 text-xs text-gray-400 mt-4 border-t border-gray-800/60 pt-4">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded bg-emerald-500/20 border border-emerald-500/40"></span> Entreno + Suplementos
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded bg-indigo-500/20 border border-indigo-500/40"></span> Solo Estudio
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded bg-gray-800 border border-gray-700"></span> Descanso Total
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Checklist Diaria Dinámica -->
+                <div class="bg-gray-900/80 p-6 rounded-2xl border border-gray-800 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-white text-lg flex items-center gap-2">
+                                    📋 Tareas del Día <span id="selectedDayLabel" class="text-indigo-400">1</span>
+                                </h3>
+                                <p id="selectedDayDesc" class="text-xs text-gray-400 mt-0.5">Día de Fuerza & Trote</p>
+                            </div>
+                        </div>
+
+                        <!-- Bloques Horarios Dinámicos según el Turno seleccionado -->
+                        <div id="checklistContainer" class="space-y-4 my-4 max-h-[350px] overflow-y-auto pr-1 custom-scrollbar">
+                            <!-- Generado dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-800">
+                        <button onclick="resetDayProgress()" class="w-full py-2 bg-gray-950 hover:bg-gray-900 border border-gray-800 rounded-xl text-xs font-bold text-gray-400 transition-colors">
+                            Reiniciar progreso de hoy
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800 py-6 px-4 md:px-8 bg-gray-950 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div>
+                <p>© 2026 Sinfonía Neuroendocrina. Versión de Rendimiento 2.0.</p>
+                <p class="mt-0.5">Creado específicamente para optimización física y mental híbrida.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" onclick="switchTab('fundamentos'); return false;" class="hover:underline">Conceptos</a>
+                <a href="#" onclick="switchTab('suplementacion'); return false;" class="hover:underline">Suplementos</a>
+                <a href="#" onclick="switchTab('entrenamiento'); return false;" class="hover:underline">Media Maratón</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+        // Variables globales de estado
+        let activeTab = 'fundamentos';
+        let currentTurno = 'manana'; // 'manana' o 'tarde'
+        let selectedDay = 1;
+
+        // Estructura de un mes (28 días para patrón cíclico limpio de 4 semanas)
+        // Días de entrenamiento: Martes (2), Jueves (4), Sábado (6), Domingo (7)
+        // Días de descanso: Lunes (1), Miércoles (3), Viernes (5)
+        const daysData = {
+            1: { name: "Lunes", desc: "Descanso y Estudio Liviano", type: "rest" },
+            2: { name: "Martes", desc: "Calistenia (Fuerza Torso) + Estudio", type: "mixed" },
+            3: { name: "Miércoles", desc: "Descanso Total / Enfoque Proyecto", type: "rest" },
+            4: { name: "Jueves", desc: "Calistenia + Trote Intervalos + Estudio", type: "mixed" },
+            5: { name: "Viernes", desc: "Descanso / Preparación de Tirada", type: "rest" },
+            6: { name: "Sábado", desc: "Tirada Larga (Objetivo 21K) + Estudio", type: "mixed" },
+            7: { name: "Domingo", desc: "Calistenia Suave + Trote Recuperativo", type: "mixed" }
+        };
+
+        // Guardar estado del checklist en LocalStorage para no perder progreso
+        let userProgress = JSON.parse(localStorage.getItem('neuro_progress')) || {};
+
+        // Cambiar entre pestañas
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white";
+            });
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+            }
+            activeTab = tabId;
+        }
+
+        // Cambiar turno de trabajo
+        function toggleTurno(turno) {
+            currentTurno = turno;
+            const btnManana = document.getElementById('btnTurnoManana');
+            const btnTarde = document.getElementById('btnTurnoTarde');
+
+            if (turno === 'manana') {
+                btnManana.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20";
+                btnTarde.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+            } else {
+                btnTarde.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 bg-indigo-500 text-gray-950 shadow-lg shadow-indigo-500/20";
+                btnManana.className = "flex-1 sm:flex-initial px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+            }
+            // Recargar vista actual de checklist
+            renderChecklist();
+        }
+
+        // Inicializar el calendario de 28 días
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            // Encabezados de días de la semana
+            const weekDays = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+            weekDays.forEach(wd => {
+                const header = document.createElement('div');
+                header.className = "text-center text-xs font-bold text-gray-500 py-1";
+                header.innerText = wd;
+                grid.appendChild(header);
+            });
+
+            // Generar 28 días (4 semanas completas)
+            for (let i = 1; i <= 28; i++) {
+                const dayNum = i;
+                const weekdayIndex = ((i - 1) % 7) + 1;
+                const dayInfo = daysData[weekdayIndex];
+
+                const dayBtn = document.createElement('button');
+                dayBtn.id = `cal-day-${dayNum}`;
+                dayBtn.onclick = () => selectDay(dayNum);
+
+                // Determinar clases de color base según el tipo de día
+                let colorClasses = "bg-gray-950 border-gray-800 hover:border-gray-700";
+                if (dayInfo.type === 'mixed') {
+                    colorClasses = "bg-emerald-950/20 border-emerald-500/20 text-emerald-300 hover:border-emerald-500/40";
+                } else if (dayInfo.type === 'study_only') {
+                    colorClasses = "bg-indigo-950/20 border-indigo-500/20 text-indigo-300 hover:border-indigo-500/40";
+                }
+
+                dayBtn.className = `h-12 flex flex-col items-center justify-between p-1.5 rounded-lg border text-xs transition-all ${colorClasses}`;
+                
+                // Mostrar número de día y un punto de completado si aplica
+                const isSelected = selectedDay === dayNum ? 'ring-2 ring-indigo-500' : '';
+                dayBtn.className += ` ${isSelected}`;
+
+                dayBtn.innerHTML = `
+                    <span class="font-bold block text-left w-full">${dayNum}</span>
+                    <span id="dot-${dayNum}" class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                `;
+
+                grid.appendChild(dayBtn);
+                updateDayCompletedDot(dayNum);
+            }
+        }
+
+        function selectDay(dayNum) {
+            // Deseleccionar anterior
+            const prevSelected = document.getElementById(`cal-day-${selectedDay}`);
+            if (prevSelected) prevSelected.classList.remove('ring-2', 'ring-indigo-500');
+
+            selectedDay = dayNum;
+            
+            // Seleccionar nuevo
+            const newSelected = document.getElementById(`cal-day-${dayNum}`);
+            if (newSelected) newSelected.classList.add('ring-2', 'ring-indigo-500');
+
+            const weekdayIndex = ((dayNum - 1) % 7) + 1;
+            const dayInfo = daysData[weekdayIndex];
+
+            document.getElementById('selectedDayLabel').innerText = `${dayNum} (${dayInfo.name})`;
+            document.getElementById('selectedDayDesc').innerText = dayInfo.desc;
+
+            renderChecklist();
+        }
+
+        // Generar las tareas específicas de un día considerando la pauta y el turno de trabajo
+        function getTasksForDay(dayNum) {
+            const weekdayIndex = ((dayNum - 1) % 7) + 1;
+            const dayInfo = daysData[weekdayIndex];
+            const tasks = [];
+
+            // Suplementos fijos diarios
+            tasks.push({ id: 'creatina', label: "5g de Creatina post-entrenamiento (o con agua)", time: "Todo el día" });
+            tasks.push({ id: 'fosfatidilserina', label: "300mg de Fosfatidilserina con comida principal", time: "Mediodía" });
+
+            // Pauta de entrenamientos y nootrópicos específicos de días activos
+            if (weekdayIndex === 2) { // Martes: Fuerza
+                tasks.push({ id: 'tirosina', label: "1000mg L-Tirosina en ayunas antes de estudiar", time: "Antes de Estudio" });
+                tasks.push({ id: 'alfagpc', label: "600mg Alfa GPC antes de estudiar", time: "Antes de Estudio" });
+                tasks.push({ id: 'huperzina', label: "200mcg Huperzina A antes de estudiar (Ciclo Activo)", time: "Antes de Estudio" });
+                tasks.push({ id: 'estudio', label: "Estudio intensivo y código del proyecto (2 horas)", time: "Bloque Cognitivo" });
+                tasks.push({ id: 'calistenia', label: "Entrenamiento Calistenia: Dominadas/Fondos/Flexiones (RIR 2)", time: "Entrenamiento" });
+            } 
+            else if (weekdayIndex === 4) { // Jueves: Calistenia + Intervalos
+                tasks.push({ id: 'tirosina', label: "1000mg L-Tirosina en ayunas antes de estudiar", time: "Antes de Estudio" });
+                tasks.push({ id: 'alfagpc', label: "600mg Alfa GPC antes de estudiar", time: "Antes de Estudio" });
+                tasks.push({ id: 'huperzina', label: "200mcg Huperzina A antes de estudiar (Ciclo Activo)", time: "Antes de Estudio" });
+                tasks.push({ id: 'estudio', label: "Estudio intensivo y desarrollo de proyecto (2 horas)", time: "Bloque Cognitivo" });
+                tasks.push({ id: 'calistenia_rapida', label: "Calistenia rápida (30 min): Superseries de volumen", time: "Entrenamiento" });
+                tasks.push({ id: 'intervalos', label: "Carrera: Intervalos de Umbral (10 min suave + 4x3 min rápido + 5 min suave)", time: "Entrenamiento" });
+            }
+            else if (weekdayIndex === 6) { // Sábado: Tirada Larga
+                tasks.push({ id: 'tirosina', label: "1000mg L-Tirosina en ayunas antes de estudiar", time: "Antes de Estudio" });
+                tasks.push({ id: 'alfagpc', label: "600mg Alfa GPC antes de estudiar", time: "Antes de Estudio" });
+                tasks.push({ id: 'huperzina', label: "200mcg Huperzina A antes de estudiar (Ciclo Activo)", time: "Antes de Estudio" });
+                tasks.push({ id: 'estudio', label: "Estudio y revisión de proyecto (1.5 horas)", time: "Bloque Cognitivo" });
+                tasks.push({ id: 'tiradalarga', label: "Carrera Larga: 10K+ a ritmo de 6:00/km (Ruta plana en Samil)", time: "Entrenamiento" });
+            }
+            else if (weekdayIndex === 7) { // Domingo: Activo Suave (Huperzina descansa)
+                tasks.push({ id: 'calistenia_suave', label: "Calistenia Técnica: Movilidad y estiramientos", time: "Entrenamiento" });
+                tasks.push({ id: 'trote_recup', label: "Trote de Recuperación Activa: 20 min sumamente suave", time: "Entrenamiento" });
+                tasks.push({ id: 'plan_semana', label: "Planificar calendario y comidas para turnos rotativos", time: "Higiene Mental" });
+            }
+            else {
+                // Días de descanso: Lunes, Miércoles, Viernes
+                tasks.push({ id: 'estudio_ligero', label: "Estudio suave o lectura técnica de desarrollo (45 min)", time: "Bloque Cognitivo" });
+                tasks.push({ id: 'descanso_activo', label: "Estiramientos suaves / Caminar 30 mins", time: "Recuperación" });
+            }
+
+            // Alerta de sueño basada en el turno
+            if (currentTurno === 'manana') {
+                tasks.push({ id: 'sueno_manana', label: "Higiene de Sueño: Acostarse antes de las 22:30. Luz apagada y sin pantallas.", time: "Noche" });
+            } else {
+                tasks.push({ id: 'sueno_tarde', label: "Higiene de Sueño: Oscuridad absoluta para combatir desfase nocturno.", time: "Noche" });
+            }
+
+            return tasks;
+        }
+
+        // Renderizar el checklist del día seleccionado adaptado a los turnos de Stellantis
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+
+            const tasks = getTasksForDay(selectedDay);
+
+            // Ordenar las tareas cronológicamente dependiendo del Turno de Stellantis
+            const sortedTasks = sortTasksByShift(tasks);
+
+            sortedTasks.forEach(task => {
+                const isChecked = userProgress[`day-${selectedDay}-${task.id}`] ? 'checked' : '';
+                const textStyle = isChecked ? 'line-through text-gray-500' : 'text-gray-200';
+                
+                const taskDiv = document.createElement('div');
+                taskDiv.className = `flex items-start gap-3 p-3 bg-gray-950/60 hover:bg-gray-950 rounded-xl border border-gray-800 transition-colors`;
+                
+                taskDiv.innerHTML = `
+                    <input type="checkbox" id="task-${task.id}" ${isChecked} 
+                        onclick="toggleTask('${task.id}')" 
+                        class="w-4 h-4 mt-1 rounded border-gray-700 text-indigo-500 focus:ring-indigo-500 bg-gray-900 cursor-pointer">
+                    <div class="flex-1">
+                        <label for="task-${task.id}" class="text-xs font-medium cursor-pointer ${textStyle}">
+                            ${task.label}
+                        </label>
+                        <span class="block text-[10px] text-gray-500 mt-1 uppercase font-bold tracking-wider">${task.time}</span>
+                    </div>
+                `;
+                container.appendChild(taskDiv);
+            });
+        }
+
+        // Ordenar las tareas dependiendo de la estrategia diaria del turno rotativo de Stellantis
+        function sortTasksByShift(tasks) {
+            // El orden cronológico cambia según Stellantis sea mañana o tarde
+            const orderManana = ["Antes de Estudio", "Bloque Cognitivo", "Mediodía", "Entrenamiento", "Todo el día", "Noche", "Higiene Mental", "Recuperación"];
+            const orderTarde = ["Antes de Estudio", "Bloque Cognitivo", "Entrenamiento", "Todo el día", "Mediodía", "Noche", "Higiene Mental", "Recuperación"];
+
+            const activeOrder = currentTurno === 'manana' ? orderManana : orderTarde;
+
+            return [...tasks].sort((a, b) => {
+                return activeOrder.indexOf(a.time) - activeOrder.indexOf(b.time);
+            });
+        }
+
+        // Marcar/Desmarcar tarea
+        function toggleTask(taskId) {
+            const key = `day-${selectedDay}-${taskId}`;
+            if (userProgress[key]) {
+                delete userProgress[key];
+            } else {
+                userProgress[key] = true;
+            }
+            localStorage.setItem('neuro_progress', JSON.stringify(userProgress));
+            
+            renderChecklist();
+            updateDayCompletedDot(selectedDay);
+        }
+
+        // Actualizar el indicador visual de completado en la cuadrícula del calendario
+        function updateDayCompletedDot(dayNum) {
+            const dot = document.getElementById(`dot-${dayNum}`);
+            if (!dot) return;
+
+            const dayTasks = getTasksForDay(dayNum);
+            const completedCount = dayTasks.filter(task => userProgress[`day-${dayNum}-${task.id}`]).length;
+
+            if (completedCount === dayTasks.length && dayTasks.length > 0) {
+                dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 shadow shadow-emerald-400/50";
+            } else if (completedCount > 0) {
+                dot.className = "w-1.5 h-1.5 rounded-full bg-indigo-400";
+            } else {
+                dot.className = "w-1.5 h-1.5 rounded-full bg-transparent";
+            }
+        }
+
+        function resetDayProgress() {
+            const dayTasks = getTasksForDay(selectedDay);
+            dayTasks.forEach(task => {
+                delete userProgress[`day-${selectedDay}-${task.id}`];
+            });
+            localStorage.setItem('neuro_progress', JSON.stringify(userProgress));
+            renderChecklist();
+            updateDayCompletedDot(selectedDay);
+        }
+
+        // Ejecutar funciones iniciales al cargar el documento
+        window.onload = () => {
+            renderCalendar();
+            selectDay(1);
+        };
+    </script>
+</body>
+</html>
