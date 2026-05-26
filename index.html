@@ -2,16 +2,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Planificador - Sinfonía Neuroendocrina</title>
+    <!-- Configuración para App Nativa Móvil (PWA) -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Planificador">
+    <meta name="theme-color" content="#0b0f19">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/0b0f19/f1f5f9?text=🧠">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #0b0f19;
             color: #f1f5f9;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        /* Permitir la selección de texto solo donde es necesario */
+        input, textarea, #chatHistory, #ai-optimization-output, .prose {
+            -webkit-user-select: text;
+            user-select: text;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -30,6 +48,20 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased custom-scrollbar">
+
+    <!-- BANNER DE INSTALACIÓN S25 ULTRA -->
+    <div id="pwaInstallBanner" class="hidden bg-gradient-to-r from-purple-950/90 to-indigo-950/90 border-b border-purple-500/20 px-4 py-3 text-xs text-gray-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2.5">
+                <span class="text-lg">📲</span>
+                <div>
+                    <p class="font-bold text-white">Instala esta App en tu Galaxy S25 Ultra</p>
+                    <p class="text-gray-400">Para abrirla en pantalla completa sin barra de navegación: Toca los 3 puntos del navegador <span class="font-bold text-indigo-400">⋮</span> (Chrome) o el menú <span class="font-bold text-indigo-400">☰</span> (Samsung Internet) y selecciona <span class="font-bold text-emerald-400">"Añadir a pantalla de inicio"</span> o <span class="font-bold text-emerald-400">"Instalar aplicación"</span>.</p>
+                </div>
+            </div>
+            <button onclick="dismissInstallBanner()" class="text-gray-400 hover:text-white px-2 py-1 bg-gray-900/60 border border-gray-800 rounded-lg font-semibold shrink-0 transition-colors">Entendido</button>
+        </div>
+    </div>
 
     <!-- HEADER -->
     <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50 px-4 py-4 md:px-8">
@@ -96,14 +128,13 @@
     <!-- MAIN CONTENT -->
     <main class="flex-1 px-4 py-6 md:px-8 max-w-7xl w-full mx-auto">
         
-        <!-- ================= TAB: PLANIFICADOR & CALENDARIO REVOLUCIONADO ================= -->
+        <!-- ================= TAB: PLANIFICADOR & CALENDARIO ================= -->
         <section id="content-planificador" class="tab-content space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
-                <!-- Columna Calendario Real de Mayo 2026 -->
+                <!-- Columna Calendario -->
                 <div class="lg:col-span-8 bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                     <div>
-                        <!-- Controles de Mes Interactivo -->
                         <div class="flex justify-between items-center mb-6">
                             <div>
                                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
@@ -113,7 +144,6 @@
                                 <p class="text-xs text-gray-400 mt-0.5">Control circadiano, bloques de hiperfoco y entrenamientos estructurados.</p>
                             </div>
                             
-                            <!-- Navegación de meses -->
                             <div class="flex items-center gap-2 bg-gray-950 p-1 rounded-xl border border-gray-800">
                                 <button onclick="navegarMes(-1)" class="p-2 hover:bg-gray-900 text-gray-400 hover:text-white rounded-lg transition-colors text-xs font-extrabold">◀</button>
                                 <span id="activeMonthLabel" class="text-xs font-bold text-gray-200 px-3 min-w-[100px] text-center uppercase tracking-wider">Mayo</span>
@@ -121,7 +151,6 @@
                             </div>
                         </div>
 
-                        <!-- Cuadrícula Semanal Dinámica -->
                         <div class="grid grid-cols-7 gap-2 mb-4 text-center">
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Lun</div>
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Mar</div>
@@ -132,12 +161,9 @@
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">Dom</div>
                         </div>
 
-                        <div class="grid grid-cols-7 gap-2" id="realCalendarGrid">
-                            <!-- Inyectado dinámicamente por JS -->
-                        </div>
+                        <div class="grid grid-cols-7 gap-2" id="realCalendarGrid"></div>
                     </div>
 
-                    <!-- Leyenda y Acciones Rápidas de Descarga -->
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-6 border-t border-gray-800/60 pt-4">
                         <div class="flex flex-wrap gap-4 text-[11px] text-gray-400">
                             <div class="flex items-center gap-1.5">
@@ -147,16 +173,13 @@
                                 <span class="w-2.5 h-2.5 rounded-full bg-indigo-500/20 border border-indigo-500/40"></span> Solo Hiperfoco / Descanso
                             </div>
                             <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded bg-gray-900 border border-gray-800"></span> Sin Progreso
-                            </div>
-                            <div class="flex items-center gap-1.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Completado
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Columna Checklist Diaria Dinámica e Hiperfoco -->
+                <!-- Columna Checklist Diaria -->
                 <div class="lg:col-span-4 bg-gray-900/80 p-6 rounded-2xl border border-gray-800 relative flex flex-col justify-between min-h-[500px]">
                     <div>
                         <div class="flex justify-between items-start border-b border-gray-800 pb-3 mb-4">
@@ -166,16 +189,12 @@
                                 </h3>
                                 <p id="selectedDayDesc" class="text-xs text-gray-400 mt-0.5">Estudio de alta densidad & running</p>
                             </div>
-                            <!-- Botón para descargar el reporte del día actual -->
                             <button onclick="descargarReporteDiaTXT()" title="Descargar Plan de Hoy" class="p-2 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 text-indigo-400 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors">
                                 💾 Descargar
                             </button>
                         </div>
 
-                        <!-- Bloques Horarios Dinámicos con Sesiones de Hiperfoco -->
-                        <div id="checklistContainer" class="space-y-3 max-h-[420px] overflow-y-auto pr-1 custom-scrollbar">
-                            <!-- Generado dinámicamente según la fecha y el turno -->
-                        </div>
+                        <div id="checklistContainer" class="space-y-3 max-h-[420px] overflow-y-auto pr-1 custom-scrollbar"></div>
                     </div>
 
                     <div class="pt-4 border-t border-gray-800 flex gap-2">
@@ -193,35 +212,30 @@
 
         <!-- ================= TAB: FUNDAMENTOS ================= -->
         <section id="content-fundamentos" class="tab-content hidden space-y-6">
-            <!-- Introducción a la Balanza -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                     <div>
                         <h2 class="text-xl font-bold text-white mb-3">La Balanza Dopamina / Prolactina / DHT</h2>
                         <p class="text-sm text-gray-300 leading-relaxed mb-4">
-                            Tus hormonas y neurotransmisores operan en un ecosistema de retroalimentación constante. La dopamina (anticipación y enfoque) y los andrógenos como la DHT (fuerza y vitalidad) actúan como antagonistas directos de la prolactina. Cuando la prolactina se desequilibra (sea muy alta por falta de sueño o extremadamente baja por fatiga neuroquímica), tu motivación, libido y rendimiento se resienten drásticamente.
+                            Tus hormonas y neurotransmisores operan en un ecosistema de retroalimentación constante. La dopamina (anticipación y enfoque) y los andrógenos como la DHT (fuerza y vitalidad) actúan como antagonistas directos de la prolactina.
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                             <div class="bg-gray-950/60 p-4 rounded-xl border border-emerald-500/10">
                                 <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">1. Dopamina</span>
                                 <p class="text-lg font-bold text-white mt-1">El Buscador</p>
-                                <p class="text-xs text-gray-400 mt-1">No genera placer al lograr, sino la motivación y energía para conseguirlo.</p>
                             </div>
                             <div class="bg-gray-950/60 p-4 rounded-xl border border-purple-500/10">
                                 <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">2. Prolactina</span>
                                 <p class="text-lg font-bold text-white mt-1">El Freno</p>
-                                <p class="text-xs text-gray-400 mt-1">Regula la saciedad y el descanso. Se dispara de forma destructiva por el estrés y la falta de sueño.</p>
                             </div>
                             <div class="bg-gray-950/60 p-4 rounded-xl border border-indigo-500/10">
                                 <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">3. DHT</span>
                                 <p class="text-lg font-bold text-white mt-1">El Catalizador</p>
-                                <p class="text-xs text-gray-400 mt-1">Andrógeno potente que estimula la dopamina cerebral e inhibe la ginecomastia.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta de Cortisol e Insomnio -->
                 <div class="bg-gradient-to-br from-red-950/30 to-gray-950 p-6 rounded-2xl border border-red-900/20 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-2 mb-3">
@@ -229,1016 +243,343 @@
                             <h3 class="font-bold text-white text-lg">El Peligro de Stellantis</h3>
                         </div>
                         <p class="text-sm text-red-200/80 leading-relaxed mb-4">
-                            Los turnos rotativos alteran tu reloj biológico. Dormir menos de 7 horas o cambiar bruscamente tus ciclos despierta una respuesta de alarma celular: tu cortisol se dispara, robando la materia prima de la testosterona, y causa un pico de prolactina que destruye tu libido y tu enfoque cognitivo al día siguiente.
+                            Los turnos rotativos alteran tu reloj biológico. Dormir menos de 7 horas despierta una respuesta de alarma celular que dispara el cortisol y la prolactina.
                         </p>
                     </div>
-                    <div class="bg-red-950/20 p-3 rounded-lg border border-red-900/30 text-xs text-red-300">
-                        <strong>Estrategia obligatoria:</strong> Sincronizar la exposición a luz brillante y dormir en oscuridad absoluta para forzar el ritmo circadiano.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Síntomas y Rangos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="font-bold text-white text-lg mb-4 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-blue-400"></span> Prolactina Baja (Hipoprolactinemia)
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-start gap-2">
-                            <span class="text-blue-400 mt-0.5">•</span>
-                            <span><strong>Disfunción sexual:</strong> Eyaculación precoz y problemas de erección.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-blue-400 mt-0.5">•</span>
-                            <span><strong>Impacto Psicológico:</strong> Anhedonia (incapacidad de disfrutar), ansiedad severa por hiperalerta de dopamina.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-blue-400 mt-0.5">•</span>
-                            <span><strong>Causas principales:</strong> Exceso artificial de dopamina por estimulantes o agonistas dopaminérgicos directos.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="font-bold text-white text-lg mb-4 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-purple-400"></span> Prolactina Alta (Por estrés/insomnio)
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-start gap-2">
-                            <span class="text-purple-400 mt-0.5">•</span>
-                            <span><strong>Déficit Androgénico:</strong> Supresión de la señal de testosterona (GnRH) y reducción de la fuerza.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-purple-400 mt-0.5">•</span>
-                            <span><strong>Ginecomastia física:</strong> Crecimiento del tejido mamario si la DHT y testosterona están bajas.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-purple-400 mt-0.5">•</span>
-                            <span><strong>Metabolismo lento:</strong> Resistencia a la insulina y mayor propensión a ganar grasa abdominal.</span>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- ================= TAB: SUPLEMENTACION ================= -->
         <section id="content-suplementacion" class="tab-content hidden space-y-6">
-            <div class="bg-gray-900/40 p-6 rounded-2xl border border-gray-800">
-                <h2 class="text-xl font-bold text-white mb-2">Protocolo de Carga Mental & Física</h2>
-                <p class="text-sm text-gray-400">La dosificación exacta del "Stack de Alto Rendimiento" para optimizar la dopamina y la acetilcolina.</p>
-            </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1. Creatina -->
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Diario</span>
-                            <span class="text-xl">🏃‍♂️🧠</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg">1. Creatina Monohidrato</h3>
-                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>5g (1 cazo)</strong></p>
-                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
-                            Aumenta los depósitos de fosfocreatina en músculos y cerebro. Fundamental para la fatiga mental por falta de sueño.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-emerald-400">
-                        <strong>Cuándo tomar:</strong> Diario, preferiblemente tras entrenar o por la mañana a la misma hora. No genera tolerancia.
-                    </div>
+                <!-- Suplementos -->
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="font-bold text-white text-lg">Creatina Monohidrato</h3>
+                    <p class="text-sm text-gray-400 mt-1">Dosis: 5g diarios.</p>
                 </div>
-
-                <!-- 2. L-Tirosina -->
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded border border-indigo-500/20">Días de Estudio</span>
-                            <span class="text-xl">⚡</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg">2. L-Tirosina</h3>
-                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>1000 - 1500mg</strong></p>
-                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
-                            Precursor de la dopamina. Evita que te quedes sin reservas mentales bajo condiciones de alto estrés y rumiación.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-indigo-400">
-                        <strong>Cuándo tomar:</strong> En ayunas, 30-45 minutos antes de estudiar. No tomar con alimentos proteicos (compiten por absorción).
-                    </div>
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="font-bold text-white text-lg">L-Tirosina</h3>
+                    <p class="text-sm text-gray-400 mt-1">Dosis: 1000-1500mg (ayunas).</p>
                 </div>
-
-                <!-- 3. Alfa GPC -->
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-500/10 text-indigo-400 rounded border border-indigo-500/20">Días de Estudio</span>
-                            <span class="text-xl">🎯</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg">3. Alfa GPC</h3>
-                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>600mg</strong></p>
-                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
-                            La mejor fuente de colina para el cerebro. Aumenta la acetilcolina (memoria de trabajo, enfoque espacial y aprendizaje).
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-indigo-400">
-                        <strong>Cuándo tomar:</strong> Junto con la L-Tirosina, 30-45 minutos antes del bloque intensivo de estudio/proyecto.
-                    </div>
-                </div>
-
-                <!-- 4. Fosfatidilserina -->
-                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20">Diario</span>
-                            <span class="text-xl">🛡️</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg">4. Fosfatidilserina</h3>
-                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>300mg</strong></p>
-                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
-                            Escudo contra el cortisol elevado por entrenamientos exigentes y turnos rotativos. Calma la mente sin apagarla.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-emerald-400">
-                        <strong>Cuándo tomar:</strong> Diario, con tu comida principal más fuerte (necesita grasas de acompañamiento para asimilarse).
-                    </div>
-                </div>
-
-                <!-- 5. Huperzina A -->
-                <div class="bg-red-950/20 p-6 rounded-2xl border border-red-900/30 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="px-2.5 py-1 text-xs font-semibold bg-red-500/10 text-red-400 rounded border border-red-500/20">Control Crítico</span>
-                            <span class="text-xl">🔬</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg">5. Huperzina A</h3>
-                        <p class="text-sm text-gray-400 mt-1">Dosis recomendada: <strong>100 - 200mcg</strong></p>
-                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
-                            Inhibidor que evita la destrucción de la acetilcolina generada por el Alfa GPC. Genera un foco cognitivo de precisión láser.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-red-900/30 text-xs text-red-400">
-                        <strong>Pauta de ciclado:</strong> Tomar máximo 3 veces por semana con días de descanso. No superar nunca los 400mcg.
-                    </div>
+                <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
+                    <h3 class="font-bold text-white text-lg">Alfa GPC</h3>
+                    <p class="text-sm text-gray-400 mt-1">Dosis: 600mg.</p>
                 </div>
             </div>
         </section>
 
         <!-- ================= TAB: ENTRENAMIENTO ================= -->
         <section id="content-entrenamiento" class="tab-content hidden space-y-6">
-            <div class="bg-gray-900/40 p-6 rounded-2xl border border-gray-800">
-                <h2 class="text-xl font-bold text-white mb-2">Planificación de Entrenamiento Híbrido (Volumen Máximo Tolerable)</h2>
-                <p class="text-sm text-gray-400">Fuerza con calistenia y progresión para Media Maratón (21K) en Vigo.</p>
-            </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Rutina Calistenia -->
                 <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <span class="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">Fuerza</span>
-                        Básicos de Calistenia
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">Aprovechando tu excelente nivel de básicos (15 dominadas, 35 flexiones, 17 fondos). No vayas al fallo absoluto en cada serie (deja 2 reps en reserva).</p>
-                    <div class="space-y-4">
-                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
-                            <div class="flex justify-between text-xs text-gray-400"><span>Dominadas Estrictas</span><span>4 series x RIR 2</span></div>
-                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 80%"></div></div>
-                        </div>
-                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
-                            <div class="flex justify-between text-xs text-gray-400"><span>Fondos en Paralelas</span><span>4 series x RIR 2</span></div>
-                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 70%"></div></div>
-                        </div>
-                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
-                            <div class="flex justify-between text-xs text-gray-400"><span>Flexiones de Pecho</span><span>4 series x RIR 2</span></div>
-                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 85%"></div></div>
-                        </div>
-                        <div class="p-3 bg-gray-950 rounded-xl border border-gray-800">
-                            <div class="flex justify-between text-xs text-gray-400"><span>Abdomen (Elevaciones/Planchas)</span><span>3 series x 45-60 seg</span></div>
-                            <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: 60%"></div></div>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-bold text-white mb-4">Calistenia</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>Dominadas: 4 series</li>
+                        <li>Fondos: 4 series</li>
+                        <li>Flexiones: 4 series</li>
+                    </ul>
                 </div>
-
-                <!-- Rutina Running 21K -->
                 <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <span class="px-2 py-0.5 text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded">Cardio</span>
-                        Ruta hacia la Media Maratón
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">Aprovecha tu ritmo medio natural de 5:30 min/km. El secreto para no lesionarte en Vigo (cuestas duras) es acumular volumen lento en llano.</p>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-gray-950 rounded-xl border border-gray-800">
-                            <p class="text-sm font-semibold text-white">1. Tirada de Umbral (Jueves - 30 min)</p>
-                            <p class="text-xs text-gray-400 mt-1">10 min suaves + 4x3 min a ritmo fuerte (4:50 min/km) con recuperación + 5 min suaves.</p>
-                        </div>
-                        <div class="p-4 bg-gray-950 rounded-xl border border-gray-800">
-                            <p class="text-sm font-semibold text-white">2. Tirada Larga (Sábado - 60 a 80 min)</p>
-                            <p class="text-xs text-gray-400 mt-1">Trote cómodo en Zona 2 (6:00 min/km). Empieza en 10 km y suma un 10% semanal. Evita asfalto con pendientes fuertes de bajada.</p>
-                        </div>
-                        <div class="p-4 bg-gray-950 rounded-xl border border-gray-800">
-                            <p class="text-sm font-semibold text-white">3. Trote de Recuperación (Domingo - 20-30 min)</p>
-                            <p class="text-xs text-gray-400 mt-1">Ritmo extremadamente suave y relajante para forzar circulación linfática y eliminar deshechos del día anterior.</p>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-bold text-white mb-4">Running 21K</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>Jueves: Umbral (30 min)</li>
+                        <li>Sábado: Tirada Larga (60-80 min)</li>
+                        <li>Domingo: Trote Recup (20 min)</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- ================= TAB: COPILOTO IA ================= -->
         <section id="content-copiloto" class="tab-content hidden space-y-6">
-            <div class="bg-gradient-to-r from-purple-950/40 to-indigo-950/40 p-6 rounded-2xl border border-purple-500/20">
-                <h2 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">🧠 Copiloto Bioquímico & AI Coach</h2>
-                <p class="text-sm text-gray-400 mt-1">Sincroniza tus métricas biométricas con el poder de Gemini 3.1 para adaptar tu rutina diaria y resolver dudas de alto rendimiento.</p>
-            </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Optimizador Dinámico (Izquierda) -->
+                <!-- Panel de Control -->
                 <div class="lg:col-span-5 bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-white text-lg flex items-center gap-2 mb-4">
-                            ⚡ Adaptar Día por Bio-Feedback
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-6">Inserta las métricas de tu reloj y tu estado hoy para recalcular con IA tus prioridades de entrenamiento, estudio y pauta de suplementación.</p>
-
-                        <div class="space-y-4">
-                            <!-- Horas de sueño -->
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Horas de Sueño Anoche (Galaxy Watch):</label>
-                                <div class="flex items-center gap-2">
-                                    <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" oninput="document.getElementById('ai-sleep-val').innerText = this.value + 'h'" class="flex-1 accent-purple-500">
-                                    <span id="ai-sleep-val" class="text-xs font-bold text-purple-400 w-12 text-right">7.5h</span>
-                                </div>
-                            </div>
-
-                            <!-- Fatiga Física -->
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Fatiga Muscular / Dolor (1-10):</label>
-                                <div class="flex items-center gap-2">
-                                    <input type="range" id="ai-fatigue" min="1" max="10" value="3" oninput="document.getElementById('ai-fatigue-val').innerText = this.value" class="flex-1 accent-purple-500">
-                                    <span id="ai-fatigue-val" class="text-xs font-bold text-purple-400 w-12 text-right">3</span>
-                                </div>
-                            </div>
-
-                            <!-- Estrés Mental -->
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Nivel de Estrés / Carga Mental (1-10):</label>
-                                <div class="flex items-center gap-2">
-                                    <input type="range" id="ai-stress" min="1" max="10" value="4" oninput="document.getElementById('ai-stress-val').innerText = this.value" class="flex-1 accent-purple-500">
-                                    <span id="ai-stress-val" class="text-xs font-bold text-purple-400 w-12 text-right">4</span>
-                                </div>
-                            </div>
-
-                            <!-- Turno de Stellantis hoy -->
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Turno Stellantis Vigo hoy:</label>
-                                <select id="ai-shift" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-300 focus:ring-1 focus:ring-purple-500 outline-none">
-                                    <option value="mañana (madrugón, salida a las 14:00)">🌅 Mañana</option>
-                                    <option value="tarde (entrada a las 14:00, salida de noche)">🌌 Tarde</option>
-                                    <option value="noche (turno nocturno completo)">🌃 Noche</option>
-                                    <option value="descanso (fin de semana o festivo)">🛋️ Descanso Laboral</option>
-                                </select>
-                            </div>
-
-                            <!-- Qué toca hoy en calendario -->
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Tipo de Día (Calendario Base):</label>
-                                <select id="ai-daytype" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-300 focus:ring-1 focus:ring-purple-500 outline-none">
-                                    <option value="Fuerza (Calistenia) + Bloques de Hiperfoco en Estudio">🏋️ Martes/Jueves: Fuerza + Estudio</option>
-                                    <option value="Tirada Larga 21K + Hiperfoco en Proyecto">🏃 Sábado: Tirada Larga + Estudio</option>
-                                    <option value="Trote Suave + Calistenia Ligera + Lectura">🧘 Domingo: Recuperación Activa</option>
-                                    <option value="Descanso de Entreno y Hiperfoco Ligero">🛋️ Lunes/Miércoles/Viernes: Descanso y Lectura</option>
-                                </select>
-                            </div>
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-white text-lg">⚡ Optimizar Día</h3>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5">Sueño (h):</label>
+                            <input type="range" id="ai-sleep" min="4" max="10" step="0.5" value="7.5" class="w-full accent-purple-500">
                         </div>
-                    </div>
-
-                    <div class="mt-6 pt-4 border-t border-gray-800">
-                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-purple-500/10 flex items-center justify-center gap-2">
-                            ✨ Calcular Pauta Optimizada hoy con Gemini
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5">Estrés (1-10):</label>
+                            <input type="range" id="ai-stress" min="1" max="10" value="4" class="w-full accent-purple-500">
+                        </div>
+                        <button onclick="optimizarDiaConIA()" id="btnOptimizarIA" class="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl text-xs">
+                            ✨ Calcular Pauta con Gemini
                         </button>
                     </div>
                 </div>
 
-                <!-- Respuesta de IA y Chat (Derecha) -->
-                <div class="lg:col-span-7 flex flex-col gap-6">
-                    
-                    <!-- Panel de salida del optimizador -->
-                    <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex-1 flex flex-col justify-between min-h-[350px]">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <h4 class="font-bold text-white text-sm flex items-center gap-1.5">
-                                    🎯 Plan Diario Adaptado por Gemini
-                                </h4>
-                                <span class="text-[10px] text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 font-bold uppercase tracking-wider">Resultado dinámico</span>
-                            </div>
-                            <div id="ai-optimization-output" class="text-xs text-gray-300 space-y-3 leading-relaxed max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                                <p class="text-gray-400 italic">Haz clic en el botón de la izquierda para generar una pauta adaptativa a tu estado biológico de hoy.</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-800 text-[10px] text-gray-500 italic flex justify-between items-center">
-                            <span>Sincronizado vía API Gemini 3.1</span>
-                            <button onclick="copiarOutputIA()" id="btnCopiarIA" class="text-purple-400 hover:underline hover:text-purple-300 hidden">Copiar al portapapeles</button>
+                <!-- Chat & Output -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div id="ai-optimization-output" class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 min-h-[200px] text-xs text-gray-300">
+                        <p class="italic">Genera una pauta adaptativa...</p>
+                    </div>
+                    <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 h-[300px] flex flex-col justify-between">
+                        <div id="chatHistory" class="overflow-y-auto text-xs space-y-2 mb-4"></div>
+                        <div class="flex gap-2">
+                            <input type="text" id="chatInput" placeholder="Pregunta a la IA..." class="flex-1 bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300">
+                            <button onclick="enviarPreguntaIA()" class="bg-purple-600 px-4 rounded-lg text-xs font-bold">Enviar</button>
                         </div>
                     </div>
-
-                    <!-- Consultor Chat Inteligente -->
-                    <div class="bg-gray-900/60 p-6 rounded-2xl border border-gray-800 flex flex-col justify-between h-[380px]">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <h4 class="font-bold text-white text-sm flex items-center gap-1.5">
-                                    💬 Consultor de Rendimiento & Biología
-                                </h4>
-                                <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-bold uppercase tracking-wider flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Google Grounding habilitado
-                                </span>
-                            </div>
-                            
-                            <!-- Historial de Chat -->
-                            <div id="chatHistory" class="text-xs space-y-3 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar mb-4">
-                                <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 text-gray-300">
-                                    <strong>Coach IA:</strong> ¡Hola! Pregúntame lo que quieras. Puedo buscar en internet los últimos estudios de suplementos, aconsejarte sobre el asfalto de Vigo, calistenia, o cómo planificar tus bloques de estudio e hiperfoco para Stellantis.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Barra de entrada de texto -->
-                        <div class="flex gap-2 border-t border-gray-800 pt-3">
-                            <input type="text" id="chatInput" placeholder="Pregunta sobre L-Tirosina, dominadas, sesiones de hiperfoco..." onkeydown="if(event.key === 'Enter') enviarPreguntaIA()" class="flex-1 bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300 focus:ring-1 focus:ring-purple-500 outline-none">
-                            <button onclick="enviarPreguntaIA()" id="btnEnviarChat" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 rounded-lg text-xs transition-colors flex items-center justify-center">
-                                Enviar
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-gray-800 py-6 px-4 md:px-8 bg-gray-950 mt-12">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-            <div>
-                <p>© 2026 Sinfonía Neuroendocrina. Versión de Rendimiento 2.5 con Conectividad Gemini API.</p>
-                <p class="mt-0.5">Calendario Perpetuo con Módulos Integrados de Hiperfoco Cognitivo.</p>
-            </div>
-            <div class="flex gap-4">
-                <a href="#" onclick="switchTab('planificador'); return false;" class="hover:underline">Planificador</a>
-                <a href="#" onclick="switchTab('fundamentos'); return false;" class="hover:underline">Conceptos</a>
-                <a href="#" onclick="switchTab('suplementacion'); return false;" class="hover:underline">Suplementos</a>
-                <a href="#" onclick="switchTab('entrenamiento'); return false;" class="hover:underline">Media Maratón</a>
-            </div>
+    <footer class="border-t border-gray-800 py-6 px-4 md:px-8 bg-gray-950 mt-12 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <p>© 2026 Sinfonía Neuroendocrina v2.5</p>
         </div>
     </footer>
 
-    <!-- LOGIC SCRIPT -->
     <script>
-        // --- CONSTANTES Y VARIABLES DE ESTADO ---
-        let activeTab = 'planificador';
-        let currentTurno = 'manana'; // 'manana' o 'tarde'
-        
-        // Estado del Calendario Real (Mayo 2026 predeterminado)
-        let currentYear = 2026;
-        let currentMonth = 4; // Index de Meses en JS (4 = Mayo)
-        let selectedDateStr = "2026-05-27"; // Fecha predeterminada de inicio
+        // --- CONFIGURACIÓN ---
+        // IMPORTANTE: Sustituye con tu API KEY real de Google AI Studio
+        const API_KEY = ""; 
+        const GEMINI_MODEL = "gemini-1.5-flash"; 
 
-        // Estructura cíclica de entrenamiento base
-        // Lunes: 1, Martes: 2, Miércoles: 3, Jueves: 4, Viernes: 5, Sábado: 6, Domingo: 7
+        let activeTab = 'planificador';
+        let currentTurno = 'manana';
+        let currentYear = 2026;
+        let currentMonth = 4; // Mayo
+        let selectedDateStr = "2026-05-27";
+        let userProgress = JSON.parse(localStorage.getItem('neuro_progress_datebased')) || {};
+
         const weekdayMapping = {
             1: { name: "Lunes", desc: "Descanso y Hiperfoco Corto", type: "rest" },
             2: { name: "Martes", desc: "Hiperfoco Máximo + Calistenia Torso", type: "mixed" },
-            3: { name: "Miércoles", desc: "Descanso Total / Hiperfoco de Proyecto", type: "rest" },
-            4: { name: "Jueves", desc: "Hiperfoco Máximo + Calistenia & Umbral", type: "mixed" },
-            5: { name: "Viernes", desc: "Descanso / Preparación de Tirada Larga", type: "rest" },
-            6: { name: "Sábado", desc: "Hiperfoco Sólido + Tirada Larga 21K", type: "mixed" },
-            7: { name: "Domingo", desc: "Recuperación Activa & Planificación", type: "mixed" }
+            3: { name: "Miércoles", desc: "Descanso Total", type: "rest" },
+            4: { name: "Jueves", desc: "Hiperfoco Máximo + Umbral", type: "mixed" },
+            5: { name: "Viernes", desc: "Descanso", type: "rest" },
+            6: { name: "Sábado", desc: "Tirada Larga 21K", type: "mixed" },
+            7: { name: "Domingo", desc: "Recuperación Activa", type: "mixed" }
         };
 
-        const mesesNombres = [
-            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-        ];
+        const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-        // Progreso del Usuario mapeado por fecha real: `prog-YYYY-MM-DD-taskId`
-        let userProgress = JSON.parse(localStorage.getItem('neuro_progress_datebased')) || {};
-
-        // Cambiar entre pestañas
+        // --- FUNCIONES UI ---
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(`content-${tabId}`).classList.remove('hidden');
-
+            
             document.querySelectorAll('[id^="tab-"]').forEach(btn => {
                 btn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all text-gray-400 hover:text-white";
             });
-            const activeBtn = document.getElementById(`tab-${tabId}`);
-            if (activeBtn) {
-                if(tabId === 'copiloto') {
-                    activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-purple-500/20 text-purple-300 border border-purple-500/30";
-                } else if(tabId === 'planificador') {
-                    activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
-                } else {
-                    activeBtn.className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
-                }
-            }
+            document.getElementById(`tab-${tabId}`).className = "px-4 py-2 text-sm font-semibold rounded-lg shrink-0 transition-all bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
             activeTab = tabId;
         }
 
-        // Cambiar turno de trabajo de Stellantis
         function toggleTurno(turno) {
             currentTurno = turno;
-            const btnManana = document.getElementById('btnTurnoManana');
-            const btnTarde = document.getElementById('btnTurnoTarde');
-
+            const btnM = document.getElementById('btnTurnoManana');
+            const btnT = document.getElementById('btnTurnoTarde');
             if (turno === 'manana') {
-                btnManana.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20";
-                btnTarde.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+                btnM.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20";
+                btnT.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
             } else {
-                btnTarde.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-indigo-500 text-gray-950 shadow-lg shadow-indigo-500/20";
-                btnManana.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
+                btnT.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 bg-indigo-500 text-gray-950 shadow-lg shadow-indigo-500/20";
+                btnM.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-300 text-gray-400 hover:text-white";
             }
-            // Recargar vista actual de checklist
             renderChecklist();
         }
 
-        // --- SISTEMA DE CALENDARIO REAL PERPETUO ---
-        function navegarMes(direccion) {
-            currentMonth += direccion;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            } else if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            renderCalendar();
-        }
-
+        // --- CALENDARIO & CHECKLIST ---
         function renderCalendar() {
+            const grid = document.getElementById('realCalendarGrid');
+            grid.innerHTML = '';
             document.getElementById('activeMonthLabel').innerText = mesesNombres[currentMonth];
             document.getElementById('activeYearLabel').innerText = currentYear;
 
-            const grid = document.getElementById('realCalendarGrid');
-            grid.innerHTML = '';
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const offset = firstDay === 0 ? 6 : firstDay - 1;
+            const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-            // Obtener primer día de la semana para este mes (0=Dom, 1=Lun...)
-            const primerDiaIndex = new Date(currentYear, currentMonth, 1).getDay();
-            // Convertir a base Lunes = 0, Domingo = 6
-            const offsetPrimerDia = primerDiaIndex === 0 ? 6 : primerDiaIndex - 1;
-
-            // Días totales del mes actual
-            const diasTotales = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-            // Días del mes anterior (para rellenar celdas inactivas)
-            const diasMesAnterior = new Date(currentYear, currentMonth, 0).getDate();
-
-            // Rellenar con los días finales del mes anterior (inactivos)
-            for (let i = offsetPrimerDia - 1; i >= 0; i--) {
-                const dayNum = diasMesAnterior - i;
-                const tempBtn = document.createElement('div');
-                tempBtn.className = "h-12 flex flex-col items-center justify-center p-1 rounded-lg border border-gray-900 bg-gray-950/20 text-gray-700 text-xs cursor-not-allowed";
-                tempBtn.innerText = dayNum;
-                grid.appendChild(tempBtn);
+            for (let i = 0; i < offset; i++) {
+                grid.innerHTML += `<div class="h-12 bg-gray-950/20 border border-gray-900 rounded-lg"></div>`;
             }
 
-            // Rellenar días del mes actual
-            for (let i = 1; i <= diasTotales; i++) {
-                const dayNum = i;
-                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
-                
-                const tempDate = new Date(currentYear, currentMonth, dayNum);
-                const diaSemanaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
-                const diaInfo = weekdayMapping[diaSemanaIndex];
-
-                const dayBtn = document.createElement('button');
-                dayBtn.onclick = () => selectDay(dateStr);
-
-                // Estilos según el tipo de entrenamiento/hiperfoco
-                let colorClasses = "bg-gray-950 border-gray-800 hover:border-gray-750 text-gray-400";
-                if (diaInfo.type === 'mixed') {
-                    colorClasses = "bg-emerald-950/10 border-emerald-500/20 text-emerald-300 hover:border-emerald-500/40";
-                } else if (diaInfo.type === 'rest') {
-                    colorClasses = "bg-indigo-950/10 border-indigo-500/20 text-indigo-300 hover:border-indigo-500/40";
-                }
-
-                // Resaltar día seleccionado
+            for (let i = 1; i <= totalDays; i++) {
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
                 const isSelected = selectedDateStr === dateStr ? 'ring-2 ring-indigo-500' : '';
-                dayBtn.className = `h-12 flex flex-col items-center justify-between p-1.5 rounded-lg border text-xs transition-all ${colorClasses} ${isSelected}`;
+                
+                const tempDate = new Date(currentYear, currentMonth, i);
+                const diaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
+                const diaInfo = weekdayMapping[diaIndex];
+                
+                let colorClass = "bg-gray-950 border-gray-800 text-gray-400";
+                if (diaInfo.type === 'mixed') colorClass = "bg-emerald-950/10 border-emerald-500/20 text-emerald-300";
+                else if (diaInfo.type === 'rest') colorClass = "bg-indigo-950/10 border-indigo-500/20 text-indigo-300";
 
-                dayBtn.innerHTML = `
-                    <span class="font-bold block text-left w-full">${dayNum}</span>
-                    <span id="dot-${dateStr}" class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
-                `;
-
-                grid.appendChild(dayBtn);
-                updateDayCompletedDot(dateStr);
-            }
-
-            // Completar celdas con el mes siguiente si es necesario
-            const totalCeldasOcupadas = offsetPrimerDia + diasTotales;
-            const celdasRestantes = (7 - (totalCeldasOcupadas % 7)) % 7;
-            for (let i = 1; i <= celdasRestantes; i++) {
-                const tempBtn = document.createElement('div');
-                tempBtn.className = "h-12 flex flex-col items-center justify-center p-1 rounded-lg border border-gray-900 bg-gray-950/20 text-gray-700 text-xs cursor-not-allowed";
-                tempBtn.innerText = i;
-                grid.appendChild(tempBtn);
+                grid.innerHTML += `
+                    <button onclick="selectDay('${dateStr}')" class="h-12 p-1.5 rounded-lg border text-xs flex flex-col justify-between transition-all ${colorClass} ${isSelected}">
+                        <span class="font-bold">${i}</span>
+                        <span id="dot-${dateStr}" class="w-1.5 h-1.5 rounded-full bg-transparent mx-auto"></span>
+                    </button>`;
+                updateDayDot(dateStr);
             }
         }
 
         function selectDay(dateStr) {
             selectedDateStr = dateStr;
+            const [y, m, d] = dateStr.split('-').map(Number);
+            const diaIndex = new Date(y, m-1, d).getDay() || 7;
+            document.getElementById('selectedDayLabel').innerText = `${d} (${weekdayMapping[diaIndex].name})`;
+            document.getElementById('selectedDayDesc').innerText = weekdayMapping[diaIndex].desc;
             renderCalendar();
-
-            // Extraer día de la semana de la fecha real
-            const [yr, mn, dy] = dateStr.split('-').map(Number);
-            const tempDate = new Date(yr, mn - 1, dy);
-            const diaSemanaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
-            const diaInfo = weekdayMapping[diaSemanaIndex];
-
-            document.getElementById('selectedDayLabel').innerText = `${dy} (${diaInfo.name})`;
-            document.getElementById('selectedDayDesc').innerText = diaInfo.desc;
-
             renderChecklist();
         }
 
-        // --- GENERADOR DE TAREAS E HIPERFOCO ---
         function getTasksForDate(dateStr) {
             const [yr, mn, dy] = dateStr.split('-').map(Number);
-            const tempDate = new Date(yr, mn - 1, dy);
-            const diaSemanaIndex = tempDate.getDay() === 0 ? 7 : tempDate.getDay();
+            const diaIndex = new Date(yr, mn - 1, dy).getDay() || 7;
+            const tasks = [
+                { id: 'creatina', label: "💧 Creatina 5g", time: "Diario" },
+                { id: 'fosfa', label: "🛡️ Fosfatidilserina 300mg", time: "Diario" }
+            ];
+            if ([2, 4, 6].includes(diaIndex)) {
+                tasks.push({ id: 'enfoque', label: "⚡ L-Tirosina + Alfa GPC", time: "Suplemento" });
+                tasks.push({ id: 'hiperfoco', label: "🧘 Bloque Hiperfoco 90 min", time: "Estudio" });
+            }
+            if (diaIndex === 2 || diaIndex === 4) tasks.push({ id: 'calistenia', label: "🏋️ Calistenia", time: "Entreno" });
+            if (diaIndex === 4) tasks.push({ id: 'umbral', label: "🏃 Intervalos Umbral", time: "Entreno" });
+            if (diaIndex === 6) tasks.push({ id: 'tirada', label: "🏃 Tirada Larga 21K", time: "Entreno" });
             
-            const tasks = [];
-
-            // Suplementos fijos diarios
-            tasks.push({ id: 'creatina', label: "💧 Tomar 5g de Creatina Monohidrato", time: "Diario - Mañana" });
-            tasks.push({ id: 'fosfatidilserina', label: "🛡️ Tomar 300mg de Fosfatidilserina (con tu comida principal)", time: "Diario - Tarde" });
-
-            // Pauta por día de la semana
-            if (diaSemanaIndex === 2) { // Martes: Hiperfoco Máximo + Calistenia
-                tasks.push({ id: 'tirosina', label: "⚡ Tomar 1000mg de L-Tirosina (en ayunas, 40 min antes del estudio)", time: "Suplemento Enfoque" });
-                tasks.push({ id: 'alfagpc', label: "🎯 Tomar 600mg de Alfa GPC (junto con la L-Tirosina)", time: "Suplemento Enfoque" });
-                tasks.push({ id: 'huperzina', label: "🔬 Tomar 200mcg de Huperzina A (bloquea la degradación de acetilcolina)", time: "Suplemento Enfoque" });
-                
-                // Sesiones de Hiperfoco & Estudio
-                tasks.push({ id: 'hiperfoco_1', label: "🧘 BLOQUE DE HIPERFOCO (90 min): Desarrollo del proyecto & Código estricto (Notificaciones apagadas, cero distracciones)", time: "Sesión Cognitiva" });
-                tasks.push({ id: 'estudio_recalls', label: "📚 SESIÓN DE ESTUDIO ACTIVO (60 min): Lectura técnica profunda y active recall de conceptos complejos", time: "Sesión Cognitiva" });
-                tasks.push({ id: 'descanso_pomodoro', label: "⏱️ Descanso de Integración (15 min): Sin pantallas, camina o estira para consolidar la memoria", time: "Descanso Activo" });
-                
-                tasks.push({ id: 'calistenia', label: "🏋️ Entrenamiento de Calistenia: Dominadas estrictas, fondos y flexiones (RIR 2)", time: "Entrenamiento" });
-            } 
-            else if (diaSemanaIndex === 4) { // Jueves: Hiperfoco Máximo + Calistenia & Umbral
-                tasks.push({ id: 'tirosina', label: "⚡ Tomar 1000mg de L-Tirosina (en ayunas antes de tu bloque mental)", time: "Suplemento Enfoque" });
-                tasks.push({ id: 'alfagpc', label: "🎯 Tomar 600mg de Alfa GPC antes del hiperfoco", time: "Suplemento Enfoque" });
-                tasks.push({ id: 'huperzina', label: "🔬 Tomar 200mcg de Huperzina A (Ciclo Activo)", time: "Suplemento Enfoque" });
-                
-                // Sesiones de Hiperfoco & Estudio
-                tasks.push({ id: 'hiperfoco_1', label: "🧘 BLOQUE DE HIPERFOCO (90 min): Programación intensiva o resolución de problemas complejos del proyecto", time: "Sesión Cognitiva" });
-                tasks.push({ id: 'estudio_recalls', label: "📚 SESIÓN DE ESTUDIO ACTIVO (60 min): Repaso de arquitectura de software y código", time: "Sesión Cognitiva" });
-                tasks.push({ id: 'descanso_pomodoro', label: "⏱️ Descanso de Integración (15 min): Caminata corta, cero estímulo digital", time: "Descanso Activo" });
-                
-                tasks.push({ id: 'calistenia_rapida', label: "🏋️ Calistenia Express (30 min): Superseries de volumen para mantener fuerza", time: "Entrenamiento" });
-                tasks.push({ id: 'intervalos', label: "🏃 Carrera: Intervalos de Umbral (10 min suave + 4x3 min rápido + 5 min suave)", time: "Entrenamiento" });
-            }
-            else if (diaSemanaIndex === 6) { // Sábado: Hiperfoco Sólido + Tirada Larga 21K
-                tasks.push({ id: 'tirosina', label: "⚡ Tomar 1000mg de L-Tirosina para rendimiento cognitivo/físico", time: "Suplemento Enfoque" });
-                tasks.push({ id: 'alfagpc', label: "🎯 Tomar 600mg de Alfa GPC antes del estudio", time: "Suplemento Enfoque" });
-                tasks.push({ id: 'huperzina', label: "🔬 Tomar 200mcg de Huperzina A (Último ciclo semanal)", time: "Suplemento Enfoque" });
-                
-                // Sesiones de Hiperfoco & Estudio
-                tasks.push({ id: 'hiperfoco_1', label: "🧘 BLOQUE DE HIPERFOCO (90 min): Sprint de código y pulido de errores en el proyecto digital", time: "Sesión Cognitiva" });
-                tasks.push({ id: 'estudio_recalls', label: "📚 SESIÓN DE ESTUDIO (60 min): Autoevaluación del progreso semanal y revisión de apuntes", time: "Sesión Cognitiva" });
-                
-                tasks.push({ id: 'tiradalarga', label: "🏃 Carrera Larga: 10K+ en Zona 2 (6:00 min/km o paso conversacional, ruta plana Vigo)", time: "Entrenamiento" });
-            }
-            else if (diaSemanaIndex === 7) { // Domingo: Recuperación Activa & Planificación (Huperzina descansa)
-                tasks.push({ id: 'calistenia_suave', label: "🧘 Movilidad y Estiramientos: Liberación articular y descompresión de columna", time: "Entrenamiento" });
-                tasks.push({ id: 'trote_recup', label: "🏃 Trote Suave de Recuperación: 20 min en Zona 2 regenerativa", time: "Entrenamiento" });
-                tasks.push({ id: 'plan_semana', label: "📅 Planificación Semanal: Sincronizar comidas y horas de sueño para el próximo turno de Stellantis", time: "Higiene Mental" });
-            }
-            else {
-                // Días de Descanso Total (Lunes, Miércoles, Viernes)
-                tasks.push({ id: 'hiperfoco_lectura', label: "🧘 HIPERFOCO LIGERO (45 min): Lectura técnica de documentación oficial o diseño estructural del proyecto", time: "Sesión Cognitiva" });
-                tasks.push({ id: 'descanso_activo', label: "🚶 Descanso Activo: Caminata rápida de 30 min por Vigo o estiramientos suaves", time: "Recuperación" });
-                tasks.push({ id: 'recarga_dopamina', label: "🛡️ Descanso de estimulantes dopaminérgicos: Deja respirar tus receptores neuronales", time: "Higiene Mental" });
-            }
-
-            // Regulación del Sueño Circadiano según el Turno actual
-            if (currentTurno === 'manana') {
-                tasks.push({ id: 'sueno_manana', label: "🛌 Higiene de Sueño: Dormir antes de las 22:30. Habitación a oscuras sin pantallas desde 45 min antes", time: "Sueño Circadiano" });
-            } else {
-                tasks.push({ id: 'sueno_tarde', label: "🛌 Higiene de Sueño: Uso de blackout total para proteger el sueño diurno del desfase", time: "Sueño Circadiano" });
-            }
-
             return tasks;
         }
 
-        // Renderizar la checklist diaria interactiva
         function renderChecklist() {
             const container = document.getElementById('checklistContainer');
             container.innerHTML = '';
-
             const tasks = getTasksForDate(selectedDateStr);
-
-            // Ordenamiento lógico adaptado al Turno de Stellantis seleccionado
-            const sortedTasks = sortTasksByShift(tasks);
-
-            sortedTasks.forEach(task => {
+            
+            tasks.forEach(task => {
                 const key = `prog-${selectedDateStr}-${task.id}`;
-                const isChecked = userProgress[key] ? 'checked' : '';
-                const textStyle = isChecked ? 'line-through text-gray-500' : 'text-gray-200';
-                
-                const taskDiv = document.createElement('div');
-                taskDiv.className = `flex items-start gap-3 p-3 bg-gray-950/65 hover:bg-gray-950 rounded-xl border border-gray-800 transition-all duration-200`;
-                
-                taskDiv.innerHTML = `
-                    <input type="checkbox" id="task-${task.id}" ${isChecked} 
-                        onclick="toggleTask('${task.id}')" 
-                        class="w-4 h-4 mt-1 rounded border-gray-700 text-indigo-500 focus:ring-indigo-500 bg-gray-900 cursor-pointer">
-                    <div class="flex-1">
-                        <label for="task-${task.id}" class="text-xs font-medium cursor-pointer ${textStyle}">
-                            ${task.label}
-                        </label>
-                        <span class="block text-[10px] text-gray-500 mt-1 uppercase font-bold tracking-wider">${task.time}</span>
-                    </div>
-                `;
-                container.appendChild(taskDiv);
+                const checked = userProgress[key] ? 'checked' : '';
+                container.innerHTML += `
+                    <div class="flex items-center gap-3 p-3 bg-gray-950/60 border border-gray-800 rounded-xl">
+                        <input type="checkbox" ${checked} onclick="toggleTask('${task.id}')" class="w-4 h-4 mt-1 accent-indigo-500 cursor-pointer">
+                        <div class="flex-1 text-xs">
+                            <p class="${userProgress[key] ? 'line-through text-gray-500' : 'text-gray-200'}">${task.label}</p>
+                            <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">${task.time}</span>
+                        </div>
+                    </div>`;
             });
         }
 
-        // Ordenamiento según la dinámica de turnos rotativos
-        function sortTasksByShift(tasks) {
-            const ordenCronologicoManana = [
-                "Suplemento Enfoque", "Sesión Cognitiva", "Diario - Mañana", 
-                "Diario - Tarde", "Recuperación", "Descanso Activo", 
-                "Entrenamiento", "Higiene Mental", "Sueño Circadiano"
-            ];
-            
-            const ordenCronologicoTarde = [
-                "Suplemento Enfoque", "Sesión Cognitiva", "Entrenamiento", 
-                "Diario - Mañana", "Diario - Tarde", "Recuperación", 
-                "Descanso Activo", "Higiene Mental", "Sueño Circadiano"
-            ];
-
-            const ordenActivo = currentTurno === 'manana' ? ordenCronologicoManana : ordenCronologicoTarde;
-
-            return [...tasks].sort((a, b) => {
-                return ordenActivo.indexOf(a.time) - ordenActivo.indexOf(b.time);
-            });
-        }
-
-        // Activar/Desactivar progreso de una tarea específica
-        function toggleTask(taskId) {
-            const key = `prog-${selectedDateStr}-${taskId}`;
-            if (userProgress[key]) {
-                delete userProgress[key];
-            } else {
-                userProgress[key] = true;
-            }
+        function toggleTask(id) {
+            const key = `prog-${selectedDateStr}-${id}`;
+            userProgress[key] = !userProgress[key];
             localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
-            
             renderChecklist();
-            updateDayCompletedDot(selectedDateStr);
+            updateDayDot(selectedDateStr);
         }
 
-        // Actualizar visualmente la celda del día en el calendario según porcentaje de avance
-        function updateDayCompletedDot(dateStr) {
+        function updateDayDot(dateStr) {
             const dot = document.getElementById(`dot-${dateStr}`);
             if (!dot) return;
-
-            const dayTasks = getTasksForDate(dateStr);
-            const completados = dayTasks.filter(task => userProgress[`prog-${dateStr}-${task.id}`]).length;
-
-            if (completados === dayTasks.length && dayTasks.length > 0) {
-                dot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-md shadow-emerald-400/50";
-            } else if (completados > 0) {
-                dot.className = "w-2 h-2 rounded-full bg-indigo-400";
-            } else {
-                dot.className = "w-2 h-2 rounded-full bg-transparent";
-            }
+            const tasks = getTasksForDate(dateStr);
+            const done = tasks.filter(t => userProgress[`prog-${dateStr}-${t.id}`]).length;
+            if (done === tasks.length && tasks.length > 0) dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50";
+            else if (done > 0) dot.className = "w-1.5 h-1.5 rounded-full bg-indigo-400";
+            else dot.className = "w-1.5 h-1.5 rounded-full bg-transparent";
         }
 
-        // Resetear progreso diario
         function resetDayProgress() {
-            const dayTasks = getTasksForDate(selectedDateStr);
-            dayTasks.forEach(task => {
-                delete userProgress[`prog-${selectedDateStr}-${task.id}`];
-            });
+            const tasks = getTasksForDate(selectedDateStr);
+            tasks.forEach(t => delete userProgress[`prog-${selectedDateStr}-${t.id}`]);
             localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
             renderChecklist();
-            updateDayCompletedDot(selectedDateStr);
+            updateDayDot(selectedDateStr);
         }
 
-        // Marcar todas las tareas del día actual como completadas
         function marcarTodoCompletado() {
-            const dayTasks = getTasksForDate(selectedDateStr);
-            dayTasks.forEach(task => {
-                userProgress[`prog-${selectedDateStr}-${task.id}`] = true;
-            });
+            const tasks = getTasksForDate(selectedDateStr);
+            tasks.forEach(t => userProgress[`prog-${selectedDateStr}-${t.id}`] = true);
             localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
             renderChecklist();
-            updateDayCompletedDot(selectedDateStr);
+            updateDayDot(selectedDateStr);
         }
 
-        // --- SISTEMA DE DESCARGA DE INFORMACIÓN ---
-        
-        // 1. Descargar Plan Diario en un archivo TXT limpio y bien formateado
-        function descargarReporteDiaTXT() {
-            const dayTasks = getTasksForDate(selectedDateStr);
-            const [yr, mn, dy] = selectedDateStr.split('-');
-            const dateObj = new Date(yr, mn - 1, dy);
-            const diaSemanaIndex = dateObj.getDay() === 0 ? 7 : dateObj.getDay();
-            const diaInfo = weekdayMapping[diaSemanaIndex];
-
-            let textContent = `==================================================\n`;
-            textContent += `SINFONÍA NEUROENDOCRINA - PLANIFICADOR DIARIO\n`;
-            textContent += `Fecha: ${selectedDateStr} (${diaInfo.name})\n`;
-            textContent += `Turno Stellantis Vigo: ${currentTurno.toUpperCase()}\n`;
-            textContent += `Enfoque del Día: ${diaInfo.desc}\n`;
-            textContent += `==================================================\n\n`;
-
-            textContent += `ESTADO DE TAREAS Y PROTOCOLO:\n`;
-            textContent += `--------------------------------------------------\n`;
-
-            dayTasks.forEach(task => {
-                const isCompleted = userProgress[`prog-${selectedDateStr}-${task.id}`] ? "[X] COMPLETADO" : "[ ] PENDIENTE";
-                textContent += `${isCompleted} - ${task.label} (${task.time})\n`;
+        // --- IA INTEGRATION ---
+        async function callGemini(prompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
             });
-
-            textContent += `\n--------------------------------------------------\n`;
-            textContent += `RECOMENDACIÓN ADAPTATIVA DEL DÍA:\n`;
-            if (diaInfo.type === 'mixed') {
-                textContent += `- Este es un día activo. Asegúrate de tomar tu L-Tirosina y Alfa GPC 40 minutos antes del bloque de Hiperfoco.\n`;
-                textContent += `- Realiza tu sesión de Calistenia/Running por la tarde después del hiperfoco cognitivo para mejorar la consolidación de la memoria.\n`;
-            } else {
-                textContent += `- Día de descompresión. El foco es la recuperación androgénica y el control del cortisol por Fosfatidilserina.\n`;
-                textContent += `- Evita sobreestimulantes para limpiar los receptores dopaminérgicos cerebrales.\n`;
-            }
-            textContent += `\nGenerado el: ${new Date().toLocaleString()}\n`;
-            textContent += `==================================================\n`;
-
-            const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `planificador_dia_${selectedDateStr}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        // 2. Exportar todos los datos de progreso de LocalStorage como JSON
-        function exportarProgresoJSON() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userProgress, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `planificador_neuroendocrino_backup_${new Date().toISOString().slice(0,10)}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            document.body.removeChild(downloadAnchor);
-        }
-
-        // 3. Importar copia de seguridad JSON
-        function triggerImportarJSON() {
-            document.getElementById('fileImport').click();
-        }
-
-        function importarProgresoJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const parsedData = JSON.parse(e.target.result);
-                    // Validar vagamente que tenga formato de progreso
-                    if (typeof parsedData === 'object' && parsedData !== null) {
-                        userProgress = parsedData;
-                        localStorage.setItem('neuro_progress_datebased', JSON.stringify(userProgress));
-                        renderCalendar();
-                        renderChecklist();
-                    } else {
-                        throw new Error("Formato inválido.");
-                    }
-                } catch (err) {
-                    // No usamos alert() siguiendo las directivas estrictas. Inyectamos error temporal en consola o UI.
-                    console.error("Error importando archivo de respaldo: ", err);
-                }
-            };
-            reader.readAsText(file);
-        }
-
-
-        // --- INTEGRACIÓN COCOACH GEMINI API ---
-        const apiKey = ""; 
-
-        async function callGeminiAPI(payload) {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-            let retries = 3;
-            let delay = 1000;
-
-            while (retries > 0) {
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP Error: ${response.status}`);
-                    }
-
-                    return await response.json();
-                } catch (error) {
-                    retries--;
-                    if (retries === 0) {
-                        throw error;
-                    }
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    delay *= 2; 
-                }
-            }
-        }
-
-        function formatMarkdownToHTML(text) {
-            return text
-                .replace(/### (.*?)\n/g, '<h5 class="font-bold text-white text-xs mt-3 mb-1">$1</h5>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-purple-400 font-semibold">$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em class="text-gray-300 italic">$1</em>')
-                .replace(/- (.*?)\n/g, '<li class="ml-4 list-disc text-gray-300 my-1">$1</li>')
-                .replace(/\n\n/g, '<br/>')
-                .replace(/\n/g, '<br/>');
+            if (!response.ok) throw new Error("API Error");
+            return await response.json();
         }
 
         async function optimizarDiaConIA() {
-            const btn = document.getElementById('btnOptimizarIA');
             const output = document.getElementById('ai-optimization-output');
-            
-            const sleep = document.getElementById('ai-sleep').value;
-            const fatigue = document.getElementById('ai-fatigue').value;
-            const stress = document.getElementById('ai-stress').value;
-            const shift = document.getElementById('ai-shift').value;
-            const daytype = document.getElementById('ai-daytype').value;
-
+            const btn = document.getElementById('btnOptimizarIA');
             btn.disabled = true;
-            btn.innerHTML = `<span class="animate-pulse flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-white animate-ping"></span> Sincronizando biomarcadores...</span>`;
-            output.innerHTML = `<div class="flex flex-col items-center justify-center p-8 space-y-3">
-                <span class="w-8 h-8 rounded-full border-2 border-purple-500 border-t-transparent animate-spin"></span>
-                <p class="text-xs text-gray-400">Analizando fatiga en Stellantis, optimizando bloques de hiperfoco y entrenamientos...</p>
-            </div>`;
-
-            const systemPrompt = "Actúa como un experto de élite en medicina neuroendocrina, preparación de maratones y optimización cognitiva. El usuario es un operario de Stellantis Vigo que trabaja en turnos rotativos, realiza rigurosas sesiones de hiperfoco en sus proyectos de estudio y entrena de manera híbrida. Brinda pautas estrictas y adaptativas para hoy.";
-            const userQuery = `Optimiza mi rutina diaria para hoy:
-- Dormí: ${sleep} horas (Galaxy Watch).
-- Fatiga física: ${fatigue}/10.
-- Estrés o carga mental: ${stress}/10.
-- Turno hoy en Stellantis: ${shift}.
-- Mi planificación base hoy: ${daytype}.
-
-Por favor indícame:
-1. ¿Debo entrenar hoy al máximo volumen o autorregular la carga e intensidad física?
-2. ¿Cómo configuro y dosifico mis suplementos hoy (L-Tirosina, Alfa GPC, Huperzina A, Fosfatidilserina) de acuerdo a mi descanso y estrés?
-3. Bríndame una agenda de 4 puntos clave, integrando específicamente mis sesiones de Hiperfoco y Estudio.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                }
-            };
-
+            output.innerHTML = "<p class='animate-pulse'>Consultando a Gemini...</p>";
             try {
-                const result = await callGeminiAPI(payload);
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                
-                if (text) {
-                    output.innerHTML = `
-                        <div class="space-y-3 text-xs">
-                            <div class="bg-purple-950/20 p-3 rounded-lg border border-purple-500/10 mb-2">
-                                <span class="text-xs font-bold text-purple-400">AJUSTE ADAPTATIVO GENERADO:</span>
-                                <p class="text-[11px] text-gray-400 mt-0.5">Sincronizado para un sueño real de ${sleep}h y estrés de ${stress}/10.</p>
-                            </div>
-                            <div class="prose text-gray-300">
-                                ${formatMarkdownToHTML(text)}
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById('btnCopiarIA').classList.remove('hidden');
-                } else {
-                    output.innerHTML = `<p class="text-red-400 text-xs">No se recibió respuesta del modelo. Inténtalo de nuevo.</p>`;
-                }
-            } catch (error) {
-                console.error("Error llamando a Gemini API:", error);
-                output.innerHTML = `<p class="text-red-400 text-xs">Error de conexión con la inteligencia de Google. Revisa tu conexión.</p>`;
+                const sleep = document.getElementById('ai-sleep').value;
+                const stress = document.getElementById('ai-stress').value;
+                const prompt = `Optimiza mi rutina para hoy. Dormí ${sleep}h, estrés ${stress}/10. Trabajador en Stellantis Vigo. Dame 3 consejos rápidos.`;
+                const res = await callGemini(prompt);
+                output.innerHTML = `<div class='prose prose-invert'>${res.candidates[0].content.parts[0].text.replace(/\n/g, '<br>')}</div>`;
+            } catch (e) {
+                output.innerHTML = "<p class='text-red-400'>Error: Verifica tu conexión y API Key en el código.</p>";
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = `✨ Calcular Pauta Optimizada hoy con Gemini`;
             }
         }
 
         async function enviarPreguntaIA() {
             const input = document.getElementById('chatInput');
-            const userText = input.value.trim();
-            if (!userText) return;
-
-            const chatHistory = document.getElementById('chatHistory');
-            const btn = document.getElementById('btnEnviarChat');
-
-            const userDiv = document.createElement('div');
-            userDiv.className = "bg-purple-950/20 p-3 rounded-xl border border-purple-500/10 text-gray-200 text-right";
-            userDiv.innerHTML = `<strong>Tú:</strong> ${userText}`;
-            chatHistory.appendChild(userDiv);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
+            const text = input.value.trim();
+            if (!text) return;
+            const history = document.getElementById('chatHistory');
+            history.innerHTML += `<div class='text-right text-purple-400 font-bold'>Tú: <span class='text-gray-300 font-normal'>${text}</span></div>`;
             input.value = '';
-            btn.disabled = true;
-
-            const botLoadingDiv = document.createElement('div');
-            botLoadingDiv.className = "bg-gray-950 p-3 rounded-xl border border-gray-800 text-gray-400 italic";
-            botLoadingDiv.id = "bot-loading-indicator";
-            botLoadingDiv.innerText = "Consultando base médica y buscando en internet...";
-            chatHistory.appendChild(botLoadingDiv);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
-            const systemPrompt = "Actúas como un consultor bioquímico especializado en rendimiento atlético híbrido, nootrópicos y técnicas de hiperfoco. Proporciona respuestas concisas, precisas y enfocadas en la seguridad de la salud hormonal.";
-
-            const payload = {
-                contents: [{ parts: [{ text: userText }] }],
-                tools: [{ "google_search": {} }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                }
-            };
-
             try {
-                const result = await callGeminiAPI(payload);
-                document.getElementById('bot-loading-indicator')?.remove();
-
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                let sourcesHTML = "";
-
-                const groundingMetadata = result.candidates?.[0]?.groundingMetadata;
-                if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                    const sources = groundingMetadata.groundingAttributions
-                        .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
-                        .filter(s => s.uri && s.title);
-
-                    if (sources.length > 0) {
-                        sourcesHTML = `<div class="mt-2 pt-2 border-t border-gray-800 text-[10px] text-emerald-400">
-                            <strong>Fuentes consultadas:</strong><br/>
-                            ${sources.slice(0, 3).map(s => `<a href="${s.uri}" target="_blank" class="underline mr-2">🔗 ${s.title}</a>`).join(' ')}
-                        </div>`;
-                    }
-                }
-
-                if (text) {
-                    const botDiv = document.createElement('div');
-                    botDiv.className = "bg-gray-950 p-3 rounded-xl border border-gray-800 text-gray-300";
-                    botDiv.innerHTML = `<strong>Coach IA:</strong><br/>${formatMarkdownToHTML(text)} ${sourcesHTML}`;
-                    chatHistory.appendChild(botDiv);
-                } else {
-                    const errDiv = document.createElement('div');
-                    errDiv.className = "bg-red-950/20 p-3 rounded-xl border border-red-900/10 text-red-400";
-                    errDiv.innerText = "Error: No se recibió respuesta del Copiloto.";
-                    chatHistory.appendChild(errDiv);
-                }
-            } catch (error) {
-                console.error("Error en chat Gemini:", error);
-                document.getElementById('bot-loading-indicator')?.remove();
-                const errDiv = document.createElement('div');
-                errDiv.className = "bg-red-950/20 p-3 rounded-xl border border-red-900/10 text-red-400 text-xs";
-                errDiv.innerText = "Error de conexión con la IA de Google.";
-                chatHistory.appendChild(errDiv);
-            } finally {
-                btn.disabled = false;
-                chatHistory.scrollTop = chatHistory.scrollHeight;
+                const res = await callGemini(text);
+                const botMsg = res.candidates[0].content.parts[0].text;
+                history.innerHTML += `<div class='text-emerald-400 font-bold'>Coach: <span class='text-gray-300 font-normal'>${botMsg}</span></div>`;
+            } catch (e) {
+                history.innerHTML += `<div class='text-red-400'>Error de conexión.</div>`;
             }
+            history.scrollTop = history.scrollHeight;
         }
 
-        function copiarOutputIA() {
-            const container = document.getElementById('ai-optimization-output');
-            const textToCopy = container.innerText;
-            
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = textToCopy;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextArea);
-
-            const btn = document.getElementById('btnCopiarIA');
-            const oldText = btn.innerText;
-            btn.innerText = "¡Copiado con éxito!";
-            btn.style.color = "#10b981"; 
-            setTimeout(() => {
-                btn.innerText = oldText;
-                btn.style.color = "";
-            }, 2000);
+        function navegarMes(d) {
+            currentMonth += d;
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            renderCalendar();
         }
 
-        // --- INICIALIZADOR AL CARGAR ---
+        function descargarReporteDiaTXT() {
+            const tasks = getTasksForDate(selectedDateStr);
+            let content = `Plan para ${selectedDateStr}\n\n`;
+            tasks.forEach(t => content += `[${userProgress[`prog-${selectedDateStr}-${t.id}`] ? 'X' : ' '}] ${t.label} (${t.time})\n`);
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `plan_${selectedDateStr}.txt`;
+            a.click();
+        }
+
+        function dismissInstallBanner() {
+            document.getElementById('pwaInstallBanner').classList.add('hidden');
+        }
+
         window.onload = () => {
             renderCalendar();
             selectDay(selectedDateStr);
+            // Mostrar banner si no es standalone
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                document.getElementById('pwaInstallBanner').classList.remove('hidden');
+            }
         };
     </script>
 </body>
