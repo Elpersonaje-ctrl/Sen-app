@@ -866,7 +866,7 @@
         // --- IA INTEGRATION ---
         async function callGemini(payload) {
             const versions = ['v1beta', 'v1'];
-            let lastError = null;
+            let lastError = "No se pudo conectar con ninguna versión de la API";
 
             for (const ver of versions) {
                 const url = `https://generativelanguage.googleapis.com/${ver}/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
@@ -876,26 +876,34 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
+                    
                     const data = await response.json();
                     
                     if (response.ok) {
                         return data;
                     }
                     
-                    // Si el error es específicamente que el modelo no existe en esta versión, probamos la siguiente
-                    console.warn(`Intento fallido con ${ver}:`, data.error?.message);
-                    lastError = data.error?.message || "Error desconocido";
+                    lastError = data.error?.message || `Error ${response.status}`;
+                    console.warn(`Intento con ${ver} falló: ${lastError}`);
                     
-                    if (data.error?.status === "INVALID_ARGUMENT" || data.error?.message.includes("not found")) {
-                        continue; 
+                    // Si es un error de "modelo no encontrado", probamos la otra versión. 
+                    // Si es error de PERMISOS o LLAVE, paramos y lanzamos el error.
+                    if (response.status === 403 || response.status === 401) {
+                        throw new Error(lastError);
                     }
-                    
-                    throw new Error(lastError);
+
+                    if (ver === versions[versions.length - 1]) {
+                        throw new Error(lastError);
+                    }
                 } catch (error) {
+                    if (ver === versions[versions.length - 1] || error.message.includes("403") || error.message.includes("401")) {
+                        throw error;
+                    }
+                    // Si falla el fetch por red, etc., seguimos a la siguiente versión
                     lastError = error.message;
-                    if (ver === versions[versions.length - 1]) throw new Error(lastError);
                 }
             }
+            throw new Error(lastError);
         }
 
         async function optimizarDiaConIA() {
