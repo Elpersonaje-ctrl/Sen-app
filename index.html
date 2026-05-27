@@ -865,18 +865,34 @@
 
         // --- IA INTEGRATION ---
         async function callGemini(payload) {
-            // Único endpoint compatible
             const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
             
+            const enhancedPayload = {
+                ...payload,
+                safetySettings: [
+                    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+                ]
+            };
+
             try {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(enhancedPayload)
                 });
+                
                 const data = await response.json();
-                if (response.ok) return data;
-                throw new Error(data.error?.message || `Error ${response.status}`);
+                
+                if (response.ok) {
+                    return data;
+                }
+                
+                // ERROR CRÍTICO: Mostramos el JSON completo para diagnóstico
+                console.error("GOOGLE API ERROR:", data);
+                throw new Error(JSON.stringify(data.error || data, null, 2));
             } catch (error) {
                 throw error;
             }
