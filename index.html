@@ -537,7 +537,7 @@
         // --- CONFIGURACIÓN ---
         // IMPORTANTE: Sustituye con tu API KEY real de Google AI Studio
         const API_KEY = "AIzaSyC4H3WcY4cQ7uBg3ltf8pBEiDBjVs4u444";
-        const GEMINI_MODEL = "gemini-1.5-flash-latest"; 
+        const GEMINI_MODEL = "gemini-1.5-flash"; 
 
         let activeTab = 'planificador';
         let currentTurno = 'manana';
@@ -886,8 +886,6 @@
                     lastError = data.error?.message || `Error ${response.status}`;
                     console.warn(`Intento con ${ver} falló: ${lastError}`);
                     
-                    // Si es un error de "modelo no encontrado", probamos la otra versión. 
-                    // Si es error de PERMISOS o LLAVE, paramos y lanzamos el error.
                     if (response.status === 403 || response.status === 401) {
                         throw new Error(lastError);
                     }
@@ -899,7 +897,6 @@
                     if (ver === versions[versions.length - 1] || error.message.includes("403") || error.message.includes("401")) {
                         throw error;
                     }
-                    // Si falla el fetch por red, etc., seguimos a la siguiente versión
                     lastError = error.message;
                 }
             }
@@ -919,7 +916,7 @@
             btn.disabled = true;
             output.innerHTML = "<div class='flex flex-col items-center gap-2'><div class='w-4 h-4 border-2 border-indigo-500 border-t-transparent animate-spin rounded-full'></div><p class='animate-pulse text-indigo-400 font-bold uppercase text-[9px]'>Sincronizando con Gemini...</p></div>";
             
-            const prompt = `Actúa como coach experto. Optimiza mi rutina hoy: Dormí ${sleep}h, Fatiga ${fatigue}/10, Estrés ${stress}/10. Turno ${shift}, toca ${daytype}. Dame 3 puntos clave.`;
+            const prompt = `Actúa como coach experto. Optimiza mi rutina hoy: Dormí ${sleep}h, Fatiga ${fatigue}/10, Estrés ${stress}/10. Turno ${shift}, toca ${daytype}. Dame un protocolo de suplementación y 3 puntos clave de agenda.`;
             
             try {
                 const res = await callGemini({ contents: [{ parts: [{ text: prompt }] }] });
@@ -929,14 +926,13 @@
                     output.innerHTML = `<div class='text-left space-y-2 text-zinc-300 animate-in fade-in duration-500'>${text.replace(/\n/g, '<br>')}</div>`;
                     output.classList.remove('text-center', 'italic');
                 } else {
-                    throw new Error("La IA no devolvió resultados. Esto puede deberse a filtros de seguridad o a que tu API Key no tiene permisos suficientes.");
+                    throw new Error("La IA no devolvió resultados.");
                 }
             } catch (e) {
                 output.innerHTML = `
                     <div class='text-red-400 p-4 border border-red-500/20 rounded-2xl bg-red-500/5'>
                         <p class='font-bold uppercase text-[9px] mb-1'>Error de Respuesta</p>
                         <p class='text-[10px] opacity-80'>${e.message}</p>
-                        <p class='mt-2 text-[8px] italic opacity-60 text-white'>Asegúrate de que el proyecto en Google AI Studio tenga 'Generative Language API' habilitado.</p>
                     </div>`;
             } finally {
                 btn.disabled = false;
@@ -968,10 +964,7 @@
                             <div class='bg-white/[0.03] p-3 rounded-2xl rounded-tl-none border border-white/5 text-zinc-300'>${botMsg.replace(/\n/g, '<br>')}</div>
                         </div>`;
                 } else {
-                    // Debug: Mostrar el JSON crudo si no hay candidatos
-                    const rawJson = JSON.stringify(res, null, 2);
-                    console.error("Debug IA Response:", res);
-                    throw new Error(`Respuesta vacía. JSON recibido: ${rawJson}`);
+                    throw new Error("Respuesta bloqueada.");
                 }
             } catch (e) {
                 history.innerHTML += `
