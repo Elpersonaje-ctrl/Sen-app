@@ -960,7 +960,10 @@
                             <div class='bg-white/[0.03] p-3 rounded-2xl rounded-tl-none border border-white/5 text-zinc-300'>${botMsg.replace(/\n/g, '<br>')}</div>
                         </div>`;
                 } else {
-                    throw new Error("Respuesta de IA vacía o bloqueada.");
+                    // Debug: Mostrar el JSON crudo si no hay candidatos
+                    const rawJson = JSON.stringify(res, null, 2);
+                    console.error("Debug IA Response:", res);
+                    throw new Error(`Respuesta vacía. JSON recibido: ${rawJson}`);
                 }
             } catch (e) {
                 history.innerHTML += `
