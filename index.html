@@ -537,7 +537,7 @@
         // --- CONFIGURACIÓN ---
         // IMPORTANTE: Sustituye con tu API KEY real de Google AI Studio
         const API_KEY = "AIzaSyC4H3WcY4cQ7uBg3ltf8pBEiDBjVs4u444";
-        const GEMINI_MODEL = "gemini-1.5-flash"; 
+        const GEMINI_MODEL = "gemini-1.5-flash-8b"; 
 
         let activeTab = 'planificador';
         let currentTurno = 'manana';
@@ -890,9 +890,9 @@
                     return data;
                 }
                 
-                // ERROR CRÍTICO: Mostramos el JSON completo para diagnóstico
+                // ERROR CRÍTICO: Mostramos mensaje limpio
                 console.error("GOOGLE API ERROR:", data);
-                throw new Error(JSON.stringify(data.error || data, null, 2));
+                throw new Error(data.error?.message || "Error en la conexión con la IA.");
             } catch (error) {
                 throw error;
             }
