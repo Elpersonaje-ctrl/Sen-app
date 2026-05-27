@@ -865,42 +865,21 @@
 
         // --- IA INTEGRATION ---
         async function callGemini(payload) {
-            const versions = ['v1beta', 'v1'];
-            let lastError = "No se pudo conectar con ninguna versión de la API";
-
-            for (const ver of versions) {
-                const url = `https://generativelanguage.googleapis.com/${ver}/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (response.ok) {
-                        return data;
-                    }
-                    
-                    lastError = data.error?.message || `Error ${response.status}`;
-                    console.warn(`Intento con ${ver} falló: ${lastError}`);
-                    
-                    if (response.status === 403 || response.status === 401) {
-                        throw new Error(lastError);
-                    }
-
-                    if (ver === versions[versions.length - 1]) {
-                        throw new Error(lastError);
-                    }
-                } catch (error) {
-                    if (ver === versions[versions.length - 1] || error.message.includes("403") || error.message.includes("401")) {
-                        throw error;
-                    }
-                    lastError = error.message;
-                }
+            // Único endpoint compatible
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (response.ok) return data;
+                throw new Error(data.error?.message || `Error ${response.status}`);
+            } catch (error) {
+                throw error;
             }
-            throw new Error(lastError);
         }
 
         async function optimizarDiaConIA() {
@@ -916,24 +895,19 @@
             btn.disabled = true;
             output.innerHTML = "<div class='flex flex-col items-center gap-2'><div class='w-4 h-4 border-2 border-indigo-500 border-t-transparent animate-spin rounded-full'></div><p class='animate-pulse text-indigo-400 font-bold uppercase text-[9px]'>Sincronizando con Gemini...</p></div>";
             
-            const prompt = `Actúa como coach experto. Optimiza mi rutina hoy: Dormí ${sleep}h, Fatiga ${fatigue}/10, Estrés ${stress}/10. Turno ${shift}, toca ${daytype}. Dame un protocolo de suplementación y 3 puntos clave de agenda.`;
+            const prompt = `Actúa como coach experto. Optimiza mi rutina hoy: Dormí ${sleep}h, Fatiga ${fatigue}/10, Estrés ${stress}/10. Turno ${shift}, toca ${daytype}. Dame 3 puntos clave.`;
             
             try {
                 const res = await callGemini({ contents: [{ parts: [{ text: prompt }] }] });
-                
                 if (res && res.candidates && res.candidates.length > 0) {
                     const text = res.candidates[0].content.parts[0].text;
                     output.innerHTML = `<div class='text-left space-y-2 text-zinc-300 animate-in fade-in duration-500'>${text.replace(/\n/g, '<br>')}</div>`;
                     output.classList.remove('text-center', 'italic');
                 } else {
-                    throw new Error("La IA no devolvió resultados.");
+                    throw new Error("Respuesta bloqueada.");
                 }
             } catch (e) {
-                output.innerHTML = `
-                    <div class='text-red-400 p-4 border border-red-500/20 rounded-2xl bg-red-500/5'>
-                        <p class='font-bold uppercase text-[9px] mb-1'>Error de Respuesta</p>
-                        <p class='text-[10px] opacity-80'>${e.message}</p>
-                    </div>`;
+                output.innerHTML = `<div class='text-red-400 p-4 border border-red-500/20 rounded-2xl bg-red-500/5 text-xs text-center'>Error: ${e.message}</div>`;
             } finally {
                 btn.disabled = false;
             }
@@ -955,7 +929,6 @@
 
             try {
                 const res = await callGemini({ contents: [{ parts: [{ text: text }] }] });
-                
                 if (res && res.candidates && res.candidates.length > 0) {
                     const botMsg = res.candidates[0].content.parts[0].text;
                     history.innerHTML += `
@@ -967,10 +940,7 @@
                     throw new Error("Respuesta bloqueada.");
                 }
             } catch (e) {
-                history.innerHTML += `
-                    <div class='text-red-400 text-[10px] p-2 bg-red-500/5 border border-red-500/10 rounded-xl'>
-                        <strong>Error IA:</strong> ${e.message}
-                    </div>`;
+                history.innerHTML += `<div class='text-red-400 text-[10px] p-2 bg-red-500/5 border border-red-500/10 rounded-xl'>Error: ${e.message}</div>`;
             }
             history.scrollTop = history.scrollHeight;
             lucide.createIcons();
