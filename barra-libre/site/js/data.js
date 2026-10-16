@@ -1,7 +1,7 @@
 // Carga de los JSON del propio sitio (misma procedencia). No hay ninguna otra petición de red.
 
 export async function fetchJSON(path) {
-  const res = await fetch(path, { cache: 'no-cache', credentials: 'omit' });
+  const res = await fetch(path, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
   return res.json();
 }
