@@ -1,0 +1,710 @@
+{
+  "app": {
+    "title": "Barra Libre",
+    "tagline": "Hostalaría · provincia de Pontevedra"
+  },
+  "a11y": {
+    "skip": "Saltar ao contido",
+    "external": "ábrese nunha lapela nova"
+  },
+  "lang": {
+    "label": "Idioma",
+    "changed": "Idioma cambiado a galego"
+  },
+  "privacy": {
+    "title": "Nada sae do teu móbil.",
+    "body": "Sen servidor, sen cookies, sen analítica. As túas respostas só existen nesta lapela e bórranse ao recargar ou pechar.",
+    "wipe": "Borrar as miñas respostas",
+    "wiped": "Respostas borradas."
+  },
+  "nav": {
+    "label": "Módulos",
+    "inicio": "Inicio",
+    "auditoria": "Auditoría",
+    "nomina": "Nómina",
+    "dudas": "Dúbidas",
+    "que_hacer": "Que facer"
+  },
+  "footer": {
+    "legal": "Barra Libre é unha ferramenta informativa. Non é asesoramento xurídico nin substitúe un sindicato, avogado/a laboralista ou graduado/a social.",
+    "privacy": "Este sitio non usa cookies, nin analítica, nin fontes ou scripts externos. Podes comprobalo no código fonte.",
+    "source": "Referencia: {nombre} {periodo}, táboas {tablas} ({boletin} nº {numero}, {fecha}), en ultraactividade."
+  },
+  "status": {
+    "pending_title": "Datos do convenio pendentes de carga.",
+    "pending_body": "O que dependa das táboas oficiais do BOP aparecerá como «pendente»: a ferramenta nunca inventa nin estima cifras do convenio. Os mínimos do Estatuto dos Traballadores si se comproban.",
+    "pending_details": "Ver que falta ({n})",
+    "pending_where": "Bloques sen cargar (para quen mantén a web; ver DATOS-PENDIENTES.md):"
+  },
+  "disclaimer": {
+    "label": "Aviso",
+    "general": "Información orientativa, non asesoramento xurídico. Antes de tomar decisións, consulta cun sindicato, un/unha avogado/a laboralista ou un/unha graduado/a social.",
+    "auditoria": "Este informe é orientativo e baséase só nas túas respostas. Non é asesoramento xurídico: un sindicato ou un/unha avogado/a laboralista debe revisar o teu caso concreto antes de actuar.",
+    "nomina": "Estimación orientativa. Non é a túa nómina real nin asesoramento xurídico ou fiscal. O IRPF real depende da túa situación persoal e familiar; a cotización, do teu grupo e de conceptos que aquí non se recollen.",
+    "dudas": "Respostas xerais e orientativas sobre a normativa. Non son asesoramento xurídico e o teu caso pode ter matices: confírmao cun sindicato ou un/unha avogado/a laboralista.",
+    "que_hacer": "Guía práctica orientativa, non asesoramento xurídico. Os prazos son estritos: se tes dúbidas sobre o teu caso, acode canto antes a un sindicato ou a un/unha avogado/a laboralista."
+  },
+  "sev": {
+    "grave": "Grave",
+    "revisable": "Revisable",
+    "correcto": "Correcto",
+    "pendiente": "Pendente",
+    "orientativo": "Orientativo"
+  },
+  "norma": {
+    "et": "Estatuto dos Traballadores",
+    "convenio": "Convenio provincial de hostalaría de Pontevedra",
+    "rd1561": "RD 1561/1995 (xornadas especiais)",
+    "rd2001": "RD 2001/1983 (xornadas e descansos)",
+    "lgss": "Lei xeral da Seguridade Social",
+    "lrjs": "Lei reguladora da xurisdición social",
+    "lisos": "Lei sobre infraccións e sancións na orde social (LISOS)",
+    "art": "art. {art}",
+    "art_pendiente": "artigo pendente de cargar"
+  },
+  "report": {
+    "cites_label": "Normas aplicables"
+  },
+  "print": {
+    "button": "Imprimir informe / gardar PDF",
+    "generated": "Xerado o {fecha} no teu propio dispositivo. Non se enviou a ningún servidor.",
+    "privacy": "Este documento só contén as túas respostas anónimas: ningún nome de persoa nin de empresa."
+  },
+  "opt": {
+    "si": "Si",
+    "no": "Non",
+    "nose": "Non o sei"
+  },
+  "common": {
+    "optional": "(opcional)",
+    "invalid_range": "Introduce un número entre {min} e {max}.",
+    "pending": "pendente"
+  },
+  "inicio": {
+    "eyebrow": "Ferramenta anónima",
+    "h1": "Estanche a cumprir o convenio?",
+    "lead": "Comproba en poucos minutos se a túa xornada, os teus descansos e a túa nómina se axustan ao convenio de hostalaría da provincia de Pontevedra e ao Estatuto dos Traballadores.",
+    "start": "Comezar a auditoría",
+    "modules_title": "Que podes facer",
+    "m_auditoria_t": "1 · Auditoría",
+    "m_auditoria_d": "Un cuestionario curto sobre horas, descansos, noites e festivos. Devólveche un informe con cada problema, a súa gravidade e a norma que o regula.",
+    "m_nomina_t": "2 · Verificador de nómina",
+    "m_nomina_d": "Calcula o que deberías cobrar segundo a túa categoría e xornada e compárao co que cobras.",
+    "m_dudas_t": "3 · Dúbidas frecuentes",
+    "m_dudas_d": "Vacacións, horas extra, cambios de quenda, xornada anual, rexistro horario e fin de contrato, paso a paso.",
+    "m_que_hacer_t": "4 · Que facer agora",
+    "m_que_hacer_d": "Como denunciar de forma anónima, a quen acudir na provincia e que prazos non podes deixar pasar.",
+    "privacy_title": "O teu anonimato, garantido polo deseño",
+    "privacy_list": [
+      "Todo se calcula dentro do teu navegador. Non hai servidor que reciba as túas respostas.",
+      "Non hai cookies, nin analítica, nin publicidade, nin fontes ou scripts de terceiros.",
+      "Non hai campos de texto libre: non se che pedirá nin poderás escribir o nome da túa empresa nin o teu.",
+      "Nada se garda: ao recargar ou pechar a lapela, todo se borra. Tamén podes borralo agora co botón de arriba.",
+      "O informe en PDF xérao o teu propio móbil ao imprimir; non pasa por ningún sitio."
+    ],
+    "tip": "Consello: se usas un móbil da empresa ou compartido, abre esta web nunha xanela privada ou de incógnito."
+  },
+  "audit": {
+    "eyebrow": "Módulo 1",
+    "h1": "Auditoría das túas condicións",
+    "lead": "Responde o que saibas. Podes deixar en branco o que non saibas: esa comprobación simplemente non se fará.",
+    "progress": "Paso {n} de {total}: {title}",
+    "prev": "Anterior",
+    "next": "Seguinte",
+    "see_report": "Ver o meu informe",
+    "edit": "Cambiar respostas",
+    "restart": "Comezar de novo",
+    "go_nomina": "Comprobar a miña nómina",
+    "go_que_hacer": "Que facer agora",
+    "steps": {
+      "puesto": "O teu posto e o teu contrato",
+      "jornada": "A túa xornada",
+      "noche": "Traballo nocturno",
+      "festivos": "Festivos",
+      "descansos": "Descansos, vacacións e pagas",
+      "registro": "Rexistro horario"
+    },
+    "q": {
+      "categoria": {
+        "label": "Cal é a túa categoría profesional?",
+        "help": "Aparece no teu contrato e na cabeceira da nómina.",
+        "placeholder": "Escolle a túa categoría…"
+      },
+      "contrato": {
+        "label": "Que tipo de contrato tes?",
+        "help": "Se non o sabes, mira o teu contrato ou o teu informe de vida laboral."
+      },
+      "alta": {
+        "label": "Tes contrato e estás de alta na Seguridade Social?"
+      },
+      "temporal_causa": {
+        "label": "Cal é a causa do teu contrato temporal?"
+      },
+      "temporal_meses_actual": {
+        "label": "Cantos meses dura o teu contrato temporal actual (contando prórrogas)?",
+        "unit": "meses"
+      },
+      "temporal_meses_24": {
+        "label": "Nos últimos 24 meses, cantos meses traballaches nesta empresa con contratos temporais?",
+        "unit": "meses"
+      },
+      "pacto_complementarias": {
+        "label": "Asinaches un pacto de horas complementarias?",
+        "help": "É un documento á parte do contrato que permite á empresa pedirche horas adicionais."
+      },
+      "horas_contrato": {
+        "label": "Cantas horas semanais pon o teu contrato?",
+        "unit": "h/semana"
+      },
+      "horas_reales": {
+        "label": "Cantas horas traballas de verdade nunha semana normal?",
+        "help": "Conta desde que entras ata que saes, incluído montar e recoller.",
+        "unit": "h/semana"
+      },
+      "dias_semana": {
+        "label": "Cantos días traballas á semana?",
+        "unit": "días"
+      },
+      "horas_max_dia": {
+        "label": "Cantas horas dura o teu día de traballo máis longo?",
+        "unit": "horas"
+      },
+      "horas_anuales": {
+        "label": "Se o sabes, cantas horas traballas ao ano?",
+        "help": "Opcional. Se o deixas en branco estimámolo a partir das túas horas semanais.",
+        "unit": "h/ano"
+      },
+      "extras_pago": {
+        "label": "As horas que fas de máis, como cha compensan?"
+      },
+      "pausa": {
+        "label": "En quendas de máis de 6 horas seguidas, tes polo menos 15 minutos de descanso?"
+      },
+      "horas_nocturnas": {
+        "label": "Cantas horas á semana traballas entre as 22:00 e as 6:00?",
+        "help": "Se non traballas de noite, pon 0.",
+        "unit": "h/semana"
+      },
+      "plus_nocturnidad": {
+        "label": "Cobras un plus de nocturnidade?",
+        "help": "Busca na túa nómina un concepto chamado «nocturnidade» ou semellante."
+      },
+      "nocturno_habitual": {
+        "label": "Traballas habitualmente polo menos 3 horas da túa xornada diaria entre as 22:00 e as 6:00?"
+      },
+      "festivos_trabajados": {
+        "label": "Cantos festivos traballas ao ano, aproximadamente?",
+        "help": "Festivos estatais, autonómicos e locais. Se ningún, pon 0.",
+        "unit": "festivos"
+      },
+      "festivos_compensacion": {
+        "label": "Como che compensan os festivos traballados?"
+      },
+      "descanso_entre": {
+        "label": "Cantas horas tes, como mínimo, entre que rematas unha quenda e comezas a seguinte?",
+        "help": "Por exemplo, se pechas á 1:00 e abres ás 9:00, son 8 horas.",
+        "unit": "horas"
+      },
+      "descanso_motivo": {
+        "label": "Cando che pasa iso?"
+      },
+      "dias_libres_14": {
+        "label": "Nas últimas dúas semanas, cantos días completos libraches?",
+        "unit": "días"
+      },
+      "vacaciones_dias": {
+        "label": "Cantos días de vacacións che dan ao ano?",
+        "help": "En días naturais (contando fins de semana). Un mes son uns 30.",
+        "unit": "días"
+      },
+      "vacaciones_pagadas": {
+        "label": "Páganche as vacacións en diñeiro en lugar de deixarche gozalas?"
+      },
+      "pagas_extra": {
+        "label": "Cantas pagas extra cobras ao ano?",
+        "help": "Cóntaas aínda que veñan rateadas (repartidas) na nómina de cada mes.",
+        "unit": "pagas"
+      },
+      "registro": {
+        "label": "A empresa rexistra cada día a túa hora de entrada e de saída?"
+      },
+      "resumen_mensual": {
+        "label": "Coa nómina, entréganche cada mes un resumo das horas traballadas?"
+      }
+    },
+    "o": {
+      "contrato": {
+        "indefinido_completo": "Indefinido a xornada completa",
+        "indefinido_parcial": "Indefinido a tempo parcial",
+        "fijo_discontinuo": "Fixo descontinuo (tempada)",
+        "temporal_completo": "Temporal a xornada completa",
+        "temporal_parcial": "Temporal a tempo parcial"
+      },
+      "temporal_causa": {
+        "produccion": "Circunstancias da produción (máis traballo, tempada, reforzo)",
+        "sustitucion": "Substitución doutra persoa",
+        "nose": "Non o sei / non o pon"
+      },
+      "extras_pago": {
+        "pagadas": "Págamas (aparecen na nómina)",
+        "descanso": "Con días ou horas de descanso",
+        "no": "Nin mas pagan nin mas compensan",
+        "nose": "Non o sei"
+      },
+      "pausa": {
+        "si": "Si",
+        "no": "Non",
+        "no_aplica": "Non fago quendas de máis de 6 horas seguidas"
+      },
+      "festivos_compensacion": {
+        "recargo": "Págamos con recarga",
+        "descanso": "Dánme outro día de descanso",
+        "ambos": "Segundo o caso, pagamento ou descanso",
+        "nada": "Nin pagamento extra nin descanso",
+        "nose": "Non o sei"
+      },
+      "descanso_motivo": {
+        "habitual": "É habitual (por exemplo, pecho e abro)",
+        "cambio_turno": "Só cando cambio de quenda",
+        "nose": "Non o sei"
+      },
+      "registro": {
+        "si_accedo": "Si, e podo consultalo",
+        "si_no_accedo": "Si, pero non me deixan velo",
+        "no": "Non",
+        "nose": "Non o sei"
+      }
+    },
+    "report": {
+      "title": "Informe da túa situación",
+      "intro": "Resultado segundo as túas respostas, ordenado de máis a menos grave.",
+      "summary_grave": "{n} grave(s)",
+      "summary_revisable": "{n} revisable(s)",
+      "summary_correcto": "{n} correcto(s)",
+      "legend": "Grave: incumprimento claro dunha norma. Revisable: pode ser un incumprimento segundo os detalles; convén revisalo. Correcto: non se aprecia problema co que contestaches.",
+      "empty": "Non respondiches preguntas abondo para xerar un informe. Volve atrás e responde polo menos a túa xornada e os teus descansos.",
+      "pending_note": "Algunhas comparacións co convenio están pendentes de que se carguen os seus datos oficiais (BOP nº 209, 31/10/2025). Os mínimos do Estatuto dos Traballadores si se comprobaron.",
+      "next_title": "E agora?",
+      "next_body": "Garda este informe en PDF co botón de imprimir. Se tes algún punto grave, mira «Que facer agora» e fíxate nos prazos.",
+      "answers_title": "As túas respostas",
+      "not_answered": "sen responder"
+    },
+    "findings": {
+      "alta": {
+        "no": {
+          "title": "Traballas sen contrato ou sen alta na Seguridade Social",
+          "body": "A alta debe facerse antes de comezar a traballar. Sen ela non cotizas para o paro, a baixa médica nin a xubilación, e un accidente laboral queda sen cobertura. Ademais, os contratos a tempo parcial, temporais e fixos descontinuos deben formalizarse por escrito."
+        },
+        "nose": {
+          "title": "Non sabes se estás de alta",
+          "body": "Podes comprobalo sen que a empresa se entere: pide o teu informe de vida laboral na sede electrónica da Seguridade Social ou na súa app oficial. Se non apareces de alta nesta empresa, ou con menos horas das que fas, é un incumprimento."
+        },
+        "si": {
+          "title": "Estás de alta na Seguridade Social",
+          "body": "Revisa na túa vida laboral que a xornada coa que che deron de alta (completa ou parcial, e a súa porcentaxe) é a que fas de verdade."
+        }
+      },
+      "contrato": {
+        "excede_40": {
+          "title": "O teu contrato fixa máis de 40 horas semanais",
+          "body": "O teu contrato indica {horas} h/semana. A xornada ordinaria máxima é de 40 horas semanais de media en cómputo anual. O que pase de aí son horas extra, cos seus límites e o seu pagamento."
+        },
+        "excede_convenio": {
+          "title": "A túa xornada pactada supera a xornada anual do convenio",
+          "body": "Co horario do teu contrato saen unhas {anual} h ao ano, máis que as {convenio} h anuais do convenio. O exceso non pode ser xornada ordinaria: son horas extra que deben pagarse ou compensarse."
+        },
+        "ok_pendiente": {
+          "title": "Xornada de contrato dentro do máximo legal",
+          "body": "O teu contrato indica {horas} h/semana, dentro do máximo de 40 h do Estatuto. Falta cargar a xornada anual do convenio para comparala tamén con ela."
+        },
+        "ok": {
+          "title": "Xornada de contrato dentro do permitido",
+          "body": "O teu contrato indica {horas} h/semana, dentro do máximo legal e da xornada anual do convenio ({convenio} h)."
+        }
+      },
+      "extras": {
+        "no": {
+          "title": "Non traballas máis horas das do teu contrato",
+          "body": "Segundo as túas respostas traballas unhas {horas} h/semana, o que di o teu contrato."
+        },
+        "mas_80": {
+          "title": "Superas o límite de 80 horas extra ao ano",
+          "body": "Fas unhas {semanal} h de máis por semana: arredor de {anual} h ao ano. O máximo legal é de 80 horas extra ao ano (non contan as compensadas con descanso dentro dos 4 meses seguintes)."
+        },
+        "no_pagadas": {
+          "title": "Horas extra sen pagar nin compensar",
+          "body": "Fas unhas {semanal} h/semana máis das do teu contrato (≈ {anual} h/ano) e nin cha pagan nin cha compensan con descanso. As horas extra páganse na contía que fixe o convenio ou o contrato —nunca por debaixo da hora ordinaria— ou compénsanse con descanso."
+        },
+        "pago_nose": {
+          "title": "Horas extra: comproba como cha pagan",
+          "body": "Fas unhas {semanal} h/semana máis das do teu contrato (≈ {anual} h/ano). Deben aparecer na nómina como horas extraordinarias ou compensarse con descanso, e a empresa debe entregarche o resumo de horas con cada nómina."
+        },
+        "ok": {
+          "title": "Horas extra pagadas ou compensadas",
+          "body": "Fas unhas {semanal} h/semana de máis (≈ {anual} h/ano), dentro do límite anual, e págancha ou compénsancha. Comproba que aparecen na nómina e cotizan."
+        }
+      },
+      "anual": {
+        "excede": {
+          "title": "Traballas máis horas ao ano que as do convenio",
+          "body": "Calculamos que traballas unhas {real} h ao ano, fronte ás {convenio} h anuais do convenio: unhas {diff} h de máis. Todas elas son horas extra e deben pagarse ou compensarse con descanso."
+        }
+      },
+      "parcial": {
+        "extras": {
+          "title": "Fas horas de máis estando a tempo parcial",
+          "body": "Traballas unhas {extra} h/semana máis das do teu contrato. A tempo parcial non se poden facer horas extraordinarias, e as complementarias esixen un pacto asinado por escrito. É unha fraude habitual: cotizas por menos horas das que traballas, o que reduce o teu paro, as túas baixas e a túa xubilación."
+        },
+        "complementarias_exceso": {
+          "title": "As túas horas complementarias superan o máximo legal",
+          "body": "Fas unhas {extra} h/semana por riba do teu contrato de {contrato} h (un {pct} % máis). Aínda que asinases o pacto, a lei limítaas ao 30 % das túas horas ordinarias, ampliable por convenio ata o 60 %. Se é o habitual, a túa xornada real non é parcial."
+        },
+        "complementarias_pacto": {
+          "title": "Fas horas complementarias con pacto",
+          "body": "Fas unhas {extra} h/semana máis ({pct} % da túa xornada). Con pacto asinado é legal se non pasan do 30 % (ou a porcentaxe do convenio, como máximo o 60 %), avísante con polo menos 3 días de antelación, e páganse e cotizan como ordinarias. Compróbao nas túas nóminas."
+        },
+        "resumen": {
+          "title": "Sen resumo mensual de horas (tempo parcial)",
+          "body": "A tempo parcial, a empresa debe rexistrar a túa xornada día a día e entregarche cada mes, xunto coa nómina, o resumo de todas as horas feitas. Se non o fai, a lei presume que o teu contrato é a xornada completa, agás proba en contrario."
+        },
+        "resumen_nose": {
+          "title": "Comproba o resumo mensual de horas",
+          "body": "A tempo parcial débente entregar cada mes, coa nómina, o resumo de horas traballadas (ordinarias e complementarias). Busca ese documento."
+        },
+        "resumen_ok": {
+          "title": "Recibes o resumo mensual de horas",
+          "body": "Comproba que coincide coas horas que fas de verdade."
+        }
+      },
+      "diaria": {
+        "excede": {
+          "title": "Días de máis de {max} horas",
+          "body": "O teu día máis longo é de {horas} h. A xornada ordinaria non pode pasar de {max} h diarias agás que o convenio ou un acordo fixen outra distribución, e sempre respectando 12 h de descanso entre xornadas. Se ese exceso son horas extra, debe pagarse ou compensarse."
+        },
+        "ok": {
+          "title": "Xornada diaria dentro do máximo",
+          "body": "O teu día máis longo é de {horas} h, dentro do máximo de {max} h de xornada ordinaria."
+        }
+      },
+      "pausa": {
+        "no": {
+          "title": "Sen pausa en quendas de máis de 6 horas",
+          "body": "Cando a xornada continuada supera 6 horas tes dereito a un descanso de polo menos 15 minutos. O convenio ou o contrato poden melloralo."
+        },
+        "si": {
+          "title": "Tes pausa nas xornadas longas",
+          "body": "Respéctase o descanso mínimo de 15 minutos en xornadas continuadas de máis de 6 horas."
+        }
+      },
+      "noct": {
+        "sin_plus_convenio": {
+          "title": "Traballo nocturno sen plus de nocturnidade",
+          "body": "Traballas unhas {horas} h/semana entre as 22:00 e as 6:00 e non cobras plus de nocturnidade, aínda que o convenio o contempla. Revisa as túas nóminas: debe aparecer como concepto propio."
+        },
+        "sin_plus": {
+          "title": "Traballo nocturno sen plus: revísao",
+          "body": "Traballas unhas {horas} h/semana en horario nocturno sen plus. A lei esixe unha retribución específica polo traballo nocturno, agás que o teu salario xa se fixase tendo en conta que o posto é nocturno pola súa natureza ou que se compense con descanso. Revisa o que di o convenio."
+        },
+        "nose": {
+          "title": "Comproba se cobras plus de nocturnidade",
+          "body": "Traballas unhas {horas} h/semana entre as 22:00 e as 6:00. Busca na túa nómina un concepto de nocturnidade; se non aparece, revísao co convenio ou cun sindicato."
+        },
+        "ok": {
+          "title": "Cobras plus de nocturnidade",
+          "body": "Comproba que o importe corresponde ás {horas} h nocturnas semanais que fas de verdade."
+        },
+        "mas_8": {
+          "title": "Traballo nocturno de máis de 8 horas de media",
+          "body": "Como traballador/a nocturno/a, a túa xornada non pode superar 8 horas diarias de media nun período de 15 días. Segundo as túas respostas, a túa media é de {media} h ao día."
+        },
+        "extras": {
+          "title": "Fas horas extra sendo traballador/a nocturno/a",
+          "body": "Quen traballa habitualmente polo menos 3 horas da súa xornada diaria en horario nocturno non pode facer horas extraordinarias. Segundo as túas respostas fas unhas {semanal} h/semana de máis."
+        }
+      },
+      "fest": {
+        "nada": {
+          "title": "Festivos traballados sen compensación",
+          "body": "Traballas uns {dias} festivos ao ano sen recarga nin descanso a cambio. Como norma xeral, as horas traballadas en festivo páganse cun incremento de polo menos o 75 %, agás que se compensen con descanso; o convenio pode ter a súa propia regulación."
+        },
+        "nose": {
+          "title": "Festivos traballados: comproba a compensación",
+          "body": "Traballas uns {dias} festivos ao ano. Revisa se na nómina aparecen con recarga ou se che deron outro día de descanso a cambio."
+        },
+        "ok": {
+          "title": "Festivos traballados compensados",
+          "body": "Páganche ou compénsanche os {dias} festivos que traballas. Comproba que o importe ou o descanso é o que fixa o convenio."
+        }
+      },
+      "entre": {
+        "ok": {
+          "title": "Descanso entre xornadas respectado",
+          "body": "Entre o final dunha quenda e o comezo da seguinte tes polo menos {horas} h, por riba do mínimo de 12 h."
+        },
+        "cambio_turno": {
+          "title": "Descanso reducido ao cambiar de quenda",
+          "body": "Tes só {horas} h entre xornadas cando cambias de quenda. No traballo a quendas, ese día o descanso pode baixar ata un mínimo de 7 h, pero a diferenza ata 12 h debe compensarse nos días inmediatamente seguintes. Se non cha compensan, é un incumprimento."
+        },
+        "menos_12": {
+          "title": "Menos de 12 horas entre xornadas",
+          "body": "Tes só {horas} h entre o final dunha quenda e o comezo da seguinte (o típico «pecho e abro»). O mínimo legal son 12 h. As poucas excepcións das xornadas especiais obrigan a compensar o descanso perdido nos días seguintes."
+        }
+      },
+      "semanal": {
+        "minimo": {
+          "title": "Case sen días libres",
+          "body": "Libraches {dias} día(s) nas últimas dúas semanas. A lei garante un descanso semanal de día e medio ininterrompido, acumulable en períodos de 14 días: 3 días cada dúas semanas."
+        },
+        "bajo_convenio": {
+          "title": "Menos descanso semanal que o do convenio",
+          "body": "Libraches {dias} días en 14 días; o convenio dáche {convenio} nese período."
+        },
+        "acumulable": {
+          "title": "Descanso semanal xusto: revísao",
+          "body": "Libraches {dias} días en 14 días. O mínimo xeral son 3 días cada dúas semanas. En hostalaría, o medio día pode acumularse en períodos de ata 4 semanas ou gozarse outro día: comproba que ao cabo do mes che saen os días que che tocan."
+        },
+        "ok": {
+          "title": "Descanso semanal suficiente",
+          "body": "Libraches {dias} días nas últimas dúas semanas, polo menos o mínimo legal."
+        }
+      },
+      "vac": {
+        "menos_30": {
+          "title": "Menos de 30 días de vacacións",
+          "body": "Dánche {dias} días de vacacións ao ano. O mínimo legal son 30 días naturais ao ano (ou a parte proporcional se non traballaches o ano enteiro). O convenio pode melloralo, nunca empeoralo."
+        },
+        "bajo_convenio": {
+          "title": "Menos vacacións que as do convenio",
+          "body": "Dánche {dias} días; o convenio fixa {convenio} días naturais."
+        },
+        "convenio_laborables": {
+          "title": "Vacacións: compáraas co convenio",
+          "body": "O convenio fixa {convenio} días laborables de vacacións e ti indicas {dias} días naturais. Conta cantos dos teus días de vacacións eran laborables para comparalos."
+        },
+        "ok_pendiente": {
+          "title": "Vacacións polo menos do mínimo legal",
+          "body": "Tes {dias} días ao ano, polo menos os 30 días naturais do Estatuto. Falta cargar os días do convenio para comparalos."
+        },
+        "ok": {
+          "title": "Vacacións conformes ao convenio",
+          "body": "Tes {dias} días, polo menos os {convenio} do convenio."
+        },
+        "compensadas": {
+          "title": "Páganche as vacacións en vez de deixarche gozalas",
+          "body": "As vacacións non se poden cambiar por diñeiro mentres segues traballando. Só se pagan as non gozadas cando remata o contrato, no finiquito."
+        }
+      },
+      "pagas": {
+        "menos_2": {
+          "title": "Menos de dúas pagas extra",
+          "body": "Cobras {n} paga(s) extra ao ano. A lei garante polo menos dúas gratificacións extraordinarias ao ano, unha delas no Nadal; o seu importe fíxao o convenio. Se van rateadas, deben aparecer na nómina mensual como concepto á parte."
+        },
+        "bajo_convenio": {
+          "title": "Menos pagas extra que as do convenio",
+          "body": "Cobras {n} pagas extra; o convenio fixa {convenio}."
+        },
+        "ok_pendiente": {
+          "title": "Pagas extra: polo menos o mínimo legal",
+          "body": "Cobras {n} pagas extra. Falta cargar o número de pagas do convenio para comparalo."
+        },
+        "ok": {
+          "title": "Pagas extra conformes",
+          "body": "Cobras {n} pagas extra, as que fixa o convenio ({convenio})."
+        }
+      },
+      "registro": {
+        "no": {
+          "title": "A empresa non rexistra a túa xornada",
+          "body": "A empresa está obrigada a rexistrar cada día a hora de entrada e saída de cada persoa, conservar o rexistro 4 anos e telo á túa disposición, dos teus representantes e da Inspección de Traballo. Sen rexistro é difícil probar as horas extra: comeza a anotar ti as túas horas (data, entrada e saída) e garda fotos dos cadrantes."
+        },
+        "sin_acceso": {
+          "title": "Non podes consultar o teu rexistro horario",
+          "body": "O rexistro debe estar á túa disposición. Podes pedir unha copia por escrito. Mentres tanto, anota ti cada día as túas horas reais."
+        },
+        "nose": {
+          "title": "Non sabes se hai rexistro horario",
+          "body": "Pregunta como se rexistra a túa xornada (app, fichaxe, folla asinada): é obrigatorio. Se che fan asinar follas con horas que non son as reais, anota as verdadeiras pola túa conta."
+        },
+        "ok": {
+          "title": "Rexistro horario accesible",
+          "body": "Hai rexistro e podes consultalo. Comproba que reflicte as túas horas reais e non as do contrato."
+        }
+      },
+      "temp": {
+        "encadenamiento": {
+          "title": "Encadeamento de contratos temporais",
+          "body": "Levas {meses} meses con contratos temporais nos últimos 24. Quen, nun período de 24 meses, estivo contratado/a máis de 18 meses —con ou sen interrupcións— mediante dous ou máis contratos por circunstancias da produción na mesma empresa adquire a condición de fixo/a."
+        },
+        "produccion_12": {
+          "title": "Contrato por circunstancias da produción demasiado longo",
+          "body": "O teu contrato por circunstancias da produción dura {meses} meses. A súa duración máxima é de 6 meses, ampliable ata 12 só se o prevé o convenio sectorial. Un contrato temporal que incumpre as regras converte a persoa en fixa."
+        },
+        "produccion_6": {
+          "title": "Contrato por circunstancias da produción de máis de 6 meses",
+          "body": "Dura {meses} meses. O máximo xeral é de 6 meses; só pode chegar a 12 se o convenio sectorial o amplía. Compróbao no convenio."
+        },
+        "causa_nose": {
+          "title": "O teu contrato temporal debe dicir a causa",
+          "body": "Un contrato temporal só é válido se especifica con precisión a causa (circunstancias da produción ou substitución), as circunstancias concretas que a xustifican e a súa relación coa duración prevista. Se non o fai, presúmese indefinido. Revisa a túa copia do contrato."
+        }
+      }
+    }
+  },
+  "nomina": {
+    "eyebrow": "Módulo 2",
+    "h1": "Verificador de nómina",
+    "lead": "Calcula, a partir das táboas do convenio, o bruto que che corresponde segundo a túa categoría e xornada, réstalle a cotización e unha estimación do IRPF, e compárao co que cobras.",
+    "prefilled": "Enchemos algúns datos coas túas respostas da auditoría. Podes cambialos.",
+    "fs_puesto": "O teu posto",
+    "fs_mes": "Este mes",
+    "fs_cobro": "O que cobras",
+    "calc": "Calcular",
+    "edit": "Cambiar datos",
+    "q": {
+      "categoria": {
+        "label": "Categoría profesional"
+      },
+      "contrato": {
+        "label": "Tipo de contrato"
+      },
+      "contrato_inferior_anio": {
+        "label": "O teu contrato dura menos dun ano?"
+      },
+      "horas_contrato": {
+        "label": "Horas semanais do teu contrato",
+        "unit": "h/semana"
+      },
+      "prorrata": {
+        "label": "Rateánche as pagas extra na nómina mensual?",
+        "help": "Se non o sabes, busca na nómina un concepto como «rateo pagas extra». Usa un mes normal, sen paga extra."
+      },
+      "horas_nocturnas_mes": {
+        "label": "Horas traballadas entre as 22:00 e as 6:00 este mes",
+        "unit": "horas",
+        "help": "0 se ningunha."
+      },
+      "festivos_mes": {
+        "label": "Festivos traballados este mes",
+        "unit": "días"
+      },
+      "horas_festivos_mes": {
+        "label": "Horas traballadas neses festivos",
+        "unit": "horas"
+      },
+      "dias_trabajados_mes": {
+        "label": "Días traballados este mes",
+        "unit": "días",
+        "help": "Úsase se o plus de transporte ou manutención é por día traballado."
+      },
+      "bruto_nomina": {
+        "label": "Total debengado (bruto) da túa nómina",
+        "unit": "€",
+        "help": "Opcional. Aparece como «Total debengado»."
+      },
+      "neto_cobrado": {
+        "label": "O que che ingresan (líquido a percibir)",
+        "unit": "€"
+      },
+      "irpf_nomina": {
+        "label": "% de IRPF que aparece na túa nómina",
+        "unit": "%",
+        "help": "Opcional. Se o pos, usamos o da túa nómina en vez de estimalo."
+      }
+    },
+    "o": {
+      "contrato": {
+        "indefinido": "Indefinido",
+        "fijo_discontinuo": "Fixo descontinuo",
+        "temporal": "Temporal"
+      }
+    },
+    "result": {
+      "title": "Estimación da túa nómina",
+      "tag": "Estimación orientativa",
+      "devengos": "O que deberías cobrar en bruto",
+      "deducciones": "O que se desconta",
+      "salario_base": "Salario base ({pct} % de xornada; táboa: {tabla} €)",
+      "plus_nocturnidad": "Plus de nocturnidade",
+      "plus_festivos": "Festivos traballados",
+      "plus_transporte": "Plus de transporte",
+      "plus_manutencion": "Plus de manutención",
+      "prorrata": "Rateo de pagas extra ({n} pagas de {importe})",
+      "total_bruto": "Total bruto estimado",
+      "base_cot": "Base de cotización (inclúe o rateo de pagas extra)",
+      "cot_cc": "Continxencias comúns",
+      "cot_desempleo": "Desemprego",
+      "cot_fp": "Formación profesional",
+      "cot_mei": "Mecanismo de Equidade Interxeracional (MEI)",
+      "irpf_estimado": "IRPF estimado",
+      "irpf_nomina": "IRPF (a % da túa nómina)",
+      "total_deducciones": "Total descontos",
+      "neto": "Neto estimado do mes",
+      "pagas_info": "Pagas extra: {n} ao ano de arredor de {importe} brutos cada unha.",
+      "pagas_fechas": "Datas de pagamento segundo o convenio: {fechas}.",
+      "compare_neto_title": "Comparación co que che ingresan",
+      "compare_bruto_title": "Comparación co bruto da túa nómina",
+      "compare_less": "Cobras {diff} menos do estimado ({pct} %).",
+      "compare_more": "Cobras {diff} máis do estimado ({pct} %).",
+      "compare_equal": "Coincide practicamente co estimado.",
+      "compare_grave": "A diferenza é importante. Revisa a túa nómina concepto a concepto cun sindicato: categoría, horas, pluses e pagas.",
+      "compare_revisable": "Hai unha diferenza que convén revisar. Pode deberse a conceptos que aquí non se calculan (antigüidade, anticipos, embargos…) ou a un erro.",
+      "compare_more_note": "Se parte do que cobras non aparece na nómina (pagamentos en efectivo «en negro»), ese diñeiro non cotiza: reduce o teu paro, as túas baixas e a túa xubilación.",
+      "no_compare": "Introduce o que che ingresan para comparalo.",
+      "irpf_detail": "Estimación do IRPF: rendemento neto {rn}, redución por traballo {red}, base {base}. Tipo resultante: {tipo}.",
+      "faltan_title": "Aínda non se pode calcular",
+      "faltan_body": "Faltan datos oficiais do convenio que a ferramenta non estima. Cando se carguen as táboas do BOP nº 209 (31/10/2025), este cálculo funcionará.",
+      "faltan_fields": "Datos que faltan:",
+      "pendientes_title": "Partes que non se puideron calcular",
+      "bajo_smi": "O salario de táboa a xornada completa ({tabla} ao ano) queda por debaixo do salario mínimo interprofesional ({smi}). O SMI prevalece: ninguén pode cobrar menos a xornada completa (art. 27 ET)."
+    },
+    "faltan": {
+      "categoria": "Escolle a túa categoría.",
+      "horas_contrato": "Indica as horas semanais do teu contrato.",
+      "salario_base_mensual": "Salario base mensual da túa categoría (táboas 2025).",
+      "pagas_numero": "Número de pagas extra do convenio.",
+      "pagas_base_calculo": "Como se calcula cada paga extra segundo o convenio.",
+      "pagas_importe_fijo": "Importe de cada paga extra."
+    },
+    "pend": {
+      "plus_nocturnidad": "Plus de nocturnidade: importe do convenio pendente de cargar. Non se sumou.",
+      "plus_festivos": "Festivos: importe do convenio pendente de cargar. Non se sumou.",
+      "plus_transporte": "Plus de transporte: dato do convenio pendente de cargar. Non se sumou.",
+      "plus_manutencion": "Plus de manutención: dato do convenio pendente de cargar. Non se sumou.",
+      "fiscal_seguridad_social_bases": "Bases mínima e máxima de cotización 2026 pendentes: non se aplicaron topes.",
+      "fiscal_salario_minimo": "SMI 2026 pendente: non se comprobou se a táboa o respecta.",
+      "fiscal_irpf": "Parámetros de IRPF incompletos: non se estimou a retención.",
+      "fiscal_seguridad_social_tipos_trabajador_contingencias_comunes": "Tipo de continxencias comúns pendente.",
+      "fiscal_seguridad_social_tipos_trabajador_desempleo_indefinido": "Tipo de desemprego pendente.",
+      "fiscal_seguridad_social_tipos_trabajador_desempleo_temporal": "Tipo de desemprego pendente.",
+      "fiscal_seguridad_social_tipos_trabajador_formacion_profesional": "Tipo de formación profesional pendente.",
+      "fiscal_seguridad_social_tipos_trabajador_mei": "Tipo do MEI pendente."
+    },
+    "notas": {
+      "title": "Supostos deste cálculo",
+      "jornada_supuesta_40": "Como xornada completa úsanse 40 h/semana (máximo do art. 34.1 ET), porque falta cargar a xornada semanal do convenio.",
+      "pagas_sin_antiguedad": "As pagas extra calculáronse sobre o salario base, sen antigüidade.",
+      "base_maxima": "Aplicouse a base máxima de cotización.",
+      "base_minima": "Aplicouse a base mínima de cotización.",
+      "irpf_sin_limite_excluyente": "IRPF: non se aplicou o límite por debaixo do cal non hai retención (dato pendente). Con salarios baixos a retención real pode ser do 0 %.",
+      "irpf_minimo_temporal": "IRPF: aplícase o tipo mínimo do 2 % dos contratos de menos dun ano.",
+      "general": "Suponse un mes sen paga extra, sen antigüidade, sen horas extra e cos mesmos pluses todos os meses. O IRPF estímase para unha persoa sen fillos nin outras circunstancias familiares; o teu pode ser distinto."
+    }
+  },
+  "dudas": {
+    "eyebrow": "Módulo 3",
+    "h1": "Dúbidas frecuentes",
+    "lead": "Escolle un tema e responde ás preguntas. Levarate a unha resposta concreta coa norma que a regula.",
+    "topics": "Temas",
+    "back": "Volver",
+    "restart": "Outros temas",
+    "path": "O teu percorrido",
+    "pendiente": "[dato pendente de cargar do convenio]"
+  },
+  "qh": {
+    "eyebrow": "Módulo 4",
+    "h1": "Que facer agora",
+    "lead": "Pasos reais, en orde, para defender os teus dereitos sen expoñerte máis do necesario.",
+    "plazos": "Prazos que non podes deixar pasar",
+    "verificar": "Comproba o enderezo e o horario actualizados antes de ir."
+  }
+}

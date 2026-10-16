@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Garantía técnica de privacidad: solo se cargan recursos del propio sitio y ningún formulario puede enviarse a ningún sitio. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1d3a2a">
+  <title>Barra Libre · Hostelería Pontevedra</title>
+  <meta name="description" content="Herramienta anónima para comprobar si tus condiciones en hostelería cumplen el convenio de Pontevedra. Nada sale de tu móvil.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" aria-label="Barra Libre — inicio">
+        <svg class="brand-seal" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="32" cy="32" r="23" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2.6"/>
+          <text x="32" y="38.5" text-anchor="middle" font-family="Georgia, serif" font-size="19" font-weight="700" fill="currentColor">BL</text>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Barra Libre</span>
+          <span class="brand-sub" data-i18n="app.tagline">Hostelería · provincia de Pontevedra</span>
+        </span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Idioma / Idioma" data-i18n-attr="aria-label:lang.label">
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="true" lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="gl" aria-pressed="false" lang="gl">GL</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="privacy-strip" role="note">
+    <div class="wrap privacy-inner">
+      <p>
+        <strong data-i18n="privacy.title">Nada sale de tu móvil.</strong>
+        <span data-i18n="privacy.body">Sin servidor, sin cookies, sin analítica. Tus respuestas solo existen en esta pestaña y se borran al recargar o cerrar.</span>
+      </p>
+      <button type="button" class="btn btn-ghost btn-small" id="btn-wipe" data-i18n="privacy.wipe">Borrar mis respuestas</button>
+    </div>
+  </div>
+
+  <nav class="module-nav" aria-label="Módulos" data-i18n-attr="aria-label:nav.label">
+    <ul class="wrap">
+      <li><a href="#auditoria" data-route="auditoria"><span class="nav-num" aria-hidden="true">1</span><span data-i18n="nav.auditoria">Auditoría</span></a></li>
+      <li><a href="#nomina" data-route="nomina"><span class="nav-num" aria-hidden="true">2</span><span data-i18n="nav.nomina">Nómina</span></a></li>
+      <li><a href="#dudas" data-route="dudas"><span class="nav-num" aria-hidden="true">3</span><span data-i18n="nav.dudas">Dudas</span></a></li>
+      <li><a href="#que-hacer" data-route="que-hacer"><span class="nav-num" aria-hidden="true">4</span><span data-i18n="nav.que_hacer">Qué hacer</span></a></li>
+    </ul>
+  </nav>
+
+  <div id="data-status" class="wrap" aria-live="polite"></div>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <noscript>
+      <p class="callout callout-warn">Esta herramienta necesita JavaScript activado. Todo el cálculo se hace en tu propio dispositivo: no se envía nada a ningún servidor.</p>
+    </noscript>
+    <section id="view-inicio" class="view" data-view="inicio" aria-labelledby="h-inicio"></section>
+    <section id="view-auditoria" class="view" data-view="auditoria" aria-labelledby="h-auditoria" hidden></section>
+    <section id="view-nomina" class="view" data-view="nomina" aria-labelledby="h-nomina" hidden></section>
+    <section id="view-dudas" class="view" data-view="dudas" aria-labelledby="h-dudas" hidden></section>
+    <section id="view-que-hacer" class="view" data-view="que-hacer" aria-labelledby="h-que-hacer" hidden></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-legal" data-i18n="footer.legal">Barra Libre es una herramienta informativa. No es asesoramiento jurídico ni sustituye a un sindicato, abogado/a laboralista o graduado/a social.</p>
+      <p id="footer-source" class="footer-source"></p>
+      <p class="footer-privacy" data-i18n="footer.privacy">Este sitio no usa cookies, ni analítica, ni fuentes o scripts externos. Puedes comprobarlo en el código fuente.</p>
+    </div>
+  </footer>
+</body>
+</html>

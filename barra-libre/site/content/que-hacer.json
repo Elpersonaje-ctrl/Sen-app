@@ -1,0 +1,143 @@
+{
+  "_leeme": [
+    "Contenido del módulo 'Qué hacer ahora'. Separado del código.",
+    "Mismo formato de texto que dudas.json (párrafos, **negrita**, listas '- ').",
+    "Los enlaces se muestran como enlaces normales: la web no los descarga ni contacta con ellos. Revisa los marcados con _verificar antes de publicar.",
+    "No se incluyen teléfonos ni direcciones concretas para no publicar datos desactualizados: añádelos si los verificas."
+  ],
+  "pasos": [
+    {
+      "id": "pruebas",
+      "titulo": { "es": "Reúne pruebas, sin avisar a nadie", "gl": "Reúne probas, sen avisar a ninguén" },
+      "cuerpo": {
+        "es": [
+          "Antes de reclamar nada, guarda todo lo que demuestre cómo trabajas de verdad. Hazlo en **tu propio móvil o en papel**, nunca en dispositivos o cuentas de la empresa.",
+          "- Contrato y todas tus nóminas.\n- Tu informe de vida laboral (sede electrónica o app oficial de la Seguridad Social).\n- Un registro propio: cada día, fecha, hora de entrada y de salida.\n- Fotos de cuadrantes y horarios.\n- Mensajes en los que te cambian turnos o te piden quedarte.\n- Nombres de compañeros/as que puedan confirmar lo que pasa.",
+          "Imprime o guarda en PDF el informe de la Auditoría: no contiene tu nombre ni el de la empresa."
+        ],
+        "gl": [
+          "Antes de reclamar nada, garda todo o que demostre como traballas de verdade. Faino no **teu propio móbil ou en papel**, nunca en dispositivos ou contas da empresa.",
+          "- Contrato e todas as túas nóminas.\n- O teu informe de vida laboral (sede electrónica ou app oficial da Seguridade Social).\n- Un rexistro propio: cada día, data, hora de entrada e de saída.\n- Fotos de cadrantes e horarios.\n- Mensaxes nas que che cambian quendas ou che piden quedar.\n- Nomes de compañeiros/as que poidan confirmar o que pasa.",
+          "Imprime ou garda en PDF o informe da Auditoría: non contén o teu nome nin o da empresa."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.9" } ]
+    },
+    {
+      "id": "sindicato",
+      "titulo": { "es": "Habla con un sindicato del sector", "gl": "Fala cun sindicato do sector" },
+      "cuerpo": {
+        "es": [
+          "Los sindicatos con presencia en la hostelería de la provincia de Pontevedra tienen asesoría laboral y sedes en Vigo, Pontevedra y las principales comarcas:",
+          "- **CIG** — Confederación Intersindical Galega (federación de servicios).\n- **CCOO** — Comisións Obreiras de Galicia (federación de servicios).\n- **UGT** — Unión General de Trabajadores de Galicia (federación de servicios).",
+          "Pregunta por la asesoría de hostelería. Muchos ofrecen una primera consulta informativa; pregunta las condiciones. Un sindicato también puede **denunciar ante la Inspección en su nombre**, lo que protege más tu identidad.",
+          "Lleva este informe impreso y tus pruebas."
+        ],
+        "gl": [
+          "Os sindicatos con presenza na hostalaría da provincia de Pontevedra teñen asesoría laboral e sedes en Vigo, Pontevedra e as principais comarcas:",
+          "- **CIG** — Confederación Intersindical Galega (federación de servizos).\n- **CCOO** — Comisións Obreiras de Galicia (federación de servizos).\n- **UGT** — Unión Xeral de Traballadores de Galicia (federación de servizos).",
+          "Pregunta pola asesoría de hostalaría. Moitos ofrecen unha primeira consulta informativa; pregunta as condicións. Un sindicato tamén pode **denunciar ante a Inspección no seu nome**, o que protexe máis a túa identidade.",
+          "Leva este informe impreso e as túas probas."
+        ]
+      },
+      "enlaces": [
+        { "texto": { "es": "CIG", "gl": "CIG" }, "url": "https://www.cig.gal/" },
+        { "texto": { "es": "CCOO Galicia", "gl": "CCOO Galicia" }, "url": "https://www.ccoo.gal/" },
+        { "texto": { "es": "UGT Galicia", "gl": "UGT Galicia" }, "url": "https://www.ugt-galicia.org/" }
+      ],
+      "_verificar": true
+    },
+    {
+      "id": "inspeccion",
+      "titulo": { "es": "Inspección de Trabajo: de forma anónima o confidencial", "gl": "Inspección de Traballo: de forma anónima ou confidencial" },
+      "cuerpo": {
+        "es": [
+          "Tienes dos vías, según cuánto quieras exponerte:",
+          "**1. Buzón de la Inspección (anónimo).** Es un formulario en la web de la Inspección de Trabajo y Seguridad Social (ITSS) para comunicar irregularidades **sin identificarte**. No es una denuncia formal: no recibirás respuesta ni sabrás qué se ha hecho, pero la Inspección puede usar la información para planificar visitas. Cuanto más concreto seas (horarios, días, qué incumplimiento), más útil será. Ten en cuenta que, si das detalles que solo tú conoces, la empresa podría deducir quién ha sido.",
+          "**2. Denuncia formal (confidencial).** Tienes que identificarte ante la Inspección, pero esta tiene el **deber de guardar secreto** sobre quién ha denunciado: la empresa no sabrá por la Inspección que has sido tú. Puedes presentarla por la sede electrónica o en la Inspección Provincial de Trabajo de Pontevedra. Puedes hacerlo también **a través de un sindicato**.",
+          "Las infracciones laborales prescriben, en general, a los **3 años**."
+        ],
+        "gl": [
+          "Tes dúas vías, segundo canto te queiras expoñer:",
+          "**1. Caixa de correo da Inspección (anónima).** É un formulario na web da Inspección de Traballo e Seguridade Social (ITSS) para comunicar irregularidades **sen identificarte**. Non é unha denuncia formal: non recibirás resposta nin saberás que se fixo, pero a Inspección pode usar a información para planificar visitas. Canto máis concreto sexas (horarios, días, que incumprimento), máis útil será. Ten en conta que, se dás detalles que só ti coñeces, a empresa podería deducir quen foi.",
+          "**2. Denuncia formal (confidencial).** Tes que identificarte ante a Inspección, pero esta ten o **deber de gardar segredo** sobre quen denunciou: a empresa non saberá pola Inspección que fuches ti. Podes presentala pola sede electrónica ou na Inspección Provincial de Traballo de Pontevedra. Podes facelo tamén **a través dun sindicato**.",
+          "As infraccións laborais prescriben, en xeral, aos **3 anos**."
+        ]
+      },
+      "enlaces": [
+        { "texto": { "es": "Buzón de la Inspección de Trabajo (ITSS)", "gl": "Caixa de correo da Inspección de Traballo (ITSS)" }, "url": "https://www.mites.gob.es/itss/web/Atencion_al_Ciudadano/COLABORA_ITSS/" },
+        { "texto": { "es": "Web de la Inspección de Trabajo", "gl": "Web da Inspección de Traballo" }, "url": "https://www.mites.gob.es/itss/" }
+      ],
+      "citas": [ { "norma": "lisos", "art": "4.1" } ],
+      "_verificar": true
+    },
+    {
+      "id": "represalias",
+      "titulo": { "es": "La ley te protege frente a represalias", "gl": "A lei protéxete fronte a represalias" },
+      "cuerpo": {
+        "es": [
+          "Reclamar tus derechos (pedir el registro horario, el pago de horas, denunciar ante la Inspección o demandar) está protegido por la **garantía de indemnidad**: un despido o castigo como represalia es **nulo**, lo que supone readmisión y pago de los salarios dejados de percibir.",
+          "Por eso conviene que tus reclamaciones queden **por escrito y con fecha** (correo electrónico, escrito sellado): así se puede demostrar la relación entre tu reclamación y la represalia."
+        ],
+        "gl": [
+          "Reclamar os teus dereitos (pedir o rexistro horario, o pagamento de horas, denunciar ante a Inspección ou demandar) está protexido pola **garantía de indemnidade**: un despedimento ou castigo como represalia é **nulo**, o que supón readmisión e pagamento dos salarios deixados de percibir.",
+          "Por iso convén que as túas reclamacións queden **por escrito e con data** (correo electrónico, escrito selado): así pódese demostrar a relación entre a túa reclamación e a represalia."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "55.5" } ]
+    },
+    {
+      "id": "conciliacion",
+      "titulo": { "es": "Papeleta de conciliación y demanda", "gl": "Papeleta de conciliación e demanda" },
+      "cuerpo": {
+        "es": [
+          "Para reclamar en el juzgado (un despido, cantidades que te deben, horas extra…) normalmente hay que intentar antes una **conciliación**. En Galicia se presenta la **papeleta de conciliación** ante el servicio de mediación, arbitraje y conciliación de la Xunta (jefatura territorial de Pontevedra o Vigo), por su sede electrónica o en persona.",
+          "- Presentarla **suspende** el plazo de caducidad (por ejemplo, los 20 días del despido).\n- En el acto de conciliación tú y la empresa podéis llegar a un acuerdo, que tiene fuerza ejecutiva.\n- Si no hay acuerdo, se presenta la **demanda** ante el Juzgado de lo Social.",
+          "En la jurisdicción social, las personas trabajadoras tienen derecho a **asistencia jurídica gratuita**. Puedes acudir con un sindicato, un/a abogado/a laboralista o un/a graduado/a social."
+        ],
+        "gl": [
+          "Para reclamar no xulgado (un despedimento, cantidades que che deben, horas extra…) normalmente hai que intentar antes unha **conciliación**. En Galicia preséntase a **papeleta de conciliación** ante o servizo de mediación, arbitraxe e conciliación da Xunta (xefatura territorial de Pontevedra ou Vigo), pola súa sede electrónica ou en persoa.",
+          "- Presentala **suspende** o prazo de caducidade (por exemplo, os 20 días do despedimento).\n- No acto de conciliación ti e a empresa podedes chegar a un acordo, que ten forza executiva.\n- Se non hai acordo, preséntase a **demanda** ante o Xulgado do Social.",
+          "Na xurisdición social, as persoas traballadoras teñen dereito a **asistencia xurídica gratuíta**. Podes acudir cun sindicato, un/unha avogado/a laboralista ou un/unha graduado/a social."
+        ]
+      },
+      "enlaces": [
+        { "texto": { "es": "Sede electrónica de la Xunta de Galicia", "gl": "Sede electrónica da Xunta de Galicia" }, "url": "https://sede.xunta.gal/" }
+      ],
+      "citas": [ { "norma": "lrjs", "art": "63" }, { "norma": "lrjs", "art": "65" } ],
+      "_verificar": true
+    }
+  ],
+  "plazos": [
+    {
+      "plazo": { "es": "20 días hábiles", "gl": "20 días hábiles" },
+      "que": { "es": "Reclamar contra un **despido** (también el fin de un temporal fraudulento o la falta de llamamiento de fijo-discontinuo). Desde el día siguiente al despido.", "gl": "Reclamar contra un **despedimento** (tamén o fin dun temporal fraudulento ou a falta de chamamento de fixo descontinuo). Desde o día seguinte ao despedimento." },
+      "citas": [ { "norma": "et", "art": "59.3" }, { "norma": "lrjs", "art": "103" } ]
+    },
+    {
+      "plazo": { "es": "20 días hábiles", "gl": "20 días hábiles" },
+      "que": { "es": "Impugnar una **modificación sustancial** de tus condiciones (horario, turnos, jornada).", "gl": "Impugnar unha **modificación substancial** das túas condicións (horario, quendas, xornada)." },
+      "citas": [ { "norma": "et", "art": "59.4" } ]
+    },
+    {
+      "plazo": { "es": "20 días hábiles", "gl": "20 días hábiles" },
+      "que": { "es": "Impugnar una **sanción** disciplinaria.", "gl": "Impugnar unha **sanción** disciplinaria." },
+      "citas": [ { "norma": "lrjs", "art": "114" } ]
+    },
+    {
+      "plazo": { "es": "20 días", "gl": "20 días" },
+      "que": { "es": "Demandar por la **fecha de vacaciones** que te impone la empresa.", "gl": "Demandar pola **data de vacacións** que che impón a empresa." },
+      "citas": [ { "norma": "lrjs", "art": "125" } ]
+    },
+    {
+      "plazo": { "es": "1 año", "gl": "1 ano" },
+      "que": { "es": "Reclamar **cantidades**: salarios, horas extra, pluses, pagas, diferencias de categoría. Cuenta desde el día en que debieron pagártelas: lo más antiguo de un año se pierde mes a mes.", "gl": "Reclamar **cantidades**: salarios, horas extra, pluses, pagas, diferenzas de categoría. Conta desde o día en que debían pagarchas: o máis antigo dun ano pérdese mes a mes." },
+      "citas": [ { "norma": "et", "art": "59.2" } ]
+    },
+    {
+      "plazo": { "es": "1 año", "gl": "1 ano" },
+      "que": { "es": "Otras acciones derivadas del contrato sin plazo especial, desde que termina el contrato.", "gl": "Outras accións derivadas do contrato sen prazo especial, desde que remata o contrato." },
+      "citas": [ { "norma": "et", "art": "59.1" } ]
+    }
+  ]
+}

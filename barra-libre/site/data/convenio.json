@@ -1,0 +1,288 @@
+{
+  "_leeme": [
+    "Datos del Convenio colectivo provincial de hostelería de Pontevedra 2024-2025, en ultraactividad en 2026 con las tablas de 2025.",
+    "TODAS las cifras deben copiarse a mano del BOP Pontevedra nº 209 (31/10/2025). No se estima ni se rellena nada automáticamente.",
+    "Convención: un valor null con \"_pendiente\": true significa que el dato aún no está cargado. La aplicación lo muestra como 'pendiente' y no calcula con él.",
+    "Cuando completes un bloque, cambia su \"_pendiente\" a false.",
+    "Herencia: en cada categoría, los campos 'pluses', 'jornada_anual_horas', 'vacaciones' y 'pagas_extra' pueden dejarse en null si son iguales a los del bloque 'comun'. La app usa el valor de la categoría si existe y, si no, el de 'comun'.",
+    "Tipos admitidos en pluses: 'importe_hora', 'importe_dia', 'importe_mensual', 'porcentaje_salario_base'. Importes en euros brutos; porcentajes como número (25 = 25 %).",
+    "Ver DATOS-PENDIENTES.md para la lista exacta de cifras a extraer del BOP."
+  ],
+
+  "meta": {
+    "nombre": {
+      "es": "Convenio colectivo provincial de hostelería de Pontevedra",
+      "gl": "Convenio colectivo provincial de hostalaría de Pontevedra"
+    },
+    "periodo_pactado": "2024-2025",
+    "tablas_aplicadas": "2025",
+    "vigente_desde": null,
+    "vigente_hasta": null,
+    "ultraactividad": {
+      "en_ultraactividad": true,
+      "desde": null,
+      "nota": {
+        "es": "Vencido el periodo pactado sin nuevo convenio, sigue aplicándose (art. 86.4 ET). En 2026 rigen las tablas salariales de 2025.",
+        "gl": "Rematado o período pactado sen novo convenio, segue aplicándose (art. 86.4 ET). En 2026 rexen as táboas salariais de 2025."
+      }
+    },
+    "fuente": {
+      "boletin": "Boletín Oficial da Provincia de Pontevedra (BOP)",
+      "numero": 209,
+      "fecha_publicacion": "2025-10-31",
+      "url": null,
+      "codigo_convenio": null,
+      "paginas_tablas": null
+    },
+    "fecha_carga_datos": null,
+    "_pendiente": true
+  },
+
+  "articulos": {
+    "_nota": "Número de artículo del convenio donde se regula cada materia (texto, p. ej. \"14\" o \"14.2\"). Se cita en el informe.",
+    "jornada": null,
+    "distribucion_jornada": null,
+    "horas_extra": null,
+    "descanso_entre_jornadas": null,
+    "descanso_semanal": null,
+    "nocturnidad": null,
+    "festivos": null,
+    "vacaciones": null,
+    "pagas_extra": null,
+    "tablas_salariales": null,
+    "transporte": null,
+    "manutencion": null,
+    "contratacion": null,
+    "periodo_prueba": null,
+    "preaviso_cese": null,
+    "_pendiente": true
+  },
+
+  "comun": {
+    "_nota": "Valores que se aplican a todas las categorías salvo que la categoría indique otro.",
+    "jornada": {
+      "anual_horas": null,
+      "semanal_horas": null,
+      "diaria_max_horas_ordinarias": null,
+      "_pendiente": true
+    },
+    "vacaciones": {
+      "dias": null,
+      "tipo_dias": null,
+      "_tipo_dias_admitidos": ["naturales", "laborables"],
+      "_pendiente": true
+    },
+    "descanso_semanal_dias": null,
+    "pagas_extra": {
+      "numero": null,
+      "pagas": [
+        { "nombre": null, "fecha_abono": null },
+        { "nombre": null, "fecha_abono": null }
+      ],
+      "base_calculo": null,
+      "_base_calculo_admitidos": ["salario_base", "salario_base_mas_antiguedad", "importe_fijo"],
+      "importe_fijo": null,
+      "prorrateables": null,
+      "_pendiente": true
+    },
+    "pluses": {
+      "nocturnidad": {
+        "tipo": null,
+        "valor": null,
+        "franja": { "desde": null, "hasta": null },
+        "proporcional_jornada": null,
+        "_pendiente": true
+      },
+      "festivos": {
+        "tipo": null,
+        "valor": null,
+        "descanso_compensatorio_alternativo": null,
+        "proporcional_jornada": null,
+        "_pendiente": true
+      },
+      "transporte": {
+        "tipo": null,
+        "valor": null,
+        "proporcional_jornada": null,
+        "_pendiente": true
+      },
+      "manutencion": {
+        "tipo": null,
+        "valor": null,
+        "proporcional_jornada": null,
+        "_pendiente": true
+      }
+    },
+    "horas_extra": {
+      "tipo": null,
+      "valor": null,
+      "_nota": "Precio de la hora extra si el convenio lo fija ('importe_hora' o 'porcentaje_salario_base' como recargo sobre la hora ordinaria).",
+      "_pendiente": true
+    },
+    "antiguedad": {
+      "regulada": null,
+      "descripcion": null,
+      "_nota": "Informativo. La versión actual no calcula antigüedad.",
+      "_pendiente": true
+    }
+  },
+
+  "categorias": [
+    {
+      "id": "jefe_sala",
+      "nombre": { "es": "Jefe/a de restaurante o sala", "gl": "Xefe/a de restaurante ou sala" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "segundo_jefe_sala",
+      "nombre": { "es": "Segundo/a jefe/a de restaurante o sala", "gl": "Segundo/a xefe/a de restaurante ou sala" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "jefe_sector",
+      "nombre": { "es": "Jefe/a de sector", "gl": "Xefe/a de sector" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "camarero",
+      "nombre": { "es": "Camarero/a", "gl": "Camareiro/a" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "barman",
+      "nombre": { "es": "Barman / Barwoman", "gl": "Barman / Barwoman" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "sumiller",
+      "nombre": { "es": "Sumiller", "gl": "Sumiller" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "ayudante_camarero",
+      "nombre": { "es": "Ayudante de camarero/a", "gl": "Axudante de camareiro/a" },
+      "area": "restaurante_bar",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "jefe_cocina",
+      "nombre": { "es": "Jefe/a de cocina", "gl": "Xefe/a de cociña" },
+      "area": "cocina",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "cocinero",
+      "nombre": { "es": "Cocinero/a", "gl": "Cociñeiro/a" },
+      "area": "cocina",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "ayudante_cocina",
+      "nombre": { "es": "Ayudante de cocina", "gl": "Axudante de cociña" },
+      "area": "cocina",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "auxiliar_cocina",
+      "nombre": { "es": "Auxiliar de cocina / office", "gl": "Auxiliar de cociña / office" },
+      "area": "cocina",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    },
+    {
+      "id": "camarero_pisos",
+      "nombre": { "es": "Camarero/a de pisos", "gl": "Camareiro/a de pisos" },
+      "area": "pisos_limpieza",
+      "grupo_profesional": null,
+      "nivel": null,
+      "salario_base_mensual": null,
+      "pluses": { "nocturnidad": null, "festivos": null, "transporte": null, "manutencion": null },
+      "jornada_anual_horas": null,
+      "vacaciones": null,
+      "pagas_extra": null,
+      "_pendiente": true
+    }
+  ]
+}

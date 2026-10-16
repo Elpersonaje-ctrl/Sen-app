@@ -1,0 +1,467 @@
+{
+  "_leeme": [
+    "Árbol de decisión del módulo Dudas. Contenido separado del código: se puede editar sin tocar JS.",
+    "Cada nodo es una 'pregunta' (con 'opciones' que apuntan a otro nodo con 'ir') o una 'respuesta' (párrafos + 'citas').",
+    "Texto: párrafos en un array; '**negrita**'; listas con líneas que empiezan por '- ' (separadas por \\n); enlaces [texto](https://...).",
+    "{{ruta.del.convenio}} se sustituye por el valor de data/convenio.json (p. ej. {{comun.vacaciones.dias}}). Si es null, se muestra 'dato pendiente'.",
+    "citas: norma ∈ et | convenio | rd1561 | rd2001 | lgss | lrjs | lisos. Para el convenio usa \"art\": \"@materia\" y se tomará de convenio.articulos.<materia>."
+  ],
+  "temas": [
+    { "id": "vacaciones", "inicio": "vac", "titulo": { "es": "Vacaciones", "gl": "Vacacións" } },
+    { "id": "horas_extra", "inicio": "hx", "titulo": { "es": "Horas extra", "gl": "Horas extra" } },
+    { "id": "turnos", "inicio": "tu", "titulo": { "es": "Cambios de turno y horario", "gl": "Cambios de quenda e horario" } },
+    { "id": "jornada_anual", "inicio": "ja", "titulo": { "es": "Jornada anual", "gl": "Xornada anual" } },
+    { "id": "registro", "inicio": "rh", "titulo": { "es": "Registro horario", "gl": "Rexistro horario" } },
+    { "id": "fin_contrato", "inicio": "fc", "titulo": { "es": "Fin de contrato y despido", "gl": "Fin de contrato e despedimento" } }
+  ],
+  "nodos": {
+
+    "vac": {
+      "pregunta": { "es": "¿Qué quieres saber sobre tus vacaciones?", "gl": "Que queres saber sobre as túas vacacións?" },
+      "opciones": [
+        { "ir": "vac_dias", "texto": { "es": "¿Cuántos días me corresponden?", "gl": "Cantos días me corresponden?" } },
+        { "ir": "vac_cuando", "texto": { "es": "¿Quién decide cuándo las cojo?", "gl": "Quen decide cando as collo?" } },
+        { "ir": "vac_pagar", "texto": { "es": "¿Me las pueden pagar en vez de dármelas?", "gl": "Pódenmas pagar en vez de darmas?" } },
+        { "ir": "vac_baja", "texto": { "es": "Estuve de baja y coincidió con mis vacaciones", "gl": "Estiven de baixa e coincidiu coas miñas vacacións" } },
+        { "ir": "vac_fin", "texto": { "es": "Me voy de la empresa y no las he disfrutado", "gl": "Marcho da empresa e non as gocei" } }
+      ]
+    },
+    "vac_dias": {
+      "respuesta": {
+        "es": [
+          "Por ley te corresponden **al menos 30 días naturales al año**. El convenio puede mejorarlo, nunca empeorarlo.",
+          "El convenio provincial fija: **{{comun.vacaciones.dias}}** días ({{comun.vacaciones.tipo_dias}}).",
+          "Si no has trabajado el año completo (temporada, contrato reciente), te corresponde la parte proporcional al tiempo trabajado.",
+          "Durante las vacaciones cobras tu retribución normal, incluidos los pluses que cobras de forma habitual."
+        ],
+        "gl": [
+          "Por lei corresponden **polo menos 30 días naturais ao ano**. O convenio pode melloralo, nunca empeoralo.",
+          "O convenio provincial fixa: **{{comun.vacaciones.dias}}** días ({{comun.vacaciones.tipo_dias}}).",
+          "Se non traballaches o ano completo (tempada, contrato recente), correspóndeche a parte proporcional ao tempo traballado.",
+          "Durante as vacacións cobras a túa retribución normal, incluídos os pluses que cobras de forma habitual."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "38.1" }, { "norma": "convenio", "art": "@vacaciones" } ]
+    },
+    "vac_cuando": {
+      "respuesta": {
+        "es": [
+          "Las fechas se fijan **de común acuerdo** entre la empresa y tú, según lo que diga el convenio sobre la planificación anual.",
+          "Debe haber un calendario de vacaciones y **tienes que conocer tus fechas al menos 2 meses antes** de empezar a disfrutarlas.",
+          "Si no hay acuerdo, decide el juzgado de lo social en un procedimiento rápido. Ojo al plazo: **20 días** desde que conoces la fecha que te impone la empresa."
+        ],
+        "gl": [
+          "As datas fíxanse **de común acordo** entre a empresa e ti, segundo o que diga o convenio sobre a planificación anual.",
+          "Debe haber un calendario de vacacións e **tes que coñecer as túas datas polo menos 2 meses antes** de comezar a gozalas.",
+          "Se non hai acordo, decide o xulgado do social nun procedemento rápido. Ollo ao prazo: **20 días** desde que coñeces a data que che impón a empresa."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "38.2" }, { "norma": "et", "art": "38.3" }, { "norma": "lrjs", "art": "125" }, { "norma": "convenio", "art": "@vacaciones" } ]
+    },
+    "vac_pagar": {
+      "respuesta": {
+        "es": [
+          "**No.** Mientras sigas trabajando, las vacaciones no se pueden sustituir por dinero.",
+          "La única excepción es cuando termina tu contrato: entonces las vacaciones generadas y no disfrutadas se pagan en el finiquito."
+        ],
+        "gl": [
+          "**Non.** Mentres sigas traballando, as vacacións non se poden substituír por diñeiro.",
+          "A única excepción é cando remata o teu contrato: entón as vacacións xeradas e non gozadas páganse no finiquito."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "38.1" } ]
+    },
+    "vac_baja": {
+      "respuesta": {
+        "es": [
+          "Si tus vacaciones coinciden con una baja por embarazo, parto o lactancia, o con el permiso por nacimiento, tienes derecho a disfrutarlas en otra fecha, aunque haya terminado el año.",
+          "Si coinciden con otra baja médica que te impide disfrutarlas, puedes cogerlas cuando termine la baja, siempre que no hayan pasado **más de 18 meses** desde el final del año en que se generaron."
+        ],
+        "gl": [
+          "Se as túas vacacións coinciden cunha baixa por embarazo, parto ou lactación, ou co permiso por nacemento, tes dereito a gozalas noutra data, aínda que rematase o ano.",
+          "Se coinciden con outra baixa médica que che impide gozalas, podes collelas cando remate a baixa, sempre que non pasasen **máis de 18 meses** desde o final do ano en que se xeraron."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "38.3" } ]
+    },
+    "vac_fin": {
+      "respuesta": {
+        "es": [
+          "Las vacaciones generadas y no disfrutadas se pagan en el **finiquito**: días pendientes × tu salario diario.",
+          "Revisa que aparezcan. Si no estás de acuerdo con el finiquito, firma poniendo **«recibí, no conforme»**. Puedes pedir que esté presente un/a representante de los trabajadores al firmarlo."
+        ],
+        "gl": [
+          "As vacacións xeradas e non gozadas páganse no **finiquito**: días pendentes × o teu salario diario.",
+          "Revisa que aparezan. Se non estás de acordo co finiquito, asina poñendo **«recibín, non conforme»**. Podes pedir que estea presente un/unha representante dos traballadores ao asinalo."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "38.1" }, { "norma": "et", "art": "49.2" } ]
+    },
+
+    "hx": {
+      "pregunta": { "es": "¿Qué te preocupa de las horas extra?", "gl": "Que che preocupa das horas extra?" },
+      "opciones": [
+        { "ir": "hx_obligar", "texto": { "es": "¿Me pueden obligar a hacerlas?", "gl": "Pódenme obrigar a facelas?" } },
+        { "ir": "hx_pago", "texto": { "es": "¿Cómo me las tienen que pagar?", "gl": "Como mas teñen que pagar?" } },
+        { "ir": "hx_max", "texto": { "es": "¿Hay un máximo?", "gl": "Hai un máximo?" } },
+        { "ir": "hx_parcial", "texto": { "es": "Estoy a tiempo parcial y me piden quedarme", "gl": "Estou a tempo parcial e pídenme quedar" } },
+        { "ir": "hx_prueba", "texto": { "es": "No me las apuntan en ningún sitio", "gl": "Non mas apuntan en ningún sitio" } }
+      ]
+    },
+    "hx_obligar": {
+      "respuesta": {
+        "es": [
+          "En principio son **voluntarias**. Solo son obligatorias si así se pactó en el convenio colectivo o en tu contrato, siempre dentro de los límites legales.",
+          "Las de **fuerza mayor** (para prevenir o reparar daños extraordinarios y urgentes) sí son obligatorias.",
+          "Si trabajas de noche de forma habitual o a tiempo parcial, no puedes hacer horas extra."
+        ],
+        "gl": [
+          "En principio son **voluntarias**. Só son obrigatorias se así se pactou no convenio colectivo ou no teu contrato, sempre dentro dos límites legais.",
+          "As de **forza maior** (para previr ou reparar danos extraordinarios e urxentes) si son obrigatorias.",
+          "Se traballas de noite de forma habitual ou a tempo parcial, non podes facer horas extra."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "35.4" }, { "norma": "et", "art": "35.3" }, { "norma": "et", "art": "36.1" }, { "norma": "et", "art": "12.4.c" } ]
+    },
+    "hx_pago": {
+      "respuesta": {
+        "es": [
+          "Cada hora extra se **paga** en la cuantía que fije el convenio o el contrato —**nunca por debajo del valor de la hora ordinaria**— o se **compensa con descanso** equivalente.",
+          "Si no hay pacto, se entiende que se compensan con descanso dentro de los **4 meses** siguientes.",
+          "Las horas extra pagadas deben aparecer en la nómina como concepto propio y cotizan a la Seguridad Social."
+        ],
+        "gl": [
+          "Cada hora extra **págase** na contía que fixe o convenio ou o contrato —**nunca por debaixo do valor da hora ordinaria**— ou **compénsase con descanso** equivalente.",
+          "Se non hai pacto, enténdese que se compensan con descanso dentro dos **4 meses** seguintes.",
+          "As horas extra pagadas deben aparecer na nómina como concepto propio e cotizan á Seguridade Social."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "35.1" }, { "norma": "convenio", "art": "@horas_extra" } ]
+    },
+    "hx_max": {
+      "respuesta": {
+        "es": [
+          "Máximo **80 horas extra al año**.",
+          "No cuentan para ese límite las compensadas con descanso dentro de los 4 meses siguientes, ni las de fuerza mayor.",
+          "Si trabajas a tiempo parcial o de noche de forma habitual, no puedes hacer horas extra."
+        ],
+        "gl": [
+          "Máximo **80 horas extra ao ano**.",
+          "Non contan para ese límite as compensadas con descanso dentro dos 4 meses seguintes, nin as de forza maior.",
+          "Se traballas a tempo parcial ou de noite de forma habitual, non podes facer horas extra."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "35.2" }, { "norma": "et", "art": "36.1" } ]
+    },
+    "hx_parcial": {
+      "respuesta": {
+        "es": [
+          "Con contrato a tiempo parcial **no se pueden hacer horas extraordinarias**, salvo las de fuerza mayor.",
+          "Lo que existe son las **horas complementarias**, con requisitos:",
+          "- Pacto firmado por escrito, aparte del contrato.\n- Máximo del 30 % de tus horas ordinarias (el convenio puede subirlo hasta el 60 %).\n- Preaviso de al menos 3 días.\n- Se pagan y cotizan como horas ordinarias.",
+          "Además, si tu contrato es indefinido y de al menos 10 horas semanales, la empresa puede ofrecerte horas complementarias **voluntarias** (hasta el 15 %, ampliable al 30 % por convenio). Puedes decir que no."
+        ],
+        "gl": [
+          "Con contrato a tempo parcial **non se poden facer horas extraordinarias**, agás as de forza maior.",
+          "O que existe son as **horas complementarias**, con requisitos:",
+          "- Pacto asinado por escrito, á parte do contrato.\n- Máximo do 30 % das túas horas ordinarias (o convenio pode subilo ata o 60 %).\n- Preaviso de polo menos 3 días.\n- Págase e cotizan como horas ordinarias.",
+          "Ademais, se o teu contrato é indefinido e de polo menos 10 horas semanais, a empresa pode ofrecerche horas complementarias **voluntarias** (ata o 15 %, ampliable ao 30 % por convenio). Podes dicir que non."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "12.4.c" }, { "norma": "et", "art": "12.5" }, { "norma": "convenio", "art": "@contratacion" } ]
+    },
+    "hx_prueba": {
+      "respuesta": {
+        "es": [
+          "La empresa debe **registrar cada día** tu hora de entrada y salida y, para las horas extra, totalizar tu jornada y entregarte copia del resumen junto con la nómina.",
+          "Si no lo hace, reúne tus propias pruebas:",
+          "- Apunta cada día la fecha y tu hora real de entrada y salida.\n- Haz fotos de los cuadrantes.\n- Guarda los mensajes en los que te cambian turnos o te piden quedarte.\n- Guarda todas tus nóminas.",
+          "Guárdalo en tu propio móvil o en papel, nunca en un dispositivo de la empresa. Tienes **1 año** para reclamar las cantidades que te deban."
+        ],
+        "gl": [
+          "A empresa debe **rexistrar cada día** a túa hora de entrada e saída e, para as horas extra, totalizar a túa xornada e entregarche copia do resumo xunto coa nómina.",
+          "Se non o fai, reúne as túas propias probas:",
+          "- Apunta cada día a data e a túa hora real de entrada e saída.\n- Fai fotos dos cadrantes.\n- Garda as mensaxes nas que che cambian quendas ou che piden quedar.\n- Garda todas as túas nóminas.",
+          "Gárdao no teu propio móbil ou en papel, nunca nun dispositivo da empresa. Tes **1 ano** para reclamar as cantidades que che deban."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.9" }, { "norma": "et", "art": "35.5" }, { "norma": "et", "art": "59.2" } ]
+    },
+
+    "tu": {
+      "pregunta": { "es": "¿Qué te está pasando con los turnos?", "gl": "Que che está a pasar coas quendas?" },
+      "opciones": [
+        { "ir": "tu_preaviso", "texto": { "es": "Me cambian el cuadrante con muy poca antelación", "gl": "Cámbianme o cadrante con moi pouca antelación" } },
+        { "ir": "tu_sustancial", "texto": { "es": "Me cambian el horario de forma permanente", "gl": "Cámbianme o horario de forma permanente" } },
+        { "ir": "tu_cierre", "texto": { "es": "Cierro de noche y abro por la mañana", "gl": "Pecho de noite e abro pola mañá" } },
+        { "ir": "tu_partido", "texto": { "es": "Me ponen jornada partida", "gl": "Póñenme xornada partida" } }
+      ]
+    },
+    "tu_preaviso": {
+      "respuesta": {
+        "es": [
+          "Cada año la empresa debe elaborar el **calendario laboral** y exponer un ejemplar en un lugar visible de cada centro de trabajo.",
+          "Si la empresa reparte la jornada de forma irregular (hasta el 10 % de la jornada anual, salvo que el convenio diga otra cosa), debes conocer **con al menos 5 días de antelación** el día y la hora en que tienes que trabajar.",
+          "Lo que diga el convenio provincial sobre cuadrantes y distribución de la jornada prevalece si te es más favorable."
+        ],
+        "gl": [
+          "Cada ano a empresa debe elaborar o **calendario laboral** e expoñer un exemplar nun lugar visible de cada centro de traballo.",
+          "Se a empresa reparte a xornada de forma irregular (ata o 10 % da xornada anual, agás que o convenio diga outra cousa), debes coñecer **con polo menos 5 días de antelación** o día e a hora en que tes que traballar.",
+          "O que diga o convenio provincial sobre cadrantes e distribución da xornada prevalece se che é máis favorable."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.6" }, { "norma": "et", "art": "34.2" }, { "norma": "convenio", "art": "@distribucion_jornada" } ]
+    },
+    "tu_sustancial": {
+      "respuesta": {
+        "es": [
+          "Un cambio importante y duradero de horario, turno o distribución de la jornada es una **modificación sustancial** de tus condiciones.",
+          "Si es individual, la empresa debe notificártelo **por escrito con al menos 15 días** de antelación y justificarlo en causas económicas, técnicas, organizativas o de producción.",
+          "Tus opciones:",
+          "- Aceptarlo.\n- Impugnarlo en el juzgado: plazo de **20 días hábiles** desde la notificación.\n- Si te perjudica, extinguir tu contrato con una indemnización de 20 días de salario por año (máximo 9 meses).",
+          "Antes de decidir, consúltalo con un sindicato."
+        ],
+        "gl": [
+          "Un cambio importante e duradeiro de horario, quenda ou distribución da xornada é unha **modificación substancial** das túas condicións.",
+          "Se é individual, a empresa debe notificarcho **por escrito con polo menos 15 días** de antelación e xustificalo en causas económicas, técnicas, organizativas ou de produción.",
+          "As túas opcións:",
+          "- Aceptalo.\n- Impugnalo no xulgado: prazo de **20 días hábiles** desde a notificación.\n- Se te prexudica, extinguir o teu contrato cunha indemnización de 20 días de salario por ano (máximo 9 meses).",
+          "Antes de decidir, consúltao cun sindicato."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "41.1" }, { "norma": "et", "art": "41.3" }, { "norma": "et", "art": "59.4" } ]
+    },
+    "tu_cierre": {
+      "respuesta": {
+        "es": [
+          "Entre el final de una jornada y el comienzo de la siguiente debe haber **al menos 12 horas**.",
+          "En trabajo a turnos, el día en que cambias de turno ese descanso puede reducirse hasta 7 horas, pero la diferencia hasta 12 debe compensarse en los días inmediatamente siguientes.",
+          "El «cierro y abro» como práctica habitual no está permitido. Apunta las fechas en que te ocurre."
+        ],
+        "gl": [
+          "Entre o final dunha xornada e o comezo da seguinte debe haber **polo menos 12 horas**.",
+          "No traballo a quendas, o día en que cambias de quenda ese descanso pode reducirse ata 7 horas, pero a diferenza ata 12 debe compensarse nos días inmediatamente seguintes.",
+          "O «pecho e abro» como práctica habitual non está permitido. Apunta as datas en que che ocorre."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.3" }, { "norma": "rd1561", "art": "19.2" }, { "norma": "convenio", "art": "@descanso_entre_jornadas" } ]
+    },
+    "tu_partido": {
+      "respuesta": {
+        "es": [
+          "A jornada completa, la ley no prohíbe la jornada partida, pero deben respetarse las 12 horas entre jornadas y los límites diarios.",
+          "Si trabajas **a tiempo parcial** con jornada partida, solo puede haber **una única interrupción** al día, salvo que el convenio sectorial diga otra cosa.",
+          "Revisa también lo que regula el convenio provincial sobre la distribución de la jornada."
+        ],
+        "gl": [
+          "A xornada completa, a lei non prohibe a xornada partida, pero deben respectarse as 12 horas entre xornadas e os límites diarios.",
+          "Se traballas **a tempo parcial** con xornada partida, só pode haber **unha única interrupción** ao día, agás que o convenio sectorial diga outra cousa.",
+          "Revisa tamén o que regula o convenio provincial sobre a distribución da xornada."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "12.4.b" }, { "norma": "et", "art": "34.3" }, { "norma": "convenio", "art": "@distribucion_jornada" } ]
+    },
+
+    "ja": {
+      "pregunta": { "es": "¿Qué quieres saber sobre tu jornada?", "gl": "Que queres saber sobre a túa xornada?" },
+      "opciones": [
+        { "ir": "ja_max", "texto": { "es": "¿Cuántas horas puedo trabajar como máximo?", "gl": "Cantas horas podo traballar como máximo?" } },
+        { "ir": "ja_calculo", "texto": { "es": "¿Cómo sé si me paso de horas al año?", "gl": "Como sei se me paso de horas ao ano?" } },
+        { "ir": "ja_irregular", "texto": { "es": "Unos meses trabajo mucho más y otros menos", "gl": "Uns meses traballo moito máis e outros menos" } }
+      ]
+    },
+    "ja_max": {
+      "respuesta": {
+        "es": [
+          "La jornada máxima legal es de **40 horas semanales de trabajo efectivo de promedio en cómputo anual**.",
+          "El convenio provincial fija una jornada anual de **{{comun.jornada.anual_horas}} horas**.",
+          "Además, no puedes hacer más de **9 horas ordinarias al día**, salvo que el convenio o un acuerdo fijen otra distribución, y siempre con 12 horas de descanso entre jornadas."
+        ],
+        "gl": [
+          "A xornada máxima legal é de **40 horas semanais de traballo efectivo de media en cómputo anual**.",
+          "O convenio provincial fixa unha xornada anual de **{{comun.jornada.anual_horas}} horas**.",
+          "Ademais, non podes facer máis de **9 horas ordinarias ao día**, agás que o convenio ou un acordo fixen outra distribución, e sempre con 12 horas de descanso entre xornadas."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.1" }, { "norma": "et", "art": "34.3" }, { "norma": "convenio", "art": "@jornada" } ]
+    },
+    "ja_calculo": {
+      "respuesta": {
+        "es": [
+          "Suma las horas que trabajas realmente a lo largo del año (por eso es tan importante apuntarlas) y compáralas con la jornada anual del convenio: **{{comun.jornada.anual_horas}} horas**.",
+          "Cada hora que pase de ahí es una **hora extra**: debe pagarse o compensarse con descanso.",
+          "Puedes hacer una primera estimación con el módulo de Auditoría."
+        ],
+        "gl": [
+          "Suma as horas que traballas realmente ao longo do ano (por iso é tan importante apuntalas) e compáraas coa xornada anual do convenio: **{{comun.jornada.anual_horas}} horas**.",
+          "Cada hora que pase de aí é unha **hora extra**: debe pagarse ou compensarse con descanso.",
+          "Podes facer unha primeira estimación co módulo de Auditoría."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.1" }, { "norma": "et", "art": "35.1" }, { "norma": "convenio", "art": "@jornada" } ]
+    },
+    "ja_irregular": {
+      "respuesta": {
+        "es": [
+          "La empresa puede distribuir de forma irregular a lo largo del año hasta el **10 %** de la jornada, salvo que el convenio o un acuerdo digan otra cosa.",
+          "Siempre debe respetar los descansos mínimos y avisarte **con 5 días** de antelación del día y la hora.",
+          "Las diferencias entre lo trabajado y la jornada máxima deben compensarse como diga el convenio o, si no dice nada, dentro de los **12 meses** siguientes."
+        ],
+        "gl": [
+          "A empresa pode distribuír de forma irregular ao longo do ano ata o **10 %** da xornada, agás que o convenio ou un acordo digan outra cousa.",
+          "Sempre debe respectar os descansos mínimos e avisarte **con 5 días** de antelación do día e a hora.",
+          "As diferenzas entre o traballado e a xornada máxima deben compensarse como diga o convenio ou, se non di nada, dentro dos **12 meses** seguintes."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.2" }, { "norma": "convenio", "art": "@distribucion_jornada" } ]
+    },
+
+    "rh": {
+      "pregunta": { "es": "¿Qué quieres saber sobre el registro horario?", "gl": "Que queres saber sobre o rexistro horario?" },
+      "opciones": [
+        { "ir": "rh_oblig", "texto": { "es": "¿Es obligatorio?", "gl": "É obrigatorio?" } },
+        { "ir": "rh_acceso", "texto": { "es": "No me dejan ver mi registro", "gl": "Non me deixan ver o meu rexistro" } },
+        { "ir": "rh_falso", "texto": { "es": "Me hacen firmar horas que no son las reales", "gl": "Fanme asinar horas que non son as reais" } }
+      ]
+    },
+    "rh_oblig": {
+      "respuesta": {
+        "es": [
+          "**Sí.** Desde el 12 de mayo de 2019, todas las empresas deben registrar cada día la hora de inicio y de fin de la jornada de cada persona trabajadora.",
+          "Deben conservar los registros **4 años** y tenerlos a disposición de la plantilla, de sus representantes y de la Inspección de Trabajo.",
+          "No registrar la jornada es una infracción que sanciona la Inspección de Trabajo.",
+          "A tiempo parcial, además, deben entregarte cada mes, con la nómina, el resumen de todas tus horas."
+        ],
+        "gl": [
+          "**Si.** Desde o 12 de maio de 2019, todas as empresas deben rexistrar cada día a hora de inicio e de fin da xornada de cada persoa traballadora.",
+          "Deben conservar os rexistros **4 anos** e telos á disposición do persoal, dos seus representantes e da Inspección de Traballo.",
+          "Non rexistrar a xornada é unha infracción que sanciona a Inspección de Traballo.",
+          "A tempo parcial, ademais, deben entregarche cada mes, coa nómina, o resumo de todas as túas horas."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.9" }, { "norma": "et", "art": "12.4.c" }, { "norma": "lisos", "art": "7.5" } ]
+    },
+    "rh_acceso": {
+      "respuesta": {
+        "es": [
+          "Los registros deben estar **a tu disposición**.",
+          "Pide por escrito una copia de tu registro: por correo electrónico, o en papel entregando dos copias y pidiendo que te sellen o firmen la tuya.",
+          "Si no te lo dan, es un hecho que puedes comunicar a la Inspección de Trabajo. Mientras tanto, apunta tú tus horas reales cada día."
+        ],
+        "gl": [
+          "Os rexistros deben estar **á túa disposición**.",
+          "Pide por escrito unha copia do teu rexistro: por correo electrónico, ou en papel entregando dúas copias e pedindo que che selen ou asinen a túa.",
+          "Se non cho dan, é un feito que podes comunicar á Inspección de Traballo. Mentres tanto, apunta ti as túas horas reais cada día."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.9" } ]
+    },
+    "rh_falso": {
+      "respuesta": {
+        "es": [
+          "Firmar un registro con horas que no son las reales te perjudica, pero la obligación de registrar la jornada **real** es de la empresa.",
+          "Desde hoy:",
+          "- Apunta cada día tu hora real de entrada y salida.\n- Haz fotos de los cuadrantes y guarda los mensajes.\n- Anota si hay compañeros/as que puedan confirmarlo.",
+          "Con esas pruebas, un sindicato puede ayudarte a reclamar las horas no pagadas. Tienes **1 año** desde que debieron pagártelas."
+        ],
+        "gl": [
+          "Asinar un rexistro con horas que non son as reais prexudícate, pero a obriga de rexistrar a xornada **real** é da empresa.",
+          "Desde hoxe:",
+          "- Apunta cada día a túa hora real de entrada e saída.\n- Fai fotos dos cadrantes e garda as mensaxes.\n- Anota se hai compañeiros/as que poidan confirmalo.",
+          "Con esas probas, un sindicato pode axudarche a reclamar as horas non pagadas. Tes **1 ano** desde que debían pagarchas."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "34.9" }, { "norma": "et", "art": "59.2" } ]
+    },
+
+    "fc": {
+      "pregunta": { "es": "¿Cuál es tu situación?", "gl": "Cal é a túa situación?" },
+      "opciones": [
+        { "ir": "fc_despido", "texto": { "es": "Me han despedido", "gl": "Despedíronme" } },
+        { "ir": "fc_temporal", "texto": { "es": "Se acaba mi contrato temporal", "gl": "Remata o meu contrato temporal" } },
+        { "ir": "fc_prueba", "texto": { "es": "Me echan en el periodo de prueba", "gl": "Bótanme no período de proba" } },
+        { "ir": "fc_llamamiento", "texto": { "es": "Soy fijo/a-discontinuo/a y no me llaman", "gl": "Son fixo/a descontinuo/a e non me chaman" } },
+        { "ir": "fc_baja", "texto": { "es": "Me quiero ir yo", "gl": "Quero marchar eu" } }
+      ]
+    },
+    "fc_despido": {
+      "respuesta": {
+        "es": [
+          "**El plazo es muy corto: 20 días hábiles** desde el día siguiente al despido (no cuentan sábados, domingos ni festivos).",
+          "Antes de demandar hay que presentar la **papeleta de conciliación** (en Galicia, ante el servicio de conciliación de la Xunta). Presentarla suspende ese plazo.",
+          "Si el despido se declara improcedente: readmisión o indemnización de **33 días de salario por año** trabajado (máximo 24 mensualidades). Si es una represalia por reclamar tus derechos o es discriminatorio, puede ser **nulo** (readmisión obligatoria y salarios de tramitación).",
+          "Firma la carta y el finiquito como **«recibí, no conforme»** y acude ya a un sindicato."
+        ],
+        "gl": [
+          "**O prazo é moi curto: 20 días hábiles** desde o día seguinte ao despedimento (non contan sábados, domingos nin festivos).",
+          "Antes de demandar hai que presentar a **papeleta de conciliación** (en Galicia, ante o servizo de conciliación da Xunta). Presentala suspende ese prazo.",
+          "Se o despedimento se declara improcedente: readmisión ou indemnización de **33 días de salario por ano** traballado (máximo 24 mensualidades). Se é unha represalia por reclamar os teus dereitos ou é discriminatorio, pode ser **nulo** (readmisión obrigatoria e salarios de tramitación).",
+          "Asina a carta e o finiquito como **«recibín, non conforme»** e acode xa a un sindicato."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "59.3" }, { "norma": "et", "art": "56.1" }, { "norma": "et", "art": "55.5" }, { "norma": "lrjs", "art": "63" } ]
+    },
+    "fc_temporal": {
+      "respuesta": {
+        "es": [
+          "Al terminar un contrato temporal tienes derecho a una **indemnización de 12 días de salario por año** trabajado (la parte proporcional si es menos), salvo en los contratos de sustitución.",
+          "Si el contrato duró más de un año, la empresa debe avisarte con **15 días** de antelación.",
+          "El finiquito debe incluir: salario pendiente, parte proporcional de pagas extra, vacaciones no disfrutadas e indemnización.",
+          "Si tu contrato temporal era en realidad fraudulento (sin causa concreta, encadenado, más largo de lo permitido), su final puede ser un **despido**: tienes solo **20 días hábiles** para reclamar."
+        ],
+        "gl": [
+          "Ao rematar un contrato temporal tes dereito a unha **indemnización de 12 días de salario por ano** traballado (a parte proporcional se é menos), agás nos contratos de substitución.",
+          "Se o contrato durou máis dun ano, a empresa debe avisarte con **15 días** de antelación.",
+          "O finiquito debe incluír: salario pendente, parte proporcional de pagas extra, vacacións non gozadas e indemnización.",
+          "Se o teu contrato temporal era en realidade fraudulento (sen causa concreta, encadeado, máis longo do permitido), o seu final pode ser un **despedimento**: tes só **20 días hábiles** para reclamar."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "49.1.c" }, { "norma": "et", "art": "15.4" }, { "norma": "et", "art": "59.3" } ]
+    },
+    "fc_prueba": {
+      "respuesta": {
+        "es": [
+          "Durante el periodo de prueba cualquiera de las partes puede terminar la relación sin preaviso ni indemnización. Pero hay límites:",
+          "- Tiene que estar **por escrito** en el contrato.\n- No puede durar más de lo que fije el convenio. Si el convenio no dice nada: 6 meses para técnicos/as titulados/as, 2 meses para el resto, y 1 mes en contratos temporales de hasta 6 meses.\n- Es nulo si ya habías hecho las mismas funciones antes en esa empresa.\n- Si el cese es por embarazo u otra causa discriminatoria, es nulo.",
+          "Si se incumple alguno de estos puntos, el cese puede ser un despido: plazo de **20 días hábiles**."
+        ],
+        "gl": [
+          "Durante o período de proba calquera das partes pode rematar a relación sen preaviso nin indemnización. Pero hai límites:",
+          "- Ten que estar **por escrito** no contrato.\n- Non pode durar máis do que fixe o convenio. Se o convenio non di nada: 6 meses para técnicos/as titulados/as, 2 meses para o resto, e 1 mes en contratos temporais de ata 6 meses.\n- É nulo se xa fixeras as mesmas funcións antes nesa empresa.\n- Se o cesamento é por embarazo ou outra causa discriminatoria, é nulo.",
+          "Se se incumpre algún destes puntos, o cesamento pode ser un despedimento: prazo de **20 días hábiles**."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "14.1" }, { "norma": "et", "art": "14.2" }, { "norma": "convenio", "art": "@periodo_prueba" } ]
+    },
+    "fc_llamamiento": {
+      "respuesta": {
+        "es": [
+          "Si eres fijo/a-discontinuo/a, la empresa debe llamarte según los criterios objetivos que fije el convenio o un acuerdo, **por escrito** y con antelación suficiente.",
+          "Si no te llama cuando te corresponde, puedes reclamarlo **como un despido**. El plazo de **20 días hábiles** empieza cuando no te llaman o desde que te enteras."
+        ],
+        "gl": [
+          "Se es fixo/a descontinuo/a, a empresa debe chamarte segundo os criterios obxectivos que fixe o convenio ou un acordo, **por escrito** e con antelación suficiente.",
+          "Se non te chama cando che corresponde, podes reclamalo **como un despedimento**. O prazo de **20 días hábiles** comeza cando non te chaman ou desde que te decatas."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "16.2" }, { "norma": "et", "art": "16.3" }, { "norma": "et", "art": "59.3" }, { "norma": "convenio", "art": "@contratacion" } ]
+    },
+    "fc_baja": {
+      "respuesta": {
+        "es": [
+          "Puedes dejar tu trabajo cuando quieras (dimisión), avisando con la antelación que fije el convenio.",
+          "Si no preavisas, el convenio puede permitir descontar del finiquito los días de preaviso que falten.",
+          "Ojo: la baja voluntaria **no da derecho a paro**.",
+          "Si te quieres ir porque la empresa incumple gravemente (impagos o retrasos continuados del salario, cambios que te perjudican), consúltalo antes con un sindicato: puedes pedir al juzgado que extinga tu contrato **con la indemnización del despido improcedente**, y en ese caso sí tendrías paro."
+        ],
+        "gl": [
+          "Podes deixar o teu traballo cando queiras (dimisión), avisando coa antelación que fixe o convenio.",
+          "Se non preavisas, o convenio pode permitir descontar do finiquito os días de preaviso que falten.",
+          "Ollo: a baixa voluntaria **non dá dereito a paro**.",
+          "Se queres marchar porque a empresa incumpre gravemente (impagamentos ou atrasos continuados do salario, cambios que te prexudican), consúltao antes cun sindicato: podes pedir ao xulgado que extinga o teu contrato **coa indemnización do despedimento improcedente**, e nese caso si terías paro."
+        ]
+      },
+      "citas": [ { "norma": "et", "art": "49.1.d" }, { "norma": "et", "art": "50" }, { "norma": "convenio", "art": "@preaviso_cese" } ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+/* Impresión / "Guardar como PDF". Todo lo genera el navegador: no pasa por ningún servidor. */
+
+@page { margin: 16mm 14mm; }
+
+html, body {
+  background: #fff !important;
+  color: #000;
+  font-size: 11pt;
+  padding: 0 !important;
+}
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.site-header,
+.privacy-strip,
+.module-nav,
+.site-footer,
+#data-status,
+.skip-link,
+.no-print,
+.btn,
+.btn-row { display: none !important; }
+
+.print-only { display: block !important; }
+
+.wrap { max-width: none; padding: 0; }
+main { padding: 0; }
+
+/* Solo se imprime la vista activa */
+.view[hidden] { display: none !important; }
+
+.print-header {
+  border-bottom: 3px double #000;
+  padding-bottom: 6pt;
+  margin-bottom: 10pt;
+}
+.print-header .print-title { font-family: var(--font-serif); font-size: 18pt; font-weight: 700; margin: 0; }
+.print-header p { margin: 2pt 0; font-size: 9.5pt; }
+
+h1 { font-size: 18pt; }
+h2 { font-size: 14pt; }
+h3 { font-size: 12pt; }
+h1, h2, h3 { break-after: avoid; }
+
+.finding, .card, .report-head, table.calc tr { break-inside: avoid; }
+.finding { border-color: #999; }
+.disclaimer { border-color: #666; color: #000; }
+.stamp { transform: none; }
+a { color: #000; text-decoration: none; }
