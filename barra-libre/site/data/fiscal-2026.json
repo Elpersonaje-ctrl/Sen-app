@@ -1,0 +1,77 @@
+{
+  "_leeme": [
+    "Constantes de cotización a la Seguridad Social e IRPF usadas por el verificador de nómina.",
+    "Se actualizan aquí sin tocar código. Porcentajes como número (4.70 = 4,70 %). Importes en euros.",
+    "\"_verificar\": true = valor tomado de la norma citada que conviene contrastar con la publicación oficial del ejercicio antes de publicar.",
+    "\"_pendiente\": true = dato no cargado (null). La app lo omite del cálculo y lo avisa."
+  ],
+
+  "meta": {
+    "ejercicio": 2026,
+    "fecha_revision": "2026-10-16",
+    "revisado_por": null
+  },
+
+  "seguridad_social": {
+    "fuente": [
+      "Orden de cotización a la Seguridad Social para 2026 (Ministerio de Inclusión, Seguridad Social y Migraciones)",
+      "Real Decreto-ley 2/2023, de 16 de marzo (calendario del Mecanismo de Equidad Intergeneracional, MEI)"
+    ],
+    "tipos_trabajador": {
+      "contingencias_comunes": 4.70,
+      "desempleo_indefinido": 1.55,
+      "desempleo_temporal": 1.60,
+      "formacion_profesional": 0.10,
+      "mei": 0.15,
+      "_nota": "Parte a cargo de la persona trabajadora. Fijos-discontinuos cotizan desempleo como indefinidos. MEI 2026: 0,90 % total, 0,15 % a cargo del trabajador (RDL 2/2023).",
+      "_verificar": true
+    },
+    "bases": {
+      "base_minima_mensual": null,
+      "base_maxima_mensual": null,
+      "_nota": "Bases del Régimen General para el grupo de cotización habitual en hostelería (grupos 8 a 10 cotizan por base diaria: indicar aquí base diaria × 30). Si quedan en null, no se aplican topes.",
+      "_pendiente": true
+    }
+  },
+
+  "salario_minimo": {
+    "fuente": "Real Decreto por el que se fija el salario mínimo interprofesional para 2026",
+    "mensual_14_pagas": null,
+    "anual": null,
+    "_nota": "Se usa para avisar si el salario de tabla a jornada completa quedara por debajo del SMI (art. 27 ET).",
+    "_pendiente": true
+  },
+
+  "irpf": {
+    "fuente": [
+      "Ley 35/2006 del IRPF (LIRPF): arts. 19.2 (gastos deducibles), 20 (reducción por obtención de rendimientos del trabajo), 57 (mínimo personal) y 101 (escala de retenciones)",
+      "Real Decreto 439/2007 (Reglamento del IRPF): arts. 80 a 89 (procedimiento general de retención)"
+    ],
+    "escala_retencion": [
+      { "hasta": 12450, "tipo": 19 },
+      { "hasta": 20200, "tipo": 24 },
+      { "hasta": 35200, "tipo": 30 },
+      { "hasta": 60000, "tipo": 37 },
+      { "hasta": 300000, "tipo": 45 },
+      { "hasta": null, "tipo": 47 }
+    ],
+    "minimo_personal": 5550,
+    "otros_gastos_deducibles": 2000,
+    "reduccion_rendimientos_trabajo": {
+      "umbral_inferior": 14852,
+      "importe_maximo": 7302,
+      "umbral_medio": 17673.52,
+      "coef_tramo_1": 1.75,
+      "importe_tramo_2": 2364.34,
+      "umbral_superior": 19747.5,
+      "coef_tramo_2": 1.14,
+      "_nota": "RN ≤ umbral_inferior: importe_maximo. Entre umbral_inferior y umbral_medio: importe_maximo − coef_tramo_1 × (RN − umbral_inferior). Entre umbral_medio y umbral_superior: importe_tramo_2 − coef_tramo_2 × (RN − umbral_medio). Por encima: 0."
+    },
+    "tipo_minimo_contrato_inferior_anio": 2,
+    "limite_cuota_porcentaje": 43,
+    "limite_excluyente_sin_hijos": null,
+    "_nota": "Estimación simplificada para contribuyente sin descendientes, ascendientes ni discapacidad (situación 3 del modelo 145). El tipo real depende de la situación personal comunicada a la empresa.",
+    "_verificar": true,
+    "_pendiente_parcial": ["limite_excluyente_sin_hijos"]
+  }
+}

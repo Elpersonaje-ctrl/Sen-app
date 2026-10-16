@@ -1,0 +1,709 @@
+{
+  "app": {
+    "title": "Barra Libre",
+    "tagline": "Hostelería · provincia de Pontevedra"
+  },
+  "a11y": {
+    "skip": "Saltar al contenido",
+    "external": "se abre en una pestaña nueva"
+  },
+  "lang": {
+    "label": "Idioma",
+    "changed": "Idioma cambiado a castellano"
+  },
+  "privacy": {
+    "title": "Nada sale de tu móvil.",
+    "body": "Sin servidor, sin cookies, sin analítica. Tus respuestas solo existen en esta pestaña y se borran al recargar o cerrar.",
+    "wipe": "Borrar mis respuestas",
+    "wiped": "Respuestas borradas."
+  },
+  "nav": {
+    "label": "Módulos",
+    "inicio": "Inicio",
+    "auditoria": "Auditoría",
+    "nomina": "Nómina",
+    "dudas": "Dudas",
+    "que_hacer": "Qué hacer"
+  },
+  "footer": {
+    "legal": "Barra Libre es una herramienta informativa. No es asesoramiento jurídico ni sustituye a un sindicato, abogado/a laboralista o graduado/a social.",
+    "privacy": "Este sitio no usa cookies, ni analítica, ni fuentes o scripts externos. Puedes comprobarlo en el código fuente.",
+    "source": "Referencia: {nombre} {periodo}, tablas {tablas} ({boletin} nº {numero}, {fecha}), en ultraactividad."
+  },
+  "status": {
+    "pending_title": "Datos del convenio pendientes de carga.",
+    "pending_body": "Lo que dependa de las tablas oficiales del BOP aparecerá como «pendiente»: la herramienta nunca inventa ni estima cifras del convenio. Los mínimos del Estatuto de los Trabajadores sí se comprueban.",
+    "pending_details": "Ver qué falta ({n})",
+    "pending_where": "Bloques sin cargar (para quien mantiene la web; ver DATOS-PENDIENTES.md):"
+  },
+  "disclaimer": {
+    "label": "Aviso",
+    "general": "Información orientativa, no asesoramiento jurídico. Antes de tomar decisiones, consulta con un sindicato, un/a abogado/a laboralista o un/a graduado/a social.",
+    "auditoria": "Este informe es orientativo y se basa solo en tus respuestas. No es asesoramiento jurídico: un sindicato o un/a abogado/a laboralista debe revisar tu caso concreto antes de actuar.",
+    "nomina": "Estimación orientativa. No es tu nómina real ni asesoramiento jurídico o fiscal. El IRPF real depende de tu situación personal y familiar; la cotización, de tu grupo y de conceptos que aquí no se recogen.",
+    "dudas": "Respuestas generales y orientativas sobre la normativa. No son asesoramiento jurídico y tu caso puede tener matices: confírmalo con un sindicato o un/a abogado/a laboralista.",
+    "que_hacer": "Guía práctica orientativa, no asesoramiento jurídico. Los plazos son estrictos: si tienes dudas sobre tu caso, acude cuanto antes a un sindicato o a un/a abogado/a laboralista."
+  },
+  "sev": {
+    "grave": "Grave",
+    "revisable": "Revisable",
+    "correcto": "Correcto",
+    "pendiente": "Pendiente",
+    "orientativo": "Orientativo"
+  },
+  "norma": {
+    "et": "Estatuto de los Trabajadores",
+    "convenio": "Convenio provincial de hostelería de Pontevedra",
+    "rd1561": "RD 1561/1995 (jornadas especiales)",
+    "rd2001": "RD 2001/1983 (jornadas y descansos)",
+    "lgss": "Ley General de la Seguridad Social",
+    "lrjs": "Ley Reguladora de la Jurisdicción Social",
+    "art": "art. {art}",
+    "art_pendiente": "artículo pendiente de cargar"
+  },
+  "report": {
+    "cites_label": "Normas aplicables"
+  },
+  "print": {
+    "button": "Imprimir informe / guardar PDF",
+    "generated": "Generado el {fecha} en tu propio dispositivo. No se ha enviado a ningún servidor.",
+    "privacy": "Este documento solo contiene tus respuestas anónimas: ningún nombre de persona ni de empresa."
+  },
+  "opt": {
+    "si": "Sí",
+    "no": "No",
+    "nose": "No lo sé"
+  },
+  "common": {
+    "optional": "(opcional)",
+    "invalid_range": "Introduce un número entre {min} y {max}.",
+    "pending": "pendiente"
+  },
+  "inicio": {
+    "eyebrow": "Herramienta anónima",
+    "h1": "¿Te están cumpliendo el convenio?",
+    "lead": "Comprueba en unos minutos si tu jornada, tus descansos y tu nómina se ajustan al convenio de hostelería de la provincia de Pontevedra y al Estatuto de los Trabajadores.",
+    "start": "Empezar la auditoría",
+    "modules_title": "Qué puedes hacer",
+    "m_auditoria_t": "1 · Auditoría",
+    "m_auditoria_d": "Un cuestionario corto sobre horas, descansos, noches y festivos. Te devuelve un informe con cada problema, su gravedad y la norma que lo regula.",
+    "m_nomina_t": "2 · Verificador de nómina",
+    "m_nomina_d": "Calcula lo que deberías cobrar según tu categoría y jornada y lo compara con lo que cobras.",
+    "m_dudas_t": "3 · Dudas frecuentes",
+    "m_dudas_d": "Vacaciones, horas extra, cambios de turno, jornada anual, registro horario y fin de contrato, paso a paso.",
+    "m_que_hacer_t": "4 · Qué hacer ahora",
+    "m_que_hacer_d": "Cómo denunciar de forma anónima, a quién acudir en la provincia y qué plazos no puedes dejar pasar.",
+    "privacy_title": "Tu anonimato, garantizado por diseño",
+    "privacy_list": [
+      "Todo se calcula dentro de tu navegador. No hay servidor que reciba tus respuestas.",
+      "No hay cookies, ni analítica, ni publicidad, ni fuentes o scripts de terceros.",
+      "No hay campos de texto libre: no se te pedirá ni podrás escribir el nombre de tu empresa ni el tuyo.",
+      "Nada se guarda: al recargar o cerrar la pestaña, todo se borra. También puedes borrarlo ahora con el botón de arriba.",
+      "El informe en PDF lo genera tu propio móvil al imprimir; no pasa por ningún sitio."
+    ],
+    "tip": "Consejo: si usas un móvil de empresa o compartido, abre esta web en una ventana privada o de incógnito."
+  },
+  "audit": {
+    "eyebrow": "Módulo 1",
+    "h1": "Auditoría de tus condiciones",
+    "lead": "Responde lo que sepas. Puedes dejar en blanco lo que no sepas: esa comprobación simplemente no se hará.",
+    "progress": "Paso {n} de {total}: {title}",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "see_report": "Ver mi informe",
+    "edit": "Cambiar respuestas",
+    "restart": "Empezar de nuevo",
+    "go_nomina": "Comprobar mi nómina",
+    "go_que_hacer": "Qué hacer ahora",
+    "steps": {
+      "puesto": "Tu puesto y tu contrato",
+      "jornada": "Tu jornada",
+      "noche": "Trabajo nocturno",
+      "festivos": "Festivos",
+      "descansos": "Descansos, vacaciones y pagas",
+      "registro": "Registro horario"
+    },
+    "q": {
+      "categoria": {
+        "label": "¿Cuál es tu categoría profesional?",
+        "help": "Aparece en tu contrato y en la cabecera de la nómina.",
+        "placeholder": "Elige tu categoría…"
+      },
+      "contrato": {
+        "label": "¿Qué tipo de contrato tienes?",
+        "help": "Si no lo sabes, mira tu contrato o tu informe de vida laboral."
+      },
+      "alta": {
+        "label": "¿Tienes contrato y estás de alta en la Seguridad Social?"
+      },
+      "temporal_causa": {
+        "label": "¿Cuál es la causa de tu contrato temporal?"
+      },
+      "temporal_meses_actual": {
+        "label": "¿Cuántos meses dura tu contrato temporal actual (contando prórrogas)?",
+        "unit": "meses"
+      },
+      "temporal_meses_24": {
+        "label": "En los últimos 24 meses, ¿cuántos meses has trabajado en esta empresa con contratos temporales?",
+        "unit": "meses"
+      },
+      "pacto_complementarias": {
+        "label": "¿Has firmado un pacto de horas complementarias?",
+        "help": "Es un documento aparte del contrato que permite a la empresa pedirte horas adicionales."
+      },
+      "horas_contrato": {
+        "label": "¿Cuántas horas semanales pone tu contrato?",
+        "unit": "h/semana"
+      },
+      "horas_reales": {
+        "label": "¿Cuántas horas trabajas de verdad en una semana normal?",
+        "help": "Cuenta desde que entras hasta que sales, incluido montar y recoger.",
+        "unit": "h/semana"
+      },
+      "dias_semana": {
+        "label": "¿Cuántos días trabajas a la semana?",
+        "unit": "días"
+      },
+      "horas_max_dia": {
+        "label": "¿Cuántas horas dura tu día de trabajo más largo?",
+        "unit": "horas"
+      },
+      "horas_anuales": {
+        "label": "Si lo sabes, ¿cuántas horas trabajas al año?",
+        "help": "Opcional. Si lo dejas en blanco lo estimamos a partir de tus horas semanales.",
+        "unit": "h/año"
+      },
+      "extras_pago": {
+        "label": "Las horas que haces de más, ¿cómo te las compensan?"
+      },
+      "pausa": {
+        "label": "En turnos de más de 6 horas seguidas, ¿tienes al menos 15 minutos de descanso?"
+      },
+      "horas_nocturnas": {
+        "label": "¿Cuántas horas a la semana trabajas entre las 22:00 y las 6:00?",
+        "help": "Si no trabajas de noche, pon 0.",
+        "unit": "h/semana"
+      },
+      "plus_nocturnidad": {
+        "label": "¿Cobras un plus de nocturnidad?",
+        "help": "Busca en tu nómina un concepto llamado «nocturnidad» o similar."
+      },
+      "nocturno_habitual": {
+        "label": "¿Trabajas habitualmente al menos 3 horas de tu jornada diaria entre las 22:00 y las 6:00?"
+      },
+      "festivos_trabajados": {
+        "label": "¿Cuántos festivos trabajas al año, aproximadamente?",
+        "help": "Festivos nacionales, autonómicos y locales. Si ninguno, pon 0.",
+        "unit": "festivos"
+      },
+      "festivos_compensacion": {
+        "label": "¿Cómo te compensan los festivos trabajados?"
+      },
+      "descanso_entre": {
+        "label": "¿Cuántas horas tienes, como mínimo, entre que acabas un turno y empiezas el siguiente?",
+        "help": "Por ejemplo, si cierras a la 1:00 y abres a las 9:00, son 8 horas.",
+        "unit": "horas"
+      },
+      "descanso_motivo": {
+        "label": "¿Cuándo te pasa eso?"
+      },
+      "dias_libres_14": {
+        "label": "En las últimas dos semanas, ¿cuántos días completos has librado?",
+        "unit": "días"
+      },
+      "vacaciones_dias": {
+        "label": "¿Cuántos días de vacaciones te dan al año?",
+        "help": "En días naturales (contando fines de semana). Un mes son unos 30.",
+        "unit": "días"
+      },
+      "vacaciones_pagadas": {
+        "label": "¿Te pagan las vacaciones en dinero en lugar de dejarte disfrutarlas?"
+      },
+      "pagas_extra": {
+        "label": "¿Cuántas pagas extra cobras al año?",
+        "help": "Cuéntalas aunque vengan prorrateadas (repartidas) en la nómina de cada mes.",
+        "unit": "pagas"
+      },
+      "registro": {
+        "label": "¿La empresa registra cada día tu hora de entrada y de salida?"
+      },
+      "resumen_mensual": {
+        "label": "Con la nómina, ¿te entregan cada mes un resumen de las horas trabajadas?"
+      }
+    },
+    "o": {
+      "contrato": {
+        "indefinido_completo": "Indefinido a jornada completa",
+        "indefinido_parcial": "Indefinido a tiempo parcial",
+        "fijo_discontinuo": "Fijo-discontinuo (temporada)",
+        "temporal_completo": "Temporal a jornada completa",
+        "temporal_parcial": "Temporal a tiempo parcial"
+      },
+      "temporal_causa": {
+        "produccion": "Circunstancias de la producción (más trabajo, temporada, refuerzo)",
+        "sustitucion": "Sustitución de otra persona",
+        "nose": "No lo sé / no lo pone"
+      },
+      "extras_pago": {
+        "pagadas": "Me las pagan (aparecen en la nómina)",
+        "descanso": "Con días u horas de descanso",
+        "no": "Ni me las pagan ni me las compensan",
+        "nose": "No lo sé"
+      },
+      "pausa": {
+        "si": "Sí",
+        "no": "No",
+        "no_aplica": "No hago turnos de más de 6 horas seguidas"
+      },
+      "festivos_compensacion": {
+        "recargo": "Me los pagan con recargo",
+        "descanso": "Me dan otro día de descanso",
+        "ambos": "Según el caso, pago o descanso",
+        "nada": "Ni pago extra ni descanso",
+        "nose": "No lo sé"
+      },
+      "descanso_motivo": {
+        "habitual": "Es habitual (por ejemplo, cierro y abro)",
+        "cambio_turno": "Solo cuando cambio de turno",
+        "nose": "No lo sé"
+      },
+      "registro": {
+        "si_accedo": "Sí, y puedo consultarlo",
+        "si_no_accedo": "Sí, pero no me dejan verlo",
+        "no": "No",
+        "nose": "No lo sé"
+      }
+    },
+    "report": {
+      "title": "Informe de tu situación",
+      "intro": "Resultado según tus respuestas, ordenado de más a menos grave.",
+      "summary_grave": "{n} grave(s)",
+      "summary_revisable": "{n} revisable(s)",
+      "summary_correcto": "{n} correcto(s)",
+      "legend": "Grave: incumplimiento claro de una norma. Revisable: puede ser un incumplimiento según los detalles; conviene revisarlo. Correcto: no se aprecia problema con lo que has contestado.",
+      "empty": "No has respondido suficientes preguntas para generar un informe. Vuelve atrás y responde al menos tu jornada y tus descansos.",
+      "pending_note": "Algunas comparaciones con el convenio están pendientes de que se carguen sus datos oficiales (BOP nº 209, 31/10/2025). Los mínimos del Estatuto de los Trabajadores sí se han comprobado.",
+      "next_title": "¿Y ahora?",
+      "next_body": "Guarda este informe en PDF con el botón de imprimir. Si tienes algún punto grave, mira «Qué hacer ahora» y fíjate en los plazos.",
+      "answers_title": "Tus respuestas",
+      "not_answered": "sin responder"
+    },
+    "findings": {
+      "alta": {
+        "no": {
+          "title": "Trabajas sin contrato o sin alta en la Seguridad Social",
+          "body": "El alta debe hacerse antes de empezar a trabajar. Sin ella no cotizas para paro, baja médica ni jubilación, y un accidente laboral queda sin cobertura. Además, los contratos a tiempo parcial, temporales y fijos-discontinuos deben formalizarse por escrito."
+        },
+        "nose": {
+          "title": "No sabes si estás de alta",
+          "body": "Puedes comprobarlo sin que la empresa se entere: pide tu informe de vida laboral en la sede electrónica de la Seguridad Social o en su app oficial. Si no apareces de alta en esta empresa, o con menos horas de las que haces, es un incumplimiento."
+        },
+        "si": {
+          "title": "Estás de alta en la Seguridad Social",
+          "body": "Revisa en tu vida laboral que la jornada con la que te dieron de alta (completa o parcial, y su porcentaje) es la que haces de verdad."
+        }
+      },
+      "contrato": {
+        "excede_40": {
+          "title": "Tu contrato fija más de 40 horas semanales",
+          "body": "Tu contrato indica {horas} h/semana. La jornada ordinaria máxima es de 40 horas semanales de promedio en cómputo anual. Lo que pase de ahí son horas extra, con sus límites y su pago."
+        },
+        "excede_convenio": {
+          "title": "Tu jornada pactada supera la jornada anual del convenio",
+          "body": "Con el horario de tu contrato salen unas {anual} h al año, más que las {convenio} h anuales del convenio. El exceso no puede ser jornada ordinaria: son horas extra que deben pagarse o compensarse."
+        },
+        "ok_pendiente": {
+          "title": "Jornada de contrato dentro del máximo legal",
+          "body": "Tu contrato indica {horas} h/semana, dentro del máximo de 40 h del Estatuto. Falta cargar la jornada anual del convenio para compararla también con ella."
+        },
+        "ok": {
+          "title": "Jornada de contrato dentro de lo permitido",
+          "body": "Tu contrato indica {horas} h/semana, dentro del máximo legal y de la jornada anual del convenio ({convenio} h)."
+        }
+      },
+      "extras": {
+        "no": {
+          "title": "No trabajas más horas de las de tu contrato",
+          "body": "Según tus respuestas trabajas unas {horas} h/semana, lo que dice tu contrato."
+        },
+        "mas_80": {
+          "title": "Superas el límite de 80 horas extra al año",
+          "body": "Haces unas {semanal} h de más por semana: alrededor de {anual} h al año. El máximo legal es de 80 horas extra al año (no cuentan las compensadas con descanso dentro de los 4 meses siguientes)."
+        },
+        "no_pagadas": {
+          "title": "Horas extra sin pagar ni compensar",
+          "body": "Haces unas {semanal} h/semana más de las de tu contrato (≈ {anual} h/año) y no te las pagan ni te las compensan con descanso. Las horas extra se pagan en la cuantía que fije el convenio o el contrato —nunca por debajo de la hora ordinaria— o se compensan con descanso."
+        },
+        "pago_nose": {
+          "title": "Horas extra: comprueba cómo te las pagan",
+          "body": "Haces unas {semanal} h/semana más de las de tu contrato (≈ {anual} h/año). Deben aparecer en la nómina como horas extraordinarias o compensarse con descanso, y la empresa debe entregarte el resumen de horas con cada nómina."
+        },
+        "ok": {
+          "title": "Horas extra pagadas o compensadas",
+          "body": "Haces unas {semanal} h/semana de más (≈ {anual} h/año), dentro del límite anual, y te las pagan o compensan. Comprueba que aparecen en la nómina y cotizan."
+        }
+      },
+      "anual": {
+        "excede": {
+          "title": "Trabajas más horas al año que las del convenio",
+          "body": "Calculamos que trabajas unas {real} h al año, frente a las {convenio} h anuales del convenio: unas {diff} h de más. Todas ellas son horas extra y deben pagarse o compensarse con descanso."
+        }
+      },
+      "parcial": {
+        "extras": {
+          "title": "Haces horas de más estando a tiempo parcial",
+          "body": "Trabajas unas {extra} h/semana más de las de tu contrato. A tiempo parcial no se pueden hacer horas extraordinarias, y las complementarias exigen un pacto firmado por escrito. Es un fraude habitual: cotizas por menos horas de las que trabajas, lo que reduce tu paro, tus bajas y tu jubilación."
+        },
+        "complementarias_exceso": {
+          "title": "Tus horas complementarias superan el máximo legal",
+          "body": "Haces unas {extra} h/semana por encima de tu contrato de {contrato} h (un {pct} % más). Aunque hayas firmado el pacto, la ley las limita al 30 % de tus horas ordinarias, ampliable por convenio hasta el 60 %. Si es lo habitual, tu jornada real no es parcial."
+        },
+        "complementarias_pacto": {
+          "title": "Haces horas complementarias con pacto",
+          "body": "Haces unas {extra} h/semana más ({pct} % de tu jornada). Con pacto firmado es legal si no pasan del 30 % (o el porcentaje del convenio, como máximo 60 %), te avisan con al menos 3 días de antelación, y se pagan y cotizan como ordinarias. Compruébalo en tus nóminas."
+        },
+        "resumen": {
+          "title": "Sin resumen mensual de horas (tiempo parcial)",
+          "body": "A tiempo parcial, la empresa debe registrar tu jornada día a día y entregarte cada mes, junto con la nómina, el resumen de todas las horas hechas. Si no lo hace, la ley presume que tu contrato es a jornada completa, salvo prueba en contrario."
+        },
+        "resumen_nose": {
+          "title": "Comprueba el resumen mensual de horas",
+          "body": "A tiempo parcial te deben entregar cada mes, con la nómina, el resumen de horas trabajadas (ordinarias y complementarias). Busca ese documento."
+        },
+        "resumen_ok": {
+          "title": "Recibes el resumen mensual de horas",
+          "body": "Comprueba que coincide con las horas que haces de verdad."
+        }
+      },
+      "diaria": {
+        "excede": {
+          "title": "Días de más de {max} horas",
+          "body": "Tu día más largo es de {horas} h. La jornada ordinaria no puede pasar de {max} h diarias salvo que el convenio o un acuerdo fijen otra distribución, y siempre respetando 12 h de descanso entre jornadas. Si ese exceso son horas extra, debe pagarse o compensarse."
+        },
+        "ok": {
+          "title": "Jornada diaria dentro del máximo",
+          "body": "Tu día más largo es de {horas} h, dentro del máximo de {max} h de jornada ordinaria."
+        }
+      },
+      "pausa": {
+        "no": {
+          "title": "Sin pausa en turnos de más de 6 horas",
+          "body": "Cuando la jornada continuada supera 6 horas tienes derecho a un descanso de al menos 15 minutos. El convenio o el contrato pueden mejorarlo."
+        },
+        "si": {
+          "title": "Tienes pausa en las jornadas largas",
+          "body": "Se respeta el descanso mínimo de 15 minutos en jornadas continuadas de más de 6 horas."
+        }
+      },
+      "noct": {
+        "sin_plus_convenio": {
+          "title": "Trabajo nocturno sin plus de nocturnidad",
+          "body": "Trabajas unas {horas} h/semana entre las 22:00 y las 6:00 y no cobras plus de nocturnidad, aunque el convenio lo contempla. Revisa tus nóminas: debe aparecer como concepto propio."
+        },
+        "sin_plus": {
+          "title": "Trabajo nocturno sin plus: revísalo",
+          "body": "Trabajas unas {horas} h/semana en horario nocturno sin plus. La ley exige una retribución específica por trabajo nocturno, salvo que tu salario se haya fijado ya teniendo en cuenta que el puesto es nocturno por su naturaleza o que se compense con descanso. Revisa lo que dice el convenio."
+        },
+        "nose": {
+          "title": "Comprueba si cobras plus de nocturnidad",
+          "body": "Trabajas unas {horas} h/semana entre las 22:00 y las 6:00. Busca en tu nómina un concepto de nocturnidad; si no aparece, revísalo con el convenio o con un sindicato."
+        },
+        "ok": {
+          "title": "Cobras plus de nocturnidad",
+          "body": "Comprueba que el importe corresponde a las {horas} h nocturnas semanales que haces de verdad."
+        },
+        "mas_8": {
+          "title": "Trabajo nocturno de más de 8 horas de media",
+          "body": "Como trabajador/a nocturno/a, tu jornada no puede superar 8 horas diarias de promedio en un periodo de 15 días. Según tus respuestas, tu media es de {media} h al día."
+        },
+        "extras": {
+          "title": "Haces horas extra siendo trabajador/a nocturno/a",
+          "body": "Quien trabaja habitualmente al menos 3 horas de su jornada diaria en horario nocturno no puede hacer horas extraordinarias. Según tus respuestas haces unas {semanal} h/semana de más."
+        }
+      },
+      "fest": {
+        "nada": {
+          "title": "Festivos trabajados sin compensación",
+          "body": "Trabajas unos {dias} festivos al año sin recargo ni descanso a cambio. Por norma general, las horas trabajadas en festivo se pagan con un incremento de al menos el 75 %, salvo que se compensen con descanso; el convenio puede tener su propia regulación."
+        },
+        "nose": {
+          "title": "Festivos trabajados: comprueba la compensación",
+          "body": "Trabajas unos {dias} festivos al año. Revisa si en la nómina aparecen con recargo o si te dieron otro día de descanso a cambio."
+        },
+        "ok": {
+          "title": "Festivos trabajados compensados",
+          "body": "Te pagan o compensan los {dias} festivos que trabajas. Comprueba que el importe o el descanso es el que fija el convenio."
+        }
+      },
+      "entre": {
+        "ok": {
+          "title": "Descanso entre jornadas respetado",
+          "body": "Entre el final de un turno y el comienzo del siguiente tienes al menos {horas} h, por encima del mínimo de 12 h."
+        },
+        "cambio_turno": {
+          "title": "Descanso reducido al cambiar de turno",
+          "body": "Tienes solo {horas} h entre jornadas cuando cambias de turno. En trabajo a turnos, ese día el descanso puede bajar hasta un mínimo de 7 h, pero la diferencia hasta 12 h debe compensarse en los días inmediatamente siguientes. Si no te la compensan, es un incumplimiento."
+        },
+        "menos_12": {
+          "title": "Menos de 12 horas entre jornadas",
+          "body": "Tienes solo {horas} h entre el final de un turno y el comienzo del siguiente (el típico «cierro y abro»). El mínimo legal son 12 h. Las pocas excepciones de las jornadas especiales obligan a compensar el descanso perdido en los días siguientes."
+        }
+      },
+      "semanal": {
+        "minimo": {
+          "title": "Casi sin días libres",
+          "body": "Has librado {dias} día(s) en las últimas dos semanas. La ley garantiza un descanso semanal de día y medio ininterrumpido, acumulable en periodos de 14 días: 3 días cada dos semanas."
+        },
+        "bajo_convenio": {
+          "title": "Menos descanso semanal que el del convenio",
+          "body": "Has librado {dias} días en 14 días; el convenio te da {convenio} en ese periodo."
+        },
+        "acumulable": {
+          "title": "Descanso semanal justo: revísalo",
+          "body": "Has librado {dias} días en 14 días. El mínimo general son 3 días cada dos semanas. En hostelería, el medio día puede acumularse en periodos de hasta 4 semanas o disfrutarse otro día: comprueba que al cabo del mes te salen los días que te tocan."
+        },
+        "ok": {
+          "title": "Descanso semanal suficiente",
+          "body": "Has librado {dias} días en las últimas dos semanas, al menos el mínimo legal."
+        }
+      },
+      "vac": {
+        "menos_30": {
+          "title": "Menos de 30 días de vacaciones",
+          "body": "Te dan {dias} días de vacaciones al año. El mínimo legal son 30 días naturales al año (o la parte proporcional si no has trabajado el año entero). El convenio puede mejorarlo, nunca empeorarlo."
+        },
+        "bajo_convenio": {
+          "title": "Menos vacaciones que las del convenio",
+          "body": "Te dan {dias} días; el convenio fija {convenio} días naturales."
+        },
+        "convenio_laborables": {
+          "title": "Vacaciones: compáralas con el convenio",
+          "body": "El convenio fija {convenio} días laborables de vacaciones y tú indicas {dias} días naturales. Cuenta cuántos de tus días de vacaciones eran laborables para compararlos."
+        },
+        "ok_pendiente": {
+          "title": "Vacaciones al menos del mínimo legal",
+          "body": "Tienes {dias} días al año, al menos los 30 días naturales del Estatuto. Falta cargar los días del convenio para compararlos."
+        },
+        "ok": {
+          "title": "Vacaciones conformes al convenio",
+          "body": "Tienes {dias} días, al menos los {convenio} del convenio."
+        },
+        "compensadas": {
+          "title": "Te pagan las vacaciones en vez de dejarte disfrutarlas",
+          "body": "Las vacaciones no se pueden cambiar por dinero mientras sigues trabajando. Solo se pagan las no disfrutadas cuando termina el contrato, en el finiquito."
+        }
+      },
+      "pagas": {
+        "menos_2": {
+          "title": "Menos de dos pagas extra",
+          "body": "Cobras {n} paga(s) extra al año. La ley garantiza al menos dos gratificaciones extraordinarias al año, una de ellas en Navidad; su importe lo fija el convenio. Si van prorrateadas, deben aparecer en la nómina mensual como concepto aparte."
+        },
+        "bajo_convenio": {
+          "title": "Menos pagas extra que las del convenio",
+          "body": "Cobras {n} pagas extra; el convenio fija {convenio}."
+        },
+        "ok_pendiente": {
+          "title": "Pagas extra: al menos el mínimo legal",
+          "body": "Cobras {n} pagas extra. Falta cargar el número de pagas del convenio para compararlo."
+        },
+        "ok": {
+          "title": "Pagas extra conformes",
+          "body": "Cobras {n} pagas extra, las que fija el convenio ({convenio})."
+        }
+      },
+      "registro": {
+        "no": {
+          "title": "La empresa no registra tu jornada",
+          "body": "La empresa está obligada a registrar cada día la hora de entrada y salida de cada persona, conservar el registro 4 años y tenerlo a tu disposición, de tus representantes y de la Inspección de Trabajo. Sin registro es difícil probar las horas extra: empieza a anotar tú tus horas (fecha, entrada y salida) y guarda fotos de los cuadrantes."
+        },
+        "sin_acceso": {
+          "title": "No puedes consultar tu registro horario",
+          "body": "El registro debe estar a tu disposición. Puedes pedir una copia por escrito. Mientras tanto, anota tú cada día tus horas reales."
+        },
+        "nose": {
+          "title": "No sabes si hay registro horario",
+          "body": "Pregunta cómo se registra tu jornada (app, fichaje, hoja firmada): es obligatorio. Si te hacen firmar hojas con horas que no son las reales, anota las verdaderas por tu cuenta."
+        },
+        "ok": {
+          "title": "Registro horario accesible",
+          "body": "Hay registro y puedes consultarlo. Comprueba que refleja tus horas reales y no las del contrato."
+        }
+      },
+      "temp": {
+        "encadenamiento": {
+          "title": "Encadenamiento de contratos temporales",
+          "body": "Llevas {meses} meses con contratos temporales en los últimos 24. Quien, en un periodo de 24 meses, ha estado contratado/a más de 18 meses —con o sin interrupciones— mediante dos o más contratos por circunstancias de la producción en la misma empresa adquiere la condición de fijo/a."
+        },
+        "produccion_12": {
+          "title": "Contrato por circunstancias de la producción demasiado largo",
+          "body": "Tu contrato por circunstancias de la producción dura {meses} meses. Su duración máxima es de 6 meses, ampliable hasta 12 solo si lo prevé el convenio sectorial. Un contrato temporal que incumple las reglas convierte a la persona en fija."
+        },
+        "produccion_6": {
+          "title": "Contrato por circunstancias de la producción de más de 6 meses",
+          "body": "Dura {meses} meses. El máximo general es de 6 meses; solo puede llegar a 12 si el convenio sectorial lo amplía. Compruébalo en el convenio."
+        },
+        "causa_nose": {
+          "title": "Tu contrato temporal debe decir la causa",
+          "body": "Un contrato temporal solo es válido si especifica con precisión la causa (circunstancias de la producción o sustitución), las circunstancias concretas que la justifican y su relación con la duración prevista. Si no lo hace, se presume indefinido. Revisa tu copia del contrato."
+        }
+      }
+    }
+  },
+  "nomina": {
+    "eyebrow": "Módulo 2",
+    "h1": "Verificador de nómina",
+    "lead": "Calcula, a partir de las tablas del convenio, el bruto que te corresponde según tu categoría y jornada, le resta la cotización y una estimación del IRPF, y lo compara con lo que cobras.",
+    "prefilled": "Hemos rellenado algunos datos con tus respuestas de la auditoría. Puedes cambiarlos.",
+    "fs_puesto": "Tu puesto",
+    "fs_mes": "Este mes",
+    "fs_cobro": "Lo que cobras",
+    "calc": "Calcular",
+    "edit": "Cambiar datos",
+    "q": {
+      "categoria": {
+        "label": "Categoría profesional"
+      },
+      "contrato": {
+        "label": "Tipo de contrato"
+      },
+      "contrato_inferior_anio": {
+        "label": "¿Tu contrato dura menos de un año?"
+      },
+      "horas_contrato": {
+        "label": "Horas semanales de tu contrato",
+        "unit": "h/semana"
+      },
+      "prorrata": {
+        "label": "¿Te prorratean las pagas extra en la nómina mensual?",
+        "help": "Si no lo sabes, busca en la nómina un concepto como «prorrata pagas extra». Usa un mes normal, sin paga extra."
+      },
+      "horas_nocturnas_mes": {
+        "label": "Horas trabajadas entre las 22:00 y las 6:00 este mes",
+        "unit": "horas",
+        "help": "0 si ninguna."
+      },
+      "festivos_mes": {
+        "label": "Festivos trabajados este mes",
+        "unit": "días"
+      },
+      "horas_festivos_mes": {
+        "label": "Horas trabajadas en esos festivos",
+        "unit": "horas"
+      },
+      "dias_trabajados_mes": {
+        "label": "Días trabajados este mes",
+        "unit": "días",
+        "help": "Se usa si el plus de transporte o manutención es por día trabajado."
+      },
+      "bruto_nomina": {
+        "label": "Total devengado (bruto) de tu nómina",
+        "unit": "€",
+        "help": "Opcional. Aparece como «Total devengado»."
+      },
+      "neto_cobrado": {
+        "label": "Lo que te ingresan (líquido a percibir)",
+        "unit": "€"
+      },
+      "irpf_nomina": {
+        "label": "% de IRPF que aparece en tu nómina",
+        "unit": "%",
+        "help": "Opcional. Si lo pones, usamos el de tu nómina en vez de estimarlo."
+      }
+    },
+    "o": {
+      "contrato": {
+        "indefinido": "Indefinido",
+        "fijo_discontinuo": "Fijo-discontinuo",
+        "temporal": "Temporal"
+      }
+    },
+    "result": {
+      "title": "Estimación de tu nómina",
+      "tag": "Estimación orientativa",
+      "devengos": "Lo que deberías cobrar en bruto",
+      "deducciones": "Lo que se descuenta",
+      "salario_base": "Salario base ({pct} % de jornada; tabla: {tabla} €)",
+      "plus_nocturnidad": "Plus de nocturnidad",
+      "plus_festivos": "Festivos trabajados",
+      "plus_transporte": "Plus de transporte",
+      "plus_manutencion": "Plus de manutención",
+      "prorrata": "Prorrata de pagas extra ({n} pagas de {importe})",
+      "total_bruto": "Total bruto estimado",
+      "base_cot": "Base de cotización (incluye la prorrata de pagas extra)",
+      "cot_cc": "Contingencias comunes",
+      "cot_desempleo": "Desempleo",
+      "cot_fp": "Formación profesional",
+      "cot_mei": "Mecanismo de Equidad Intergeneracional (MEI)",
+      "irpf_estimado": "IRPF estimado",
+      "irpf_nomina": "IRPF (el % de tu nómina)",
+      "total_deducciones": "Total descuentos",
+      "neto": "Neto estimado del mes",
+      "pagas_info": "Pagas extra: {n} al año de unos {importe} brutos cada una.",
+      "pagas_fechas": "Fechas de abono según el convenio: {fechas}.",
+      "compare_neto_title": "Comparación con lo que te ingresan",
+      "compare_bruto_title": "Comparación con el bruto de tu nómina",
+      "compare_less": "Cobras {diff} menos de lo estimado ({pct} %).",
+      "compare_more": "Cobras {diff} más de lo estimado ({pct} %).",
+      "compare_equal": "Coincide prácticamente con lo estimado.",
+      "compare_grave": "La diferencia es importante. Revisa tu nómina concepto a concepto con un sindicato: categoría, horas, pluses y pagas.",
+      "compare_revisable": "Hay una diferencia que conviene revisar. Puede deberse a conceptos que aquí no se calculan (antigüedad, anticipos, embargos…) o a un error.",
+      "compare_more_note": "Si parte de lo que cobras no aparece en la nómina (pagos en efectivo «en negro»), ese dinero no cotiza: reduce tu paro, tus bajas y tu jubilación.",
+      "no_compare": "Introduce lo que te ingresan para compararlo.",
+      "irpf_detail": "Estimación del IRPF: rendimiento neto {rn}, reducción por trabajo {red}, base {base}. Tipo resultante: {tipo}.",
+      "faltan_title": "No se puede calcular todavía",
+      "faltan_body": "Faltan datos oficiales del convenio que la herramienta no estima. Cuando se carguen las tablas del BOP nº 209 (31/10/2025), este cálculo funcionará.",
+      "faltan_fields": "Datos que faltan:",
+      "pendientes_title": "Partes que no se han podido calcular",
+      "bajo_smi": "El salario de tabla a jornada completa ({tabla} al año) queda por debajo del salario mínimo interprofesional ({smi}). El SMI prevalece: nadie puede cobrar menos a jornada completa (art. 27 ET)."
+    },
+    "faltan": {
+      "categoria": "Elige tu categoría.",
+      "horas_contrato": "Indica las horas semanales de tu contrato.",
+      "salario_base_mensual": "Salario base mensual de tu categoría (tablas 2025).",
+      "pagas_numero": "Número de pagas extra del convenio.",
+      "pagas_base_calculo": "Cómo se calcula cada paga extra según el convenio.",
+      "pagas_importe_fijo": "Importe de cada paga extra."
+    },
+    "pend": {
+      "plus_nocturnidad": "Plus de nocturnidad: importe del convenio pendiente de cargar. No se ha sumado.",
+      "plus_festivos": "Festivos: importe del convenio pendiente de cargar. No se ha sumado.",
+      "plus_transporte": "Plus de transporte: dato del convenio pendiente de cargar. No se ha sumado.",
+      "plus_manutencion": "Plus de manutención: dato del convenio pendiente de cargar. No se ha sumado.",
+      "fiscal_seguridad_social_bases": "Bases mínima y máxima de cotización 2026 pendientes: no se han aplicado topes.",
+      "fiscal_salario_minimo": "SMI 2026 pendiente: no se ha comprobado si la tabla lo respeta.",
+      "fiscal_irpf": "Parámetros de IRPF incompletos: no se ha estimado la retención.",
+      "fiscal_seguridad_social_tipos_trabajador_contingencias_comunes": "Tipo de contingencias comunes pendiente.",
+      "fiscal_seguridad_social_tipos_trabajador_desempleo_indefinido": "Tipo de desempleo pendiente.",
+      "fiscal_seguridad_social_tipos_trabajador_desempleo_temporal": "Tipo de desempleo pendiente.",
+      "fiscal_seguridad_social_tipos_trabajador_formacion_profesional": "Tipo de formación profesional pendiente.",
+      "fiscal_seguridad_social_tipos_trabajador_mei": "Tipo del MEI pendiente."
+    },
+    "notas": {
+      "title": "Supuestos de este cálculo",
+      "jornada_supuesta_40": "Como jornada completa se usan 40 h/semana (máximo del art. 34.1 ET), porque falta cargar la jornada semanal del convenio.",
+      "pagas_sin_antiguedad": "Las pagas extra se han calculado sobre el salario base, sin antigüedad.",
+      "base_maxima": "Se ha aplicado la base máxima de cotización.",
+      "base_minima": "Se ha aplicado la base mínima de cotización.",
+      "irpf_sin_limite_excluyente": "IRPF: no se ha aplicado el límite por debajo del cual no hay retención (dato pendiente). Con salarios bajos la retención real puede ser 0 %.",
+      "irpf_minimo_temporal": "IRPF: se aplica el tipo mínimo del 2 % de los contratos de menos de un año.",
+      "general": "Se supone un mes sin paga extra, sin antigüedad, sin horas extra y con los mismos pluses todos los meses. El IRPF se estima para una persona sin hijos ni otras circunstancias familiares; el tuyo puede ser distinto."
+    }
+  },
+  "dudas": {
+    "eyebrow": "Módulo 3",
+    "h1": "Dudas frecuentes",
+    "lead": "Elige un tema y responde a las preguntas. Te llevará a una respuesta concreta con la norma que la regula.",
+    "topics": "Temas",
+    "back": "Volver",
+    "restart": "Otros temas",
+    "path": "Tu recorrido",
+    "pendiente": "[dato pendiente de cargar del convenio]"
+  },
+  "qh": {
+    "eyebrow": "Módulo 4",
+    "h1": "Qué hacer ahora",
+    "lead": "Pasos reales, en orden, para defender tus derechos sin exponerte más de lo necesario.",
+    "plazos": "Plazos que no puedes dejar pasar",
+    "verificar": "Comprueba la dirección y el horario actualizados antes de ir."
+  }
+}
