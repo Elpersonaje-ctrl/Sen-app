@@ -557,3 +557,8 @@ table.calc .muted { color: var(--muted); font-weight: 400; font-size: .88rem; di
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* Rutas JSON largas y cabeceras con sello: nunca provocar scroll horizontal en móvil */
+code { overflow-wrap: anywhere; word-break: break-word; }
+.finding-head { flex-wrap: wrap; }
+.finding-head h2, .finding-head h3 { flex: 1 1 12rem; min-width: 0; }
